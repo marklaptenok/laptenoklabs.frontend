@@ -1,6 +1,6 @@
 site:
-  title: "Launchpad"
-  description: "A modern Astro scaffolding for agencies and studios."
-  based: "Mexico City"
-  timezone: "America/Mexico_City"
-  locale: "es-MX"
+  title: "Laptenok Labs"
+  description: "Software engineering. We build, maintain, and teach"
+  based: "Pilsen, the Czech republic"
+  timezone: "Europe/Prague"
+  locale: "en-EN"
