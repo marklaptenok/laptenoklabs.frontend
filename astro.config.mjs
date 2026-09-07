@@ -21,12 +21,10 @@ export default defineConfig({
     vite: {
         plugins: [tailwindcss()],
     },
-    experimental: {
-        fonts: [{
-            provider: fontProviders.google(),
-            name: "Cormorant",
-            cssVariable: "--font-main",
-            styles: ["normal"],
-        }]
-    }
+    fonts: [{
+        provider: fontProviders.google(),
+        name: "Cormorant",
+        cssVariable: "--font-main",
+        styles: ["normal"],
+    }],
 });
