@@ -9,7 +9,7 @@
         "astro": "astro"
     },
     "dependencies": {
-        "@astrojs/mdx": "^4.3.13",
+        "@astrojs/mdx": "^8.0.0",
         "@astrojs/rss": "^4.0.14",
         "@astrojs/sitemap": "^3.6.1",
         "@iconify-json/tabler": "^1.2.26",
@@ -17,11 +17,11 @@
         "@tailwindcss/vite": "^4.1.18",
         "astro": "^7.3.1",
         "astro-icon": "^1.1.5",
-        "astro-pagefind": "^1.8.5",
+        "astro-pagefind": "^2.0.1",
         "astro-seo": "^1.1.0",
         "gsap": "^3.14.2",
         "pagefind": "^1.4.0",
-        "sharp": "^0.34.3",
+        "sharp": "^0.35.4",
         "tailwindcss": "^4.1.18"
     }
 }

@@ -20,11 +20,23 @@ export default defineConfig({
     trailingSlash: 'never',
     vite: {
         plugins: [tailwindcss()],
+        server: {
+            watch: {
+                usePolling: true,
+                interval: 1000,
+            }
+        },
     },
     fonts: [{
         provider: fontProviders.google(),
         name: "Cormorant",
         cssVariable: "--font-main",
+        styles: ["normal"],
+    },
+    {
+        provider: fontProviders.google(),
+        name: "Jura",
+        cssVariable: "--font-header",
         styles: ["normal"],
     }],
 });
