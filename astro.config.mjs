@@ -64,5 +64,18 @@ export default defineConfig({
         cssVariable: "--font-header",
         styles: ["normal"],
         subsets: ["latin", "latin-ext", "cyrillic"],
+    },
+    {
+        provider: fontProviders.local(),
+        name: "Matias",
+        cssVariable: "--font-title",
+        fallbacks: ["Jura", "serif"],
+        options: {
+            variants: [{
+                weight: 400,
+                style: "normal",
+                src: ["./src/assets/fonts/Matias.woff2"],
+            }],
+        },
     }],
 });

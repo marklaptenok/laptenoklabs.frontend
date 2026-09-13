@@ -54,32 +54,6 @@ definitions:
       type: string
       list: true
 
-  author_fields: &author_fields
-    - name: id
-      label: ID
-      type: string
-      required: true
-    - name: name
-      label: Name
-      type: string
-      required: true
-    - name: role
-      label: Role
-      type: string
-    - name: bio
-      label: Bio
-      type: text
-    - name: avatar
-      label: Avatar
-      type: image
-    - name: location
-      label: Location
-      type: string
-    - name: focus
-      label: Focus areas
-      type: string
-      list: false
-
   post_view: &post_view
     fields: [title, pubDate, updatedDate, tags]
     sort: [pubDate, title]
@@ -93,13 +67,6 @@ definitions:
     default:
       sort: pubDate
       order: desc
-
-  author_view: &author_view
-    fields: [name, role, location]
-    sort: [name]
-    default:
-      sort: name
-      order: asc
 
 content:
   - name: blog_en
@@ -133,30 +100,6 @@ content:
     filename: '{primary}.md'
     view: *project_view
     fields: *project_fields
-
-  - name: authors_en
-    label: Authors — English
-    type: collection
-    path: src/content/authors/en
-    format: yaml
-    filename: '{primary}.yml'
-    view: *author_view
-    fields: *author_fields
-
-  - name: authors_ru
-    label: Авторы — Русский
-    type: collection
-    path: src/content/authors/ru
-    format: yaml
-    filename: '{primary}.yml'
-    view: *author_view
-    fields: *author_fields
-
-  - name: testimonials
-    label: Testimonials
-    type: file
-    path: src/content/testimonials.yml
-    format: yaml
 
   - name: socials
     label: Socials

@@ -1,78 +1,79 @@
-# Astro Launchpad
+# laptenoklabs.frontend
 
-An Astro starter tailored for agencies and studios: MDX blog, global search, RSS, sitemap, light/dark/blue themes, and components ready to sell services or publish content.
-
-![](./public/SS-1.png)
-
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/static-site?referralCode=welcome)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/roicort/launchpad)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Froicort%2Flaunchpad)
-
-## Features
-- [Lighthouse Score: 100](https://pagespeed.web.dev/analysis/https-roicort-github-io-launchpad/xthz1r5i4v?form_factor=mobile)
-- Blog with Markdown/MDX, featured post, and tag listings
-- Typed collections for posts, authors, and socials in [src/content.config.ts](src/content.config.ts)
-- Site-wide search via Pagefind with an accessible modal
-- SEO-ready: OpenGraph/Twitter, canonical links, and preloaded fonts in [src/components/BaseHead.astro](src/components/BaseHead.astro)
-- Themes `light/dark/blue` with persistent toggle; debug toggle for layout borders
-- RSS (`/rss.xml`) and sitemap (`/sitemap-index.xml`) generated automatically
-
-
-<div style="display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 20px;">
-    <img src="./public/SS-2.png" style="width: 180px; vertical-align: middle;" />
-    <img src="./public/SS-3.png" style="width: 180px; vertical-align: middle;" />
-    <img src="./public/SS-4.png" style="width: 180px; vertical-align: middle;" />
-</div>
-
+The personal website of Mark Laptenok — software engineer and engineering teacher in Pilsen,
+Czech Republic. Built with Astro, published in English and Russian at
+[laptenoklabs.com](https://laptenoklabs.com) and laptenoklabs.cz.
 
 ## Requirements
+
 - Bun
-- Astro @latest
-- Tailwdind CSS
+- Astro 7
 
 ## Install & run
 
 ```sh
-# install dependencies
-bun install
-
-# start dev server
-bun run dev
-
-# production build
-bun run build
-
-# preview the build
-bun run preview
+bun install      # install dependencies
+bun run dev      # dev server on localhost:4321
+bun run build    # production build into dist/
+bun run preview  # serve the build locally
 ```
+
+The output is static. `dist/` is deployed manually to Railway.
+
+## Languages
+
+Every page is prefixed by locale — `/en/...` and `/ru/...` — and `/` redirects to `/en`.
+
+| Path | Purpose |
+| --- | --- |
+| `src/i18n/config.ts` | the locale list, default locale, and display names |
+| `src/i18n/ui.ts` | every user-visible string, in both languages |
+| `src/i18n/utils.ts` | translation lookup, locale-aware URLs, locale-filtered collections |
+
+`en` is the reference in `ui.ts`, so a key missing from `ru` fails the type check rather than
+falling back silently to English.
+
+Adding a language: add it to `src/i18n/config.ts` and the `locales` array in `astro.config.mjs`,
+fill in its column in `src/i18n/ui.ts`, create `src/content/*/<locale>/`, and add the matching
+blocks to `.pages.yml`.
 
 ## Content
-- Posts: add `.md` or `.mdx` under `src/content/blog`. Schema validates `title`, `description`, `pubDate`, `updatedDate?`, `heroImage?`, `tags[]`.
-- Authors: `src/content/authors.yml`.
-- Socials: `src/content/socials.yml`.
 
-Frontmatter example:
+Markdown content lives in per-locale folders, so an entry id is `<locale>/<slug>`:
+
+```
+src/content/blog/en/2026-01-15-first-post.md
+src/content/projects/ru/soft-engineer.md
+```
+
+Listings show only the current language; a section with no translations shows an empty state.
+Pages, tag pages and RSS feeds are generated per locale, and the language switcher hides itself
+when a page has no counterpart.
+
+Frontmatter:
+
 ```md
 ---
-title: "How we launch in 6 weeks"
-description: "End-to-end process for small teams."
-pubDate: 2024-12-12
-updatedDate: 2025-01-03
-tags: [delivery, process]
-heroImage: ../../assets/blog/ship.jpg
+title: "Post title"
+description: "One-line summary."
+pubDate: 2026-01-15
+updatedDate: 2026-02-01
+tags: [networks, rust]
+heroImage: ../../../assets/blog-placeholder-3.png
 ---
 ```
 
-## Quick customization
-- Site name and description in [src/consts.ts](src/consts.ts).
-- Navigation and hero actions in [src/pages/index.astro](src/pages/index.astro).
-- Colors, type, and utilities in `src/styles/global.css`.
-- Key components: header with search and toggles ([src/components/Header.astro](src/components/Header.astro)), base layout ([src/layouts/BaseLayout.astro](src/layouts/BaseLayout.astro)).
+`src/content/socials.yml` holds the footer links; `src/site-config.yml` holds the
+language-independent settings (site title, timezone). Content is also editable through
+[Pages CMS](https://pagescms.org), configured in `.pages.yml`.
 
-## Available scripts
-- `npm run dev`: server on `localhost:4321` (Astro default).
-- `npm run build`: outputs `dist/` ready to deploy.
-- `npm run preview`: serves the built site locally.
+## Fonts
 
-## Deploy
-Output is static HTML. Upload `dist/` to your platform of choice (Netlify, Vercel, Cloudflare Pages, S3+CDN). Set `BASE_URL` if you publish under a subpath.
+Cormorant and Jura are fetched from Google Fonts at build time. Matias — used for the site title
+in the header — is a local file at `src/assets/fonts/Matias.woff2`.
+
+## Licence
+
+Site content © Mark Laptenok. The underlying template is
+[Astro Launchpad](https://github.com/roicort/launchpad) by Rodrigo Cortez, BSD 3-Clause; see
+[LICENSE](./LICENSE).

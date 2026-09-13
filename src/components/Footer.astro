@@ -40,16 +40,6 @@ const navLinks: Array<{ key: TranslationKey; href: string }> = [
 <footer class="border-t border-[color:var(--color-border)] bg-[color:var(--color-surface)] py-8">
   <div class="content-shell">
     <div class="grid gap-10 border-b border-[color:var(--color-border)] pb-10 md:grid-cols-2">
-      <div class="space-y-6">
-        <p class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">{t('footer.resources')}</p>
-        <div class="grid gap-2 sm:grid-cols-2 text-sm text-ink">
-          <a class="transition-colors hover:text-ink" href="https://astro.build" target="_blank" rel="noreferrer">Astro Docs</a>
-          <a class="transition-colors hover:text-ink" href="https://docs.astro.build/en/guides/content-collections/" target="_blank" rel="noreferrer">Content collections</a>
-          <a class="transition-colors hover:text-ink" href="https://tailwindcss.com/docs" target="_blank" rel="noreferrer">Tailwind docs</a>
-          <a class="transition-colors hover:text-ink" href="https://github.com/withastro/astro" target="_blank" rel="noreferrer">Astro GitHub</a>
-        </div>
-      </div>
-      <div class="grid gap-8">
         <div class="grid gap-3">
           <p class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">{t('footer.connect')}</p>
           <div class="grid gap-2 sm:grid-cols-2 text-sm text-ink">
@@ -89,7 +79,6 @@ const navLinks: Array<{ key: TranslationKey; href: string }> = [
             ))}
           </div>
         </div>
-      </div>
     </div>
     <div class="grid gap-6 pt-8 pb-4 md:flex md:items-center md:justify-between">
       <p class="text-sm text-ink m-0">{site.title} &copy; {today.getFullYear()}. {t('footer.rights')}</p>
@@ -103,7 +92,7 @@ const navLinks: Array<{ key: TranslationKey; href: string }> = [
             showSeconds={false}
           />
         </div>
-        <p class="text-sm text-muted m-0">{t('footer.designedBy')}</p>
+        <p class="text-sm text-muted m-0">{t('footer.colophon')}</p>
       </div>
     </div>
   </div>

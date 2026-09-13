@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import PageLayout from '../../layouts/PageLayout.astro';
 import Values from '../../components/Values.astro';
+import portrait from '../../assets/team/marklaptenok.jpg';
 import { localePaths, resolveLocale, useTranslations } from '../../i18n/utils';
 
 export const getStaticPaths = localePaths;
@@ -10,27 +12,47 @@ const t = useTranslations(locale);
 ---
 
 <PageLayout title={t('about.title')} description={t('about.description')}>
-	<section class="content-shell py-12 space-y-8">
-		<div class="space-y-3 max-w-3xl">
-			<p class="eyebrow m-0">{t('about.eyebrow')}</p>
-			<p class="m-0 text-ink text-2xl font-semibold leading-tight">{t('about.lead')}</p>
-			<p class="m-0 text-muted">{t('about.body1')}</p>
-			<p class="m-0 text-muted">{t('about.body2')}</p>
+	<section class="content-shell py-12 space-y-10">
+		<div class="grid gap-8 md:grid-cols-[220px_1fr] md:items-start">
+			<figure class="m-0 max-w-[220px]">
+				<Image
+					src={portrait}
+					alt={t('about.photoAlt')}
+					width={440}
+					height={440}
+					class="w-full rounded-2xl border border-[color:var(--color-border)] object-cover"
+				/>
+			</figure>
+			<div class="space-y-4 max-w-3xl">
+				<p class="eyebrow m-0">{t('about.eyebrow')}</p>
+				<p class="m-0 text-ink text-2xl font-semibold leading-tight">{t('about.lead')}</p>
+				<p class="m-0 text-muted">{t('about.body1')}</p>
+				<p class="m-0 text-muted">{t('about.body2')}</p>
+				<p class="m-0 text-muted">{t('about.body3')}</p>
+			</div>
 		</div>
+
+		<blockquote class="m-0 border-l-2 border-[color:var(--color-border)] pl-5 text-xl text-ink">
+			{t('about.motto')}
+		</blockquote>
 	</section>
 
-	<div class="mt-12 md:mt-16">
+	<div class="mt-4 md:mt-8">
 		<Values
 			useShell={false}
-			eyebrow={t('values.eyebrow')}
-			title={t('values.title')}
-			copy={t('values.copy')}
+			eyebrow={t('focus.eyebrow')}
+			title={t('focus.title')}
+			copy={t('focus.copy')}
 			values={[
-				{ title: t('values.clarity.title'), description: t('values.clarity.description') },
-				{ title: t('values.shipping.title'), description: t('values.shipping.description') },
-				{ title: t('values.craft.title'), description: t('values.craft.description') },
-				{ title: t('values.partnership.title'), description: t('values.partnership.description') },
+				{ title: t('focus.systems.title'), description: t('focus.systems.description') },
+				{ title: t('focus.people.title'), description: t('focus.people.description') },
+				{ title: t('focus.kernel.title'), description: t('focus.kernel.description') },
+				{ title: t('focus.teaching.title'), description: t('focus.teaching.description') },
 			]}
 		/>
 	</div>
+
+	<section class="content-shell">
+		<p class="m-0 max-w-3xl text-sm text-subtle">{t('about.disclaimer')}</p>
+	</section>
 </PageLayout>

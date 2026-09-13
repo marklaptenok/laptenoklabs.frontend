@@ -55,7 +55,7 @@ export const entryLocale = (id: string): Locale => {
 	return isLocale(prefix) ? prefix : defaultLocale;
 };
 
-type LocalizedCollection = 'blog' | 'projects' | 'authors';
+type LocalizedCollection = 'blog' | 'projects';
 
 export async function getLocalizedCollection<C extends LocalizedCollection>(
 	collection: C,
@@ -69,17 +69,6 @@ export async function getLocalizedCollection<C extends LocalizedCollection>(
 		const bDate = (b.data as { pubDate?: Date }).pubDate;
 		if (aDate && bDate) return bDate.valueOf() - aDate.valueOf();
 		return 0;
-	});
-}
-
-export async function getLocalizedList<C extends 'testimonials'>(
-	collection: C,
-	locale: Locale,
-): Promise<CollectionEntry<C>[]> {
-	const entries = (await getCollection(collection)) as CollectionEntry<C>[];
-	return entries.filter((entry) => {
-		const lang = (entry.data as { lang?: string }).lang;
-		return lang === undefined || lang === locale;
 	});
 }
 

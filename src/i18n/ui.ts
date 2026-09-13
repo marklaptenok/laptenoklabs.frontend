@@ -1,12 +1,11 @@
 import type { Locale } from './config';
 
 const en = {
-	'site.description': 'Software engineering. Building, maintaining, and teaching it.',
+	'site.description': 'I build systems software and teach software engineering.',
 	'site.skipToContent': 'Skip to content',
 
 	'nav.home': 'Home',
 	'nav.blog': 'Blog',
-	'nav.team': 'Team',
 	'nav.about': 'About',
 	'nav.projects': 'Projects',
 	'nav.tags': 'Tags',
@@ -18,7 +17,6 @@ const en = {
 	'header.debug': 'Toggle layout borders',
 	'header.theme': 'Toggle theme',
 	'header.language': 'Change language',
-	'header.languageCurrent': 'Current language: {language}',
 
 	'lang.en': 'English',
 	'lang.ru': 'Русский',
@@ -27,7 +25,7 @@ const en = {
 	'search.open': 'Open search dialog',
 	'search.heading': 'Find anything on the site',
 	'search.close': 'Close search dialog',
-	'search.footnote': 'Powered by Pagefind. Start typing to search posts, pages, and profiles.',
+	'search.footnote': 'Powered by Pagefind. Start typing to search posts and pages.',
 	'pagefind.placeholder': 'Search the site',
 	'pagefind.clear_search': 'Clear',
 	'pagefind.load_more': 'Load more results',
@@ -40,101 +38,92 @@ const en = {
 	'pagefind.search_suggestion': 'No results for [SEARCH_TERM]. Try one of the following searches:',
 	'pagefind.searching': 'Searching for [SEARCH_TERM]…',
 
-	'footer.resources': 'Resources',
 	'footer.connect': 'Connect',
 	'footer.navigation': 'Navigation',
 	'footer.rights': 'All rights reserved.',
 	'footer.based': 'Pilsen, Czech Republic',
-	'footer.designedBy': 'Built on the Astro Launchpad template by Rodrigo Cortez.',
+	'footer.colophon': 'Built with Astro on the Launchpad template by Rodrigo Cortez.',
 
 	'social.github': 'GitHub',
 	'social.linkedin': 'LinkedIn',
 	'social.email': 'Email',
 
-	'home.hero.eyebrow': 'An Astro Blueprint',
-	'home.hero.title': 'A modern Astro scaffolding for agencies and studios.',
+	'home.hero.eyebrow': 'Software engineer · Teacher',
+	'home.hero.title': 'Communication between computer systems — and between the people who build them.',
 	'home.hero.description':
-		'Kickstart your next project with a solid foundation, featuring a blog, project showcases, and dark mode support.',
-	'home.hero.actionBlog': 'View Blog',
-	'home.hero.actionContact': 'Get in touch',
+		'I am Mark Laptenok. I engineer systems software in Pilsen, Czech Republic, and I have taught software engineering since 2019. My background is applied mathematics and systems programming; my interests are kernel-mode programming and distributed operating systems.',
+	'home.hero.actionBlog': 'Read the blog',
+	'home.hero.actionAbout': 'More about me',
 
-	'home.numbers.eyebrow': 'Results',
-	'home.numbers.title': 'We deliver consistently',
-	'home.numbers.copy':
-		'A design-and-code stack ready to ship products without trading off quality.',
-	'home.numbers.projects.label': 'Projects shipped',
-	'home.numbers.projects.description': 'From discovery to ship without drama.',
-	'home.numbers.leadTime.label': 'Average lead time',
-	'home.numbers.leadTime.value': '6 weeks',
-	'home.numbers.leadTime.description': 'Small teams, short cycles.',
-	'home.numbers.nps.label': 'Client NPS',
-	'home.numbers.nps.description': 'Long-term relationships.',
-	'home.numbers.response.label': 'Response time',
-	'home.numbers.response.description': 'Slack, email, or call.',
+	'home.numbers.eyebrow': 'Teaching',
+	'home.numbers.title': 'Teaching, in numbers',
+	'home.numbers.copy': 'Laptenok Labs, since March 2019. Figures as of 1 September 2026.',
+	'home.numbers.hours.value': '4,525',
+	'home.numbers.hours.label': 'Hours of classes',
+	'home.numbers.hours.description':
+		'Computer networks, operating systems, databases, algorithms, parallel computing.',
+	'home.numbers.people.value': '172',
+	'home.numbers.people.label': 'People tutored',
+	'home.numbers.people.description':
+		'Including interns and students of Imperial College London, the universities of Bremen and Auckland, and Moscow State University.',
+	'home.numbers.since.value': '2019',
+	'home.numbers.since.label': 'Teaching since',
+	'home.numbers.since.description': 'Alongside full-time engineering work.',
 
-	'home.testimonials.eyebrow': 'Testimonials',
-	'home.testimonials.title': 'What our clients say',
-	'home.testimonials.previous': 'Previous testimonial',
-	'home.testimonials.next': 'Next testimonial',
-	'home.testimonials.goTo': 'Go to testimonial {number}',
-
-	'values.eyebrow': 'Values',
-	'values.title': 'How we show up',
-	'values.copy':
-		'Principles we keep front-and-center so every project ships with the same intent and craft.',
-	'values.clarity.title': 'Clarity over noise',
-	'values.clarity.description':
-		'We write, design, and code to be understood quickly by teams and customers.',
-	'values.shipping.title': 'Bias for shipping',
-	'values.shipping.description':
-		'We prefer small, validated releases over long bets that never reach users.',
-	'values.craft.title': 'Craft with pragmatism',
-	'values.craft.description':
-		'Quality matters most when it serves the outcome — polish meets purpose.',
-	'values.partnership.title': 'Partnership mindset',
-	'values.partnership.description':
-		'We behave like embedded teammates, not vendors: transparent, responsive, reliable.',
+	'focus.eyebrow': 'Focus',
+	'focus.title': 'What I work on',
+	'focus.copy': 'Three kinds of communication, and the systems programming underneath them.',
+	'focus.systems.title': 'Communication between systems',
+	'focus.systems.description':
+		'Protocol design, data serialisation, and resilience — the core of my engineering work in banking, retail, and desktop clients.',
+	'focus.people.title': 'Communication between people',
+	'focus.people.description':
+		'Cross-team and customer–engineer communication: turning what one side needs into something the other can build.',
+	'focus.kernel.title': 'Systems programming',
+	'focus.kernel.description':
+		'Kernel-mode programming and distributed operating systems. I am currently writing one for the BCM2711 SoC in Rust.',
+	'focus.teaching.title': 'Teaching',
+	'focus.teaching.description':
+		'Computer networks, operating systems, databases, algorithms and data structures, parallel computing, discrete mathematics.',
 
 	'about.title': 'About',
-	'about.eyebrow': 'Studio',
-	'about.description': 'We shape product, brand, and code for mission-driven teams.',
+	'about.eyebrow': 'About',
+	'about.description':
+		'Mark Laptenok — software engineer and engineering teacher in Pilsen, Czech Republic.',
 	'about.lead':
-		'We are a compact, senior studio blending research, design, and engineering to ship resilient products.',
+		'A communicator and a technical leader with a fundamental background in applied mathematics and systems programming.',
 	'about.body1':
-		'We stay close to the people using what we build: quick interviews, async notes, and instrumented releases. Decisions stay traceable so teams know why something shipped, not just what shipped.',
+		'My main engineering expertise is communication among computer systems: protocol design, data serialisation, and resilience. Since January 2026 I have been a Senior Software Engineer at Microsoft, working on the reliability of the Teams desktop client. Before that I spent three years at Diebold Nixdorf on communication stacks for banking and retail, and two years at Silixcon on systems for motor controllers.',
 	'about.body2':
-		'When we embed with clients, we bring our own delivery discipline — strong briefs, scoped milestones, and demos that keep stakeholders aligned. The goal: fewer surprises, faster learning.',
-
-	'team.title': 'Team',
-	'team.eyebrow': 'Team',
-	'team.heading': 'Meet the people behind the work',
-	'team.description':
-		'A compact, senior team that blends research, design, and engineering to ship resilient products.',
-	'team.empty': 'No profiles published yet.',
+		'Since March 2019 I have taught software engineering as Laptenok Labs: computer networks, operating systems, databases, algorithms and data structures, parallel computing, probability theory and discrete mathematics. By 1 September 2026 that came to 4,525 hours of classes with 172 people.',
+	'about.body3':
+		'I studied at the Faculty of Mathematics, Mechanics and Computer Sciences of the Southern Federal University in Rostov-on-Don, qualifying as a mathematician and systems programmer. I speak Russian, English and Czech, and write C, C++, Rust and Go.',
+	'about.motto': 'Make people benefit from Computer Science.',
+	'about.disclaimer':
+		'Employers are named here as a matter of record. This site is my own: it is not affiliated with, sponsored by, or endorsed by any of them.',
+	'about.photoAlt': 'Mark Laptenok',
 
 	'blog.title': 'Blog',
-	'blog.eyebrow': 'Some thoughts',
+	'blog.eyebrow': 'Writing',
 	'blog.heading': 'Blog',
-	'blog.description': 'Stories and more about development',
-	'blog.viewAll': 'View all posts',
+	'blog.description': 'Notes on software engineering.',
+	'blog.viewAll': 'All posts',
 	'blog.empty': 'No posts published yet.',
-	'blog.readingIn': 'Written in {language}',
-	'blog.postEyebrow': 'Journal',
+	'blog.postEyebrow': 'Post',
 	'blog.updated': 'Updated',
 
 	'projects.title': 'Projects',
 	'projects.eyebrow': 'Projects',
-	'projects.heading': 'Product stories and recent experiences',
-	'projects.description':
-		'Sharing results, learnings, and design structures that power creative and technical teams.',
-	'projects.metaDescription': 'Explore case studies and recent builds.',
+	'projects.heading': 'Things I build',
+	'projects.description': 'Work and side projects I can write about.',
+	'projects.metaDescription': 'Projects by Mark Laptenok.',
 	'projects.empty': 'No projects published yet.',
 	'projects.postEyebrow': 'Project',
 
 	'tags.title': 'Tags',
 	'tags.eyebrow': 'Tags',
 	'tags.heading': 'Browse by topic',
-	'tags.description': 'Explore every available tag and the posts filed under it.',
+	'tags.description': 'Every tag in use, and the posts filed under it.',
 	'tags.metaDescription': 'Browse posts by tag.',
 	'tags.empty': 'No tags yet.',
 	'tags.single': 'Tag',
@@ -143,23 +132,21 @@ const en = {
 	'tags.noPosts': 'No posts carry this tag.',
 
 	'notFound.title': 'Page not found',
-	'notFound.badge': 'Lost in the grid',
-	'notFound.heading': 'We couldn’t find that page.',
+	'notFound.heading': 'That page could not be found.',
 	'notFound.description':
-		'The link may be broken or the page might have moved. Pick a route below to keep moving.',
+		'The link may be broken, or the page may have moved. Pick a route below to keep going.',
 	'notFound.home': 'Back to home',
-	'notFound.blog': 'View the blog',
+	'notFound.blog': 'Go to the blog',
 } as const;
 
 export type TranslationKey = keyof typeof en;
 
 const ru: Record<TranslationKey, string> = {
-	'site.description': 'Программная инженерия. Разрабатываю, поддерживаю и учу ей.',
+	'site.description': 'Разрабатываю системное ПО и преподаю программную инженерию.',
 	'site.skipToContent': 'Перейти к содержимому',
 
 	'nav.home': 'Главная',
 	'nav.blog': 'Блог',
-	'nav.team': 'Команда',
 	'nav.about': 'Обо мне',
 	'nav.projects': 'Проекты',
 	'nav.tags': 'Теги',
@@ -171,7 +158,6 @@ const ru: Record<TranslationKey, string> = {
 	'header.debug': 'Показать границы вёрстки',
 	'header.theme': 'Сменить тему',
 	'header.language': 'Сменить язык',
-	'header.languageCurrent': 'Текущий язык: {language}',
 
 	'lang.en': 'English',
 	'lang.ru': 'Русский',
@@ -180,7 +166,7 @@ const ru: Record<TranslationKey, string> = {
 	'search.open': 'Открыть поиск',
 	'search.heading': 'Найти что угодно на сайте',
 	'search.close': 'Закрыть поиск',
-	'search.footnote': 'Работает на Pagefind. Начните вводить запрос, чтобы искать по записям, страницам и профилям.',
+	'search.footnote': 'Работает на Pagefind. Начните вводить запрос, чтобы искать по записям и страницам.',
 	'pagefind.placeholder': 'Искать по сайту',
 	'pagefind.clear_search': 'Очистить',
 	'pagefind.load_more': 'Показать ещё',
@@ -193,101 +179,92 @@ const ru: Record<TranslationKey, string> = {
 	'pagefind.search_suggestion': 'По запросу [SEARCH_TERM] ничего не найдено. Попробуйте один из вариантов:',
 	'pagefind.searching': 'Идёт поиск: [SEARCH_TERM]…',
 
-	'footer.resources': 'Материалы',
 	'footer.connect': 'Связаться',
 	'footer.navigation': 'Навигация',
 	'footer.rights': 'Все права защищены.',
 	'footer.based': 'Пльзень, Чехия',
-	'footer.designedBy': 'Сделано на шаблоне Astro Launchpad, автор — Rodrigo Cortez.',
+	'footer.colophon': 'Сделано на Astro, шаблон Launchpad, автор — Rodrigo Cortez.',
 
 	'social.github': 'GitHub',
 	'social.linkedin': 'LinkedIn',
 	'social.email': 'Почта',
 
-	'home.hero.eyebrow': 'Шаблон на Astro',
-	'home.hero.title': 'Современный каркас на Astro для агентств и студий.',
+	'home.hero.eyebrow': 'Инженер-программист · Преподаватель',
+	'home.hero.title': 'Коммуникация между компьютерными системами — и между людьми, которые их создают.',
 	'home.hero.description':
-		'Начните следующий проект с прочного основания: блог, витрина проектов и поддержка тёмной темы.',
+		'Меня зовут Марк Лаптёнок. Я разрабатываю системное программное обеспечение в Пльзене, Чехия, и с 2019 года преподаю программную инженерию. В основе — прикладная математика и системное программирование; интересуюсь программированием в режиме ядра и распределёнными операционными системами.',
 	'home.hero.actionBlog': 'Читать блог',
-	'home.hero.actionContact': 'Написать мне',
+	'home.hero.actionAbout': 'Подробнее обо мне',
 
-	'home.numbers.eyebrow': 'Результаты',
-	'home.numbers.title': 'Мы делаем работу стабильно',
-	'home.numbers.copy':
-		'Связка дизайна и кода, готовая выпускать продукты без потери качества.',
-	'home.numbers.projects.label': 'Выпущено проектов',
-	'home.numbers.projects.description': 'От исследования до релиза без лишней драмы.',
-	'home.numbers.leadTime.label': 'Средний срок',
-	'home.numbers.leadTime.value': '6 недель',
-	'home.numbers.leadTime.description': 'Небольшие команды, короткие циклы.',
-	'home.numbers.nps.label': 'NPS клиентов',
-	'home.numbers.nps.description': 'Долгие отношения.',
-	'home.numbers.response.label': 'Время ответа',
-	'home.numbers.response.description': 'Slack, почта или звонок.',
+	'home.numbers.eyebrow': 'Преподавание',
+	'home.numbers.title': 'Преподавание в цифрах',
+	'home.numbers.copy': 'Laptenok Labs, с марта 2019 года. Данные на 1 сентября 2026 года.',
+	'home.numbers.hours.value': '4 525',
+	'home.numbers.hours.label': 'Часов занятий',
+	'home.numbers.hours.description':
+		'Компьютерные сети, операционные системы, базы данных, алгоритмы, параллельные вычисления.',
+	'home.numbers.people.value': '172',
+	'home.numbers.people.label': 'Человек обучено',
+	'home.numbers.people.description':
+		'В том числе стажёры и студенты Imperial College London, университетов Бремена и Окленда, МГУ.',
+	'home.numbers.since.value': '2019',
+	'home.numbers.since.label': 'Преподаю с',
+	'home.numbers.since.description': 'Параллельно с основной инженерной работой.',
 
-	'home.testimonials.eyebrow': 'Отзывы',
-	'home.testimonials.title': 'Что говорят клиенты',
-	'home.testimonials.previous': 'Предыдущий отзыв',
-	'home.testimonials.next': 'Следующий отзыв',
-	'home.testimonials.goTo': 'Перейти к отзыву {number}',
-
-	'values.eyebrow': 'Принципы',
-	'values.title': 'Как мы работаем',
-	'values.copy':
-		'Принципы, которые всегда на виду, чтобы каждый проект выходил с одним и тем же замыслом и качеством.',
-	'values.clarity.title': 'Ясность вместо шума',
-	'values.clarity.description':
-		'Мы пишем, проектируем и программируем так, чтобы команды и клиенты понимали быстро.',
-	'values.shipping.title': 'Склонность выпускать',
-	'values.shipping.description':
-		'Небольшие проверенные релизы лучше долгих ставок, которые не доходят до пользователя.',
-	'values.craft.title': 'Мастерство с прагматизмом',
-	'values.craft.description':
-		'Качество важнее всего тогда, когда оно работает на результат: отделка встречается с целью.',
-	'values.partnership.title': 'Партнёрство',
-	'values.partnership.description':
-		'Мы ведём себя как часть команды, а не как подрядчик: прозрачно, отзывчиво, надёжно.',
+	'focus.eyebrow': 'Направления',
+	'focus.title': 'Чем я занимаюсь',
+	'focus.copy': 'Три вида коммуникации и системное программирование под ними.',
+	'focus.systems.title': 'Коммуникация между системами',
+	'focus.systems.description':
+		'Проектирование протоколов, сериализация данных и отказоустойчивость — основа моей инженерной работы в банковской сфере, ритейле и настольных клиентах.',
+	'focus.people.title': 'Коммуникация между людьми',
+	'focus.people.description':
+		'Общение между командами и между заказчиком и инженером: превращаю то, что нужно одной стороне, в то, что может построить другая.',
+	'focus.kernel.title': 'Системное программирование',
+	'focus.kernel.description':
+		'Программирование в режиме ядра и распределённые операционные системы. Сейчас пишу такую для SoC BCM2711 на Rust.',
+	'focus.teaching.title': 'Преподавание',
+	'focus.teaching.description':
+		'Компьютерные сети, операционные системы, базы данных, алгоритмы и структуры данных, параллельные вычисления, дискретная математика.',
 
 	'about.title': 'Обо мне',
-	'about.eyebrow': 'Студия',
-	'about.description': 'Мы формируем продукт, бренд и код для команд с миссией.',
+	'about.eyebrow': 'Обо мне',
+	'about.description':
+		'Марк Лаптёнок — инженер-программист и преподаватель программной инженерии, Пльзень, Чехия.',
 	'about.lead':
-		'Мы — компактная студия сильных специалистов, соединяющая исследование, дизайн и инженерию, чтобы выпускать устойчивые продукты.',
+		'Коммуникатор и технический лидер с фундаментальной базой в прикладной математике и системном программировании.',
 	'about.body1':
-		'Мы держимся рядом с теми, кто пользуется тем, что мы делаем: короткие интервью, асинхронные заметки, релизы с телеметрией. Решения остаются прослеживаемыми, поэтому команда знает не только что вышло, но и почему.',
+		'Моя основная инженерная специализация — коммуникация между компьютерными системами: проектирование протоколов, сериализация данных и отказоустойчивость. С января 2026 года работаю старшим инженером-программистом в Microsoft над надёжностью настольного клиента Teams. До этого три года занимался коммуникационными стеками для банков и ритейла в Diebold Nixdorf и два года — системами для контроллеров двигателей в Silixcon.',
 	'about.body2':
-		'Встраиваясь в команду клиента, мы приносим свою дисциплину поставки: внятные постановки, размеченные вехи и демонстрации, которые держат всех заинтересованных в одной картине. Цель — меньше сюрпризов, быстрее выводы.',
-
-	'team.title': 'Команда',
-	'team.eyebrow': 'Команда',
-	'team.heading': 'Люди, которые делают работу',
-	'team.description':
-		'Компактная команда сильных специалистов, соединяющая исследование, дизайн и инженерию.',
-	'team.empty': 'Профили пока не опубликованы.',
+		'С марта 2019 года преподаю программную инженерию под маркой Laptenok Labs: компьютерные сети, операционные системы, базы данных, алгоритмы и структуры данных, параллельные вычисления, теорию вероятностей и дискретную математику. К 1 сентября 2026 года это 4 525 часов занятий со 172 людьми.',
+	'about.body3':
+		'Учился на факультете математики, механики и компьютерных наук Южного федерального университета в Ростове-на-Дону, квалификация — математик, системный программист. Говорю по-русски, по-английски и по-чешски, пишу на C, C++, Rust и Go.',
+	'about.motto': 'Сделать так, чтобы информатика приносила людям пользу.',
+	'about.disclaimer':
+		'Работодатели названы здесь для точности изложения. Сайт мой собственный: он не связан с ними, не спонсируется и не одобряется ими.',
+	'about.photoAlt': 'Марк Лаптёнок',
 
 	'blog.title': 'Блог',
-	'blog.eyebrow': 'Мысли',
+	'blog.eyebrow': 'Записи',
 	'blog.heading': 'Блог',
-	'blog.description': 'Истории и заметки о разработке',
+	'blog.description': 'Заметки о программной инженерии.',
 	'blog.viewAll': 'Все записи',
 	'blog.empty': 'Записей пока нет.',
-	'blog.readingIn': 'Написано на языке: {language}',
-	'blog.postEyebrow': 'Журнал',
+	'blog.postEyebrow': 'Запись',
 	'blog.updated': 'Обновлено',
 
 	'projects.title': 'Проекты',
 	'projects.eyebrow': 'Проекты',
-	'projects.heading': 'Истории продуктов и недавний опыт',
-	'projects.description':
-		'Результаты, выводы и проектные решения, на которых держатся творческие и технические команды.',
-	'projects.metaDescription': 'Разборы проектов и недавние работы.',
+	'projects.heading': 'Что я делаю',
+	'projects.description': 'Рабочие и личные проекты, о которых можно рассказать.',
+	'projects.metaDescription': 'Проекты Марка Лаптёнка.',
 	'projects.empty': 'Проекты пока не опубликованы.',
 	'projects.postEyebrow': 'Проект',
 
 	'tags.title': 'Теги',
 	'tags.eyebrow': 'Теги',
 	'tags.heading': 'Поиск по темам',
-	'tags.description': 'Все доступные теги и записи, собранные под ними.',
+	'tags.description': 'Все используемые теги и записи под ними.',
 	'tags.metaDescription': 'Записи по тегам.',
 	'tags.empty': 'Тегов пока нет.',
 	'tags.single': 'Тег',
@@ -296,7 +273,6 @@ const ru: Record<TranslationKey, string> = {
 	'tags.noPosts': 'С этим тегом пока нет записей.',
 
 	'notFound.title': 'Страница не найдена',
-	'notFound.badge': 'Потерялись в сетке',
 	'notFound.heading': 'Такую страницу найти не удалось.',
 	'notFound.description':
 		'Возможно, ссылка сломана или страница переехала. Выберите, куда двигаться дальше.',
