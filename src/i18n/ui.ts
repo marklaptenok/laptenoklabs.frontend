@@ -10,12 +10,10 @@ const en = {
 	'nav.projects': 'Projects',
 	'nav.tags': 'Tags',
 	'nav.rss': 'RSS',
-	'nav.toggle': 'Toggle navigation',
+	'nav.primary': 'Main navigation',
 
 	'header.search': 'Search',
-	'header.github': 'Visit the GitHub profile',
 	'header.debug': 'Toggle layout borders',
-	'header.theme': 'Toggle theme',
 	'header.language': 'Change language',
 
 	'lang.en': 'English',
@@ -151,12 +149,10 @@ const ru: Record<TranslationKey, string> = {
 	'nav.projects': 'Проекты',
 	'nav.tags': 'Теги',
 	'nav.rss': 'RSS',
-	'nav.toggle': 'Открыть меню',
+	'nav.primary': 'Основная навигация',
 
 	'header.search': 'Поиск',
-	'header.github': 'Профиль на GitHub',
 	'header.debug': 'Показать границы вёрстки',
-	'header.theme': 'Сменить тему',
 	'header.language': 'Сменить язык',
 
 	'lang.en': 'English',

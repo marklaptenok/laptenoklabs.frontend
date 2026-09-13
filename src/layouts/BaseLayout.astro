@@ -45,12 +45,12 @@ const {
 
 <style>
     .content-shell {
-        padding-top: calc(var(--grid-cell) * 1);
+        padding-top: max(calc(var(--grid-cell) * 1), 4.5rem);
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 860px) {
         .content-shell {
-            padding-top: calc(var(--grid-cell) * 4);
+            padding-top: max(calc(var(--grid-cell) * 2), 6.5rem);
         }
     }
 

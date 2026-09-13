@@ -20,7 +20,7 @@ const locale = resolveLocale(Astro);
 <section class="content-shell flex items-center">
 	<div class="grid gap-4 max-w-3xl">
 		{eyebrow && <p class="eyebrow">{eyebrow}</p>}
-		<h1 class="text-4xl md:text-5xl lg:text-6xl leading-tight m-0">{title}</h1>
+		<h1 class="hero-title leading-tight m-0">{title}</h1>
 		{description && <p class="text-muted text-base md:text-lg max-w-2xl m-0">{description}</p>}
 		{actions.length > 0 && (
 			<div class="flex flex-wrap gap-3 mt-3">
@@ -35,13 +35,18 @@ const locale = resolveLocale(Astro);
 </section>
 
 <style>
-	.content-shell {
-		min-height: calc(100vh - calc(var(--grid-cell) * 1));
+	.hero-title {
+		font-size: clamp(1.75rem, 8.2vw, 3.75rem);
+		overflow-wrap: break-word;
 	}
 
-	@media (max-width: 720px) {
+	.content-shell {
+		min-height: calc(100vh - max(calc(var(--grid-cell) * 1), 4.5rem));
+	}
+
+	@media (max-width: 860px) {
 		.content-shell {
-			min-height: calc(100vh - calc(var(--grid-cell) * 4));
+			min-height: calc(100vh - max(calc(var(--grid-cell) * 2), 6.5rem));
 		}
 	}
 </style>

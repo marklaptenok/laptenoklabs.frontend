@@ -10,13 +10,37 @@ const canonical = Astro.site ? new URL(target, Astro.site).toString() : target;
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<meta http-equiv="refresh" content={`0; url=${target}`} />
 		<link rel="canonical" href={canonical} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="robots" content="noindex, follow" />
 		<title>Laptenok Labs</title>
+		<style>
+			:root {
+				color-scheme: light dark;
+				--color-paper: #f9f9f9;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--color-paper: #0d0d10;
+				}
+			}
+
+			html,
+			body {
+				height: 100%;
+			}
+
+			body {
+				margin: 0;
+				background-color: var(--color-paper);
+			}
+		</style>
 	</head>
 	<body>
-		<p>Redirecting to <a href={target}>{target}</a>…</p>
+		<a href={target} aria-label="Laptenok Labs" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);"></a>
 		<script is:inline define:vars={{ target }}>
 			window.location.replace(target);
 		</script>
