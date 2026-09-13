@@ -5,6 +5,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { getSite } from '../utils/consts';
+import { localeTags } from '../i18n/config';
+import { resolveLocale, useTranslations } from '../i18n/utils';
 
 interface Props {
 	title?: string;
@@ -12,20 +14,28 @@ interface Props {
 	image?: ImageMetadata;
 }
 
+const locale = resolveLocale(Astro);
+const t = useTranslations(locale);
+
 const site = await getSite();
-const { title = site.title, description = site.description, image } = Astro.props;
+const {
+	title = site.title,
+	description = t('site.description'),
+	image,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={localeTags[locale]}>
     <head>
         <BaseHead title={title} description={description} image={image} />
         <Font cssVariable="--font-main" preload />
         <Font cssVariable="--font-header" preload />
     </head>
     <body>
+        <a class="skip-link" href="#main">{t('site.skipToContent')}</a>
         <Header />
-        <main class="content-shell">
+        <main id="main" class="content-shell">
             <slot />
         </main>
         <Footer />
@@ -41,5 +51,21 @@ const { title = site.title, description = site.description, image } = Astro.prop
         .content-shell {
             padding-top: calc(var(--grid-cell) * 4);
         }
+    }
+
+    .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        z-index: 100;
+        padding: 0.75rem 1rem;
+        background: var(--color-surface);
+        color: var(--color-ink);
+        border: 1px solid var(--color-border);
+        border-radius: 0 0 12px 0;
+    }
+
+    .skip-link:focus {
+        left: 0;
     }
 </style>

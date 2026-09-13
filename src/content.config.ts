@@ -2,7 +2,6 @@ import { defineCollection, z } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 
 const blog = defineCollection({
-	// Load Markdown and MDX files in the `src/content/blog/` directory.
 	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
 	// Type-check frontmatter using a schema
 	schema: ({ image }) =>
@@ -58,10 +57,7 @@ const site = defineCollection({
 	loader: file('src/site-config.yml'),
 	schema: z.object({
 		title: z.string(),
-		description: z.string(),
-		based: z.string().optional(),
 		timezone: z.string().optional(),
-		locale: z.string().optional(),
 	}),
 });
 
@@ -73,6 +69,7 @@ const testimonials = defineCollection({
 			author: z.string(),
 			role: z.string().optional(),
 			avatar: image().optional(),
+			lang: z.enum(['en', 'ru']).optional(),
 		}),
 });
 

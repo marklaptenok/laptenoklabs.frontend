@@ -11,12 +11,7 @@ interface Props {
   values?: Value[];
 }
 
-const {
-  eyebrow,
-  title = 'Values & philosophy',
-  copy,
-  values = [],
-} = Astro.props as Props;
+const { eyebrow, title, copy, values = [] } = Astro.props as Props;
 ---
 
 <section class="space-y-6">

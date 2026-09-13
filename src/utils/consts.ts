@@ -4,13 +4,9 @@
 import { getEntry } from 'astro:content';
 
 export async function getSite() {
-	// Try to read the `site` entry and fallback to constants
 	const entry = await getEntry('site', 'site');
 	return {
-		title: entry?.data.title,
-		description: entry?.data.description,
-		based: entry?.data.based,
-		timezone: entry?.data.timezone,
-		locale: entry?.data.locale,
+		title: entry?.data.title ?? 'Laptenok Labs',
+		timezone: entry?.data.timezone ?? 'Europe/Prague',
 	};
 }

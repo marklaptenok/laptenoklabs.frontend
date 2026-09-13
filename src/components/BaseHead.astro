@@ -6,6 +6,8 @@ import type { ImageMetadata } from 'astro';
 import FallbackImage from '../assets/blog-placeholder-about.png';
 import { getSite } from '../utils/consts';
 import { SEO } from 'astro-seo';
+import { localeTags } from '../i18n/config';
+import { alternateUrls, localeUrl, resolveLocale } from '../i18n/utils';
 
 const site = await getSite();
 
@@ -17,8 +19,12 @@ interface Props {
 
 const { title, description, image = FallbackImage } = Astro.props;
 
+const locale = resolveLocale(Astro);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const imageURL = new URL((image as ImageMetadata).src, Astro.site ?? Astro.url);
+
+const alternates = await alternateUrls(Astro.url.pathname, Astro.site);
+const rssHref = new URL(localeUrl(locale, '/rss.xml'), Astro.site ?? Astro.url).toString();
 ---
 
 <SEO
@@ -36,6 +42,7 @@ const imageURL = new URL((image as ImageMetadata).src, Astro.site ?? Astro.url);
 		optional: {
 			description,
 			siteName: site.title,
+			locale: localeTags[locale],
 		},
 	}}
 	twitter={{
@@ -49,7 +56,12 @@ const imageURL = new URL((image as ImageMetadata).src, Astro.site ?? Astro.url);
 		link: [
 			{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
 			{ rel: 'sitemap', href: '/sitemap-index.xml' },
-			{ rel: 'alternate', type: 'application/rss+xml', title: site.title, href: new URL('rss.xml', Astro.site).toString() },
+			{ rel: 'alternate', type: 'application/rss+xml', title: site.title, href: rssHref },
+			...alternates.map((alt) => ({
+				rel: 'alternate',
+				hreflang: alt.hreflang,
+				href: alt.href,
+			})),
 		],
 		meta: [
 			{ name: 'viewport', content: 'width=device-width,initial-scale=1' },

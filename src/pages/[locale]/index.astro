@@ -1,0 +1,62 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '../../components/Hero.astro';
+import PostList from '../../components/PostList.astro';
+import Numbers from '../../components/Numbers.astro';
+import Values from '../../components/Values.astro';
+import Sponsors from '../../components/Sponsors.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import { getSite } from '../../utils/consts';
+import { localePaths, resolveLocale, useTranslations } from '../../i18n/utils';
+
+export const getStaticPaths = localePaths;
+
+const locale = resolveLocale(Astro);
+const t = useTranslations(locale);
+const site = await getSite();
+---
+
+<PageLayout title={site.title} description={t('site.description')}>
+	<Hero
+		eyebrow={t('home.hero.eyebrow')}
+		title={t('home.hero.title')}
+		description={t('home.hero.description')}
+		actions={[
+			{ label: t('home.hero.actionBlog'), href: '/blog' },
+			{ label: t('home.hero.actionContact'), href: '/about' },
+		]}
+	/>
+
+	<Sponsors />
+
+	<Numbers
+		eyebrow={t('home.numbers.eyebrow')}
+		title={t('home.numbers.title')}
+		copy={t('home.numbers.copy')}
+		stats={[
+			{ label: t('home.numbers.projects.label'), value: '48', description: t('home.numbers.projects.description') },
+			{ label: t('home.numbers.leadTime.label'), value: t('home.numbers.leadTime.value'), description: t('home.numbers.leadTime.description') },
+			{ label: t('home.numbers.nps.label'), value: '72', description: t('home.numbers.nps.description') },
+			{ label: t('home.numbers.response.label'), value: '<24h', description: t('home.numbers.response.description') },
+		]}
+	/>
+
+	<Values
+		eyebrow={t('values.eyebrow')}
+		title={t('values.title')}
+		copy={t('values.copy')}
+		values={[
+			{ title: t('values.clarity.title'), description: t('values.clarity.description') },
+			{ title: t('values.shipping.title'), description: t('values.shipping.description') },
+			{ title: t('values.craft.title'), description: t('values.craft.description') },
+			{ title: t('values.partnership.title'), description: t('values.partnership.description') },
+		]}
+	/>
+
+	<PostList limit={3} />
+
+	<Testimonials
+		eyebrow={t('home.testimonials.eyebrow')}
+		title={t('home.testimonials.title')}
+	/>
+</PageLayout>

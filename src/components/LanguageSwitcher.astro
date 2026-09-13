@@ -1,0 +1,77 @@
+---
+import { localeNames, localeShortNames, localeTags } from '../i18n/config';
+import {
+	getAvailableLocales,
+	resolveLocale,
+	switchLocaleUrl,
+	useTranslations,
+} from '../i18n/utils';
+
+const current = resolveLocale(Astro);
+const t = useTranslations(current);
+
+const available = await getAvailableLocales(Astro.url.pathname);
+const hasCounterpart = available.some((locale) => locale !== current);
+
+const options = available.map((locale) => ({
+	locale,
+	href: switchLocaleUrl(Astro.url.pathname, locale),
+	name: localeNames[locale],
+	short: localeShortNames[locale],
+	isCurrent: locale === current,
+}));
+---
+
+{hasCounterpart && (
+	<nav class="lang-switcher" aria-label={t('header.language')}>
+		{options.map((option) => (
+			<a
+				href={option.href}
+				hreflang={localeTags[option.locale]}
+				lang={localeTags[option.locale]}
+				class:list={['lang-switcher__option', option.isCurrent && 'is-current']}
+				aria-current={option.isCurrent ? 'true' : undefined}
+				title={option.name}
+			>
+				<span aria-hidden="true">{option.short}</span>
+				<span class="sr-only">{option.name}</span>
+			</a>
+		))}
+	</nav>
+)}
+
+<style>
+	.lang-switcher {
+		display: inline-flex;
+		align-items: center;
+		gap: 1px;
+		padding: 2px;
+		border: 1px solid var(--color-border);
+		border-radius: 999px;
+		background: color-mix(in oklab, var(--color-surface) 90%, transparent);
+	}
+
+	.lang-switcher__option {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 2rem;
+		padding: 0.25rem 0.5rem;
+		border-radius: 999px;
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-decoration: none;
+		color: var(--color-muted);
+		transition: color 150ms ease, background-color 150ms ease;
+	}
+
+	.lang-switcher__option:hover {
+		color: var(--color-ink);
+	}
+
+	.lang-switcher__option.is-current {
+		color: var(--color-ink);
+		background: color-mix(in oklab, var(--color-ink) 10%, transparent);
+	}
+</style>

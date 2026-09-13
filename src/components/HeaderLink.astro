@@ -1,19 +1,26 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import { withBase } from '../utils/slugify';
+import { localeUrl, resolveLocale } from '../i18n/utils';
 
-type Props = HTMLAttributes<'a'> & {
+type Props = Omit<HTMLAttributes<'a'>, 'href'> & {
+	href: string;
 	activeClass?: string;
 };
 
 const { href, class: className, activeClass = 'text-ink font-semibold', ...props } = Astro.props;
 
-const pathname = Astro.url.pathname;
-const newhref = href ? withBase(href) : withBase('/');
-const isActive = href ? pathname === newhref || pathname === `${newhref}/` : false;
+const locale = resolveLocale(Astro);
+const resolved = localeUrl(locale, href);
 
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = pathname === resolved || pathname.startsWith(`${resolved}/`);
 ---
 
-<a href={newhref} class:list={[className, isActive && activeClass]} {...props}>
+<a
+	href={resolved}
+	class:list={[className, isActive && activeClass]}
+	aria-current={isActive ? 'page' : undefined}
+	{...props}
+>
 	<slot />
 </a>

@@ -1,27 +1,39 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
-import { withBase } from '../utils/slugify';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { locales, localeNames, localeTags } from '../i18n/config';
+import { localeUrl, useTranslations } from '../i18n/utils';
+
+const panels = locales.map((locale) => {
+	const t = useTranslations(locale);
+	return {
+		locale,
+		lang: localeTags[locale],
+		language: localeNames[locale],
+		heading: t('notFound.heading'),
+		description: t('notFound.description'),
+		home: { label: t('notFound.home'), href: localeUrl(locale, '/') },
+		blog: { label: t('notFound.blog'), href: localeUrl(locale, '/blog') },
+	};
+});
 ---
 
-<PageLayout title="Page not found" description="The page you’re looking for doesn’t exist.">
-  <section class="content-shell py-12 md:py-16">
-    <div class="relative card overflow-hidden min-h-[80vh] w-full max-w-3xl mx-auto grid place-content-center gap-8 px-6 sm:px-10 py-14 md:py-16">
-      <div class="max-w-3xl mx-auto flex flex-col pt-10 items-center gap-6">
-        <div class="relative mx-auto flex flex-wrap items-center justify-center gap-3 text-sm font-semibold text-muted">
-          <span class="inline-flex items-center gap-2 rounded-full border border-[color-mix(in_ oklab,_var(--color-ink)_16%,_transparent)] bg-[color-mix(in_ oklab,_var(--color-surface)_92%,_transparent)] px-3 py-1 uppercase tracking-[0.2em]">404</span>
-          <span class="text-muted">Lost in the grid</span>
-        </div>
+<BaseLayout title="404 · Laptenok Labs" description="Page not found · Страница не найдена">
+	<section class="content-shell py-12 md:py-16">
+		<div class="relative card overflow-hidden min-h-[70vh] w-full max-w-3xl mx-auto grid place-content-center gap-10 px-6 sm:px-10 py-14 md:py-16">
+			<div class="flex justify-center">
+				<span class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-3 py-1 text-sm font-semibold uppercase tracking-[0.2em] text-muted">404</span>
+			</div>
 
-        <div class="relative mx-auto max-w-3xl space-y-5 text-center">
-          <h1 class="m-0 text-3xl sm:text-4xl font-semibold leading-tight text-ink">We couldn’t find that page.</h1>
-          <p class="m-0 text-muted max-w-2xl mx-auto">The link may be broken or the page might have moved. Pick a route below to keep moving.</p>
-        </div>
-
-        <div class="relative flex flex-wrap justify-center gap-4 pt-2">
-          <a class="button primary" href={withBase('/')}>Back to home</a>
-          <a class="button secondary" href={withBase('/blog')}>View the blog</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</PageLayout>
+			{panels.map((panel) => (
+				<div lang={panel.lang} class="space-y-4 text-center">
+					<h2 class="m-0 text-2xl sm:text-3xl font-semibold leading-tight text-ink">{panel.heading}</h2>
+					<p class="m-0 text-muted max-w-2xl mx-auto">{panel.description}</p>
+					<div class="flex flex-wrap justify-center gap-3 pt-1">
+						<a class="button primary" href={panel.home.href}>{panel.home.label}</a>
+						<a class="button secondary" href={panel.blog.href}>{panel.blog.label}</a>
+					</div>
+				</div>
+			))}
+		</div>
+	</section>
+</BaseLayout>

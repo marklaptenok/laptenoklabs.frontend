@@ -1,4 +1,10 @@
-- id: marklaptenok
+- id: marklaptenok-en
+  lang: en
   quote: Make people benefit from Computer Science
   author: Mark
   role: Founder, Software Engineer, Teacher/Mentor
+- id: marklaptenok-ru
+  lang: ru
+  quote: Сделать так, чтобы информатика приносила людям пользу
+  author: Марк
+  role: Основатель, инженер-программист, преподаватель/наставник

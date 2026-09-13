@@ -1,6 +1,3 @@
 site:
   title: "Laptenok Labs"
-  description: "Software engineering. We build, maintain, and teach"
-  based: "Pilsen, the Czech republic"
   timezone: "Europe/Prague"
-  locale: "en-EN"

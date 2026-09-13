@@ -1,6 +1,24 @@
 ---
 import Search from "astro-pagefind/components/Search.astro";
 import { Icon } from 'astro-icon/components';
+import { resolveLocale, useTranslations } from '../i18n/utils';
+
+const locale = resolveLocale(Astro);
+const t = useTranslations(locale);
+
+const pagefindTranslations = {
+	placeholder: t('pagefind.placeholder'),
+	clear_search: t('pagefind.clear_search'),
+	load_more: t('pagefind.load_more'),
+	search_label: t('pagefind.search_label'),
+	filters_label: t('pagefind.filters_label'),
+	zero_results: t('pagefind.zero_results'),
+	many_results: t('pagefind.many_results'),
+	one_result: t('pagefind.one_result'),
+	alt_search: t('pagefind.alt_search'),
+	search_suggestion: t('pagefind.search_suggestion'),
+	searching: t('pagefind.searching'),
+};
 ---
 
 <button
@@ -9,10 +27,10 @@ import { Icon } from 'astro-icon/components';
 	aria-haspopup="dialog"
 	aria-controls="search-modal"
 	aria-expanded="false"
-	aria-label="Open search dialog"
+	aria-label={t('search.open')}
 	class="header-button"
 >
-	<span class="sr-only">Open search dialog</span>
+	<span class="sr-only">{t('search.open')}</span>
 	<span class="search-trigger__icon" aria-hidden="true">
 		<Icon name="tabler:search" size={18} stroke-width={1} />
 	</span>
@@ -25,26 +43,31 @@ import { Icon } from 'astro-icon/components';
 	aria-modal="true"
 	aria-hidden="true"
 	aria-labelledby="search-modal-title"
+	data-clear-label={t('pagefind.clear_search')}
 	inert
 >
 	<div class="search-modal__backdrop" data-close="search"></div>
 	<div class="search-modal__panel">
 		<div class="search-modal__header">
 			<div class="search-modal__title">
-				<p class="search-modal__eyebrow">Search</p>
-				<h2 id="search-modal-title">Find anything on the site</h2>
+				<p class="search-modal__eyebrow">{t('search.title')}</p>
+				<h2 id="search-modal-title">{t('search.heading')}</h2>
 			</div>
 			<div class="search-modal__actions">
 				<span class="search-modal__hint">Esc</span>
-				<button type="button" class="search-close" id="search-close" aria-label="Close search dialog">
+				<button type="button" class="search-close" id="search-close" aria-label={t('search.close')}>
 					<Icon name="tabler:x" size={16} stroke-width={1.6} />
 				</button>
 			</div>
 		</div>
 		<div id="search-root" hidden>
-			<Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
+			<Search
+				id="search"
+				className="pagefind-ui"
+				uiOptions={{ showImages: false, translations: pagefindTranslations }}
+			/>
 		</div>
-		<p class="search-modal__footnote">Powered by Pagefind. Start typing to search posts, pages, and team members.</p>
+		<p class="search-modal__footnote">{t('search.footnote')}</p>
 	</div>
 </div>
 
@@ -91,10 +114,12 @@ const setSearchVisibility = (isOpen) => {
 
 // Helper to add missing aria attributes to Pagefind UI when it mounts
 const addAriaToPagefind = () => {
+	const modal = document.getElementById('search-modal');
+	const clearLabel = (modal && modal.dataset.clearLabel) || 'Clear';
 	const clearBtn = document.querySelector('#search-modal .pagefind-ui__search-clear');
 	if (clearBtn && !clearBtn.hasAttribute('aria-label')) {
-		clearBtn.setAttribute('aria-label', 'Clear search');
-		clearBtn.setAttribute('title', 'Clear search');
+		clearBtn.setAttribute('aria-label', clearLabel);
+		clearBtn.setAttribute('title', clearLabel);
 	}
 };
 
@@ -358,7 +383,6 @@ window.addEventListener('keydown', (event) => {
 	.search-modal__actions {
 		align-self: flex-end;
 	}
-
 
 }
 </style>

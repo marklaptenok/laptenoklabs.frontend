@@ -6,8 +6,8 @@ interface Testimonial {
 	avatar?: string;
 }
 
-import { getCollection } from 'astro:content';
 import { Icon } from 'astro-icon/components';
+import { getLocalizedList, resolveLocale, useTranslations } from '../i18n/utils';
 
 interface Props {
 	eyebrow?: string;
@@ -16,15 +16,12 @@ interface Props {
 }
 
 const { eyebrow, title, testimonials } = Astro.props;
+const locale = resolveLocale(Astro);
+const t = useTranslations(locale);
 
-let items: Testimonial[] = testimonials ?? [];
-
-if (!testimonials) {
-	const entries = await getCollection('testimonials');
-	items = entries.length === 1 && Array.isArray(entries[0].data)
-		? entries[0].data as Testimonial[]
-		: entries.map((e) => e.data as Testimonial);
-}
+const items: Testimonial[] =
+	testimonials ??
+	(await getLocalizedList('testimonials', locale)).map((entry) => entry.data as Testimonial);
 ---
 
 <section class="space-y-6 testimonial-section">
@@ -34,16 +31,16 @@ if (!testimonials) {
   </header>
 
   <div class="slider w-full flex flex-col justify-center items-center relative overflow-hidden min-h-[220px] md:min-h-[260px]">
-    {items.map((t, i) => (
+    {items.map((item, i) => (
       <article class="slide absolute inset-0 flex items-center justify-center px-2" data-index={i}>
         <div class="w-full max-w-[720px] rounded-2xl border border-border bg-surface px-6 py-5 shadow-sm relative">
           <Icon name="tabler:quote" size={28} class="text-border absolute top-4 right-5 opacity-60" />
-          <blockquote class="not-italic text-base md:text-lg leading-relaxed mb-4 text-ink m-0">{t.quote}</blockquote>
+          <blockquote class="not-italic text-base md:text-lg leading-relaxed mb-4 text-ink m-0">{item.quote}</blockquote>
           <div class="flex items-center gap-3">
-            {t.avatar && <img src={t.avatar} alt={`Avatar de ${t.author}`} class="w-10 h-10 rounded-full object-cover ring-2 ring-border" />}
+            {item.avatar && <img src={item.avatar} alt={item.author} class="w-10 h-10 rounded-full object-cover ring-2 ring-border" />}
             <div>
-              <p class="text-sm font-semibold text-ink m-0">{t.author}</p>
-              {t.role && <p class="text-xs text-muted m-0">{t.role}</p>}
+              <p class="text-sm font-semibold text-ink m-0">{item.author}</p>
+              {item.role && <p class="text-xs text-muted m-0">{item.role}</p>}
             </div>
           </div>
         </div>
@@ -52,17 +49,17 @@ if (!testimonials) {
   </div>
 
   <div class="w-full flex justify-center items-center gap-4">
-    <button data-dir="-1" aria-label="Anterior" class="slider-nav group rounded-full border border-border bg-surface p-2.5 shadow-sm transition-all duration-200 hover:border-ink/25 hover:shadow-md active:scale-95 cursor-pointer">
+    <button data-dir="-1" aria-label={t('home.testimonials.previous')} class="slider-nav group rounded-full border border-border bg-surface p-2.5 shadow-sm transition-all duration-200 hover:border-ink/25 hover:shadow-md active:scale-95 cursor-pointer">
       <Icon name="tabler:chevron-left" size={18} class="transition-transform duration-200 group-hover:-translate-x-0.5" />
     </button>
     <div class="flex items-center gap-1.5">
       {items.map((_, i) => (
-        <button class="relative p-3 cursor-pointer group" data-dot={i} aria-label={`Ir a testimonio ${i + 1}`}>
+        <button class="relative p-3 cursor-pointer group" data-dot={i} aria-label={t('home.testimonials.goTo', { number: i + 1 })}>
           <span class={`slider-dot block h-1.5 rounded-full transition-all duration-300 ${i === 0 ? 'w-5 bg-ink' : 'w-1.5 bg-ink/20'}`} />
         </button>
       ))}
     </div>
-    <button data-dir="1" aria-label="Siguiente" class="slider-nav group rounded-full border border-border bg-surface p-2.5 shadow-sm transition-all duration-200 hover:border-ink/25 hover:shadow-md active:scale-95 cursor-pointer">
+    <button data-dir="1" aria-label={t('home.testimonials.next')} class="slider-nav group rounded-full border border-border bg-surface p-2.5 shadow-sm transition-all duration-200 hover:border-ink/25 hover:shadow-md active:scale-95 cursor-pointer">
       <Icon name="tabler:chevron-right" size={18} class="transition-transform duration-200 group-hover:translate-x-0.5" />
     </button>
   </div>

@@ -1,10 +1,15 @@
 ---
 import { getSite } from '../utils/consts';
 import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import Clock from './Clock.astro';
+import { formatLocales } from '../i18n/config';
+import { localeUrl, resolveLocale, useTranslations } from '../i18n/utils';
+import type { TranslationKey } from '../i18n/ui';
 
 const site = await getSite();
-import { Icon } from 'astro-icon/components'
-import Clock from './Clock.astro';
+const locale = resolveLocale(Astro);
+const t = useTranslations(locale);
 
 const today = new Date();
 const socials = (await getCollection('socials')).map((entry) => entry.data);
@@ -16,27 +21,42 @@ const iconMap: Record<string, string> = {
   email: 'tabler:mail',
   mastodon: 'tabler:brand-mastodon',
 };
+
+const socialLabel = (id: string | undefined, fallback: string) => {
+  if (!id) return fallback;
+  const key = `social.${id.toLowerCase()}` as TranslationKey;
+  const translated = t(key);
+  return translated === key ? fallback : translated;
+};
+
+const navLinks: Array<{ key: TranslationKey; href: string }> = [
+  { key: 'nav.home', href: '/' },
+  { key: 'nav.blog', href: '/blog' },
+  { key: 'nav.about', href: '/about' },
+  { key: 'nav.rss', href: '/rss.xml' },
+];
 ---
 
 <footer class="border-t border-[color:var(--color-border)] bg-[color:var(--color-surface)] py-8">
   <div class="content-shell">
     <div class="grid gap-10 border-b border-[color:var(--color-border)] pb-10 md:grid-cols-2">
       <div class="space-y-6">
-        <p class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">Resources</p>
+        <p class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">{t('footer.resources')}</p>
         <div class="grid gap-2 sm:grid-cols-2 text-sm text-ink">
-          <a class="transition-colors hover:text-ink" href="https://astro.build" target="_blank">Astro Docs</a>
-          <a class="transition-colors hover:text-ink" href="https://docs.astro.build/en/guides/content-collections/" target="_blank">Content collections</a>
-          <a class="transition-colors hover:text-ink" href="https://tailwindcss.com/docs" target="_blank">Tailwind docs</a>
-          <a class="transition-colors hover:text-ink" href="https://github.com/withastro/astro" target="_blank">Astro GitHub</a>
+          <a class="transition-colors hover:text-ink" href="https://astro.build" target="_blank" rel="noreferrer">Astro Docs</a>
+          <a class="transition-colors hover:text-ink" href="https://docs.astro.build/en/guides/content-collections/" target="_blank" rel="noreferrer">Content collections</a>
+          <a class="transition-colors hover:text-ink" href="https://tailwindcss.com/docs" target="_blank" rel="noreferrer">Tailwind docs</a>
+          <a class="transition-colors hover:text-ink" href="https://github.com/withastro/astro" target="_blank" rel="noreferrer">Astro GitHub</a>
         </div>
       </div>
       <div class="grid gap-8">
         <div class="grid gap-3">
-          <p class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">Connect</p>
+          <p class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">{t('footer.connect')}</p>
           <div class="grid gap-2 sm:grid-cols-2 text-sm text-ink">
             {socials.map((social) => {
               const iconName = social.id ? iconMap[social.id.toLowerCase()] : undefined;
-              const fallback = social.label?.trim()?.[0]?.toUpperCase() ?? '?';
+              const label = socialLabel(social.id, social.label);
+              const fallback = label?.trim()?.[0]?.toUpperCase() ?? '?';
               return (
                 <a
                   href={social.href}
@@ -55,36 +75,35 @@ const iconMap: Record<string, string> = {
                   ) : (
                     <span class="inline-flex h-[26px] w-[26px] items-center justify-center rounded-full border border-[color:var(--color-border)] text-[0.7rem] font-semibold text-ink" aria-hidden="true">{fallback}</span>
                   )}
-                  <span class="leading-tight">{social.label}</span>
+                  <span class="leading-tight">{label}</span>
                 </a>
               );
             })}
           </div>
         </div>
         <div class="grid gap-3">
-          <p class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">Navigation</p>
+          <p class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">{t('footer.navigation')}</p>
           <div class="grid gap-2 sm:grid-cols-2 text-sm text-ink">
-            <a class="transition-colors hover:text-ink" href="/">Home</a>
-            <a class="transition-colors hover:text-ink" href="/blog">Blog</a>
-            <a class="transition-colors hover:text-ink" href="/about">About</a>
-            <a class="transition-colors hover:text-ink" href="/rss.xml">RSS</a>
+            {navLinks.map((link) => (
+              <a class="transition-colors hover:text-ink" href={localeUrl(locale, link.href)}>{t(link.key)}</a>
+            ))}
           </div>
         </div>
       </div>
     </div>
     <div class="grid gap-6 pt-8 pb-4 md:flex md:items-center md:justify-between">
-      <p class="text-sm text-ink m-0"> {site.title} &copy; <a href="https://github.com/roicort/launchpad" class="underline text-muted hover:text-ink">Astro Launchpad</a> {today.getFullYear()}. All rights reserved. </p>
+      <p class="text-sm text-ink m-0">{site.title} &copy; {today.getFullYear()}. {t('footer.rights')}</p>
       <div class="md:text-right space-y-2 md:space-y-1">
         <div class="flex flex-wrap items-center gap-3 md:justify-end">
-          <p class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink m-0">{site.based}</p>
+          <p class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink m-0">{t('footer.based')}</p>
           <Clock
             timeZone={site.timezone ? site.timezone : "UTC"}
-            locale={site.locale ? site.locale : "en-US"}
+            locale={formatLocales[locale]}
             hour12={false}
             showSeconds={false}
           />
         </div>
-        <p class="text-sm text-muted m-0"> Designed by <a href="https://roicort.github.io" target="_blank" rel="noreferrer" class="underline text-muted hover:text-ink">Rodrigo Cortez</a> in Morelia.</p>
+        <p class="text-sm text-muted m-0">{t('footer.designedBy')}</p>
       </div>
     </div>
   </div>

@@ -12,12 +12,36 @@ import tailwindcss from "@tailwindcss/vite";
 
 import icon from "astro-icon";
 
+const locales = ["en", "ru"];
+const defaultLocale = "en";
+
 // https://astro.build/config
 export default defineConfig({
     site: "https://laptenoklabs.com",
     base: "/",
-    integrations: [mdx(), sitemap(), pagefind(), icon()],
+    integrations: [
+        mdx(),
+        sitemap({
+            filter: (page) => new URL(page).pathname !== "/",
+            i18n: {
+                defaultLocale,
+                locales: { en: "en", ru: "ru" },
+            },
+        }),
+        pagefind(),
+        icon(),
+    ],
     trailingSlash: 'never',
+
+    i18n: {
+        locales,
+        defaultLocale,
+        routing: {
+            prefixDefaultLocale: true,
+            redirectToDefaultLocale: false,
+        },
+    },
+
     vite: {
         plugins: [tailwindcss()],
         server: {
@@ -32,11 +56,13 @@ export default defineConfig({
         name: "Cormorant",
         cssVariable: "--font-main",
         styles: ["normal"],
+        subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
     },
     {
         provider: fontProviders.google(),
         name: "Jura",
         cssVariable: "--font-header",
         styles: ["normal"],
+        subsets: ["latin", "latin-ext", "cyrillic"],
     }],
 });

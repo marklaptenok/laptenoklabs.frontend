@@ -5,8 +5,13 @@ import HeaderLink from "./HeaderLink.astro";
 const site = await getSite();
 import SearchModal from "./SearchModal.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 import { Icon } from "astro-icon/components";
-const subpath = import.meta.env.BASE_URL;
+import { localeUrl, resolveLocale, useTranslations } from "../i18n/utils";
+
+const locale = resolveLocale(Astro);
+const t = useTranslations(locale);
+const homeHref = localeUrl(locale, "/");
 ---
 
 <header class="fixed w-full z-30 flex items-center ">
@@ -20,7 +25,7 @@ const subpath = import.meta.env.BASE_URL;
         <h1
           class="text-base font-semibold uppercase m-0 [html[data-nav='open']_&]:text-center"
         >
-          <a href={subpath} aria-label={site.title}>
+          <a href={homeHref} aria-label={site.title}>
             <Icon
               name="tabler:rocket"
               size="2em"
@@ -32,19 +37,21 @@ const subpath = import.meta.env.BASE_URL;
         </h1>
       </div>
       <nav
+        id="primary-nav"
+        aria-label={t('nav.toggle')}
         class="hidden md:flex items-center gap-2 md:gap-3 overflow-x-auto overflow-y-visible pt-1 pb-0.5 text-[0.72rem] tracking-[0.24em] uppercase text-muted [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [--tw-pan-y:none] [&::-webkit-scrollbar]:hidden col-span-2 md:col-auto md:justify-self-center [html[data-nav='open']_&]:flex [html[data-nav='open']_&]:flex-col [html[data-nav='open']_&]:items-start [html[data-nav='open']_&]:gap-2 [html[data-nav='open']_&]:py-4 [html[data-nav='open']_&]:w-full [html[data-nav='open']_&]:col-span-2 [html[data-nav='open']_&]:justify-self-stretch"
       >
-        <HeaderLink href="/blog">Blog</HeaderLink>
-        <HeaderLink href="/team">Team</HeaderLink>
-        <HeaderLink href="/about">About</HeaderLink>
-        <HeaderLink href="/projects">Projects</HeaderLink>
+        <HeaderLink href="/blog">{t('nav.blog')}</HeaderLink>
+        <HeaderLink href="/team">{t('nav.team')}</HeaderLink>
+        <HeaderLink href="/about">{t('nav.about')}</HeaderLink>
+        <HeaderLink href="/projects">{t('nav.projects')}</HeaderLink>
       </nav>
       <div class="flex items-center gap-2 md:gap-3 shrink-0 justify-end">
         <button
           class="header-button md:hidden"
           type="button"
           id="nav-toggle"
-          aria-label="Toggle navigation"
+          aria-label={t('nav.toggle')}
           aria-pressed="false"
         >
           <span
@@ -59,15 +66,16 @@ const subpath = import.meta.env.BASE_URL;
           >
             <Icon name="tabler:x" size={18} stroke-width={1.6} />
           </span>
-          <span class="sr-only">Toggle navigation</span>
+          <span class="sr-only">{t('nav.toggle')}</span>
         </button>
         <SearchModal />
+        <LanguageSwitcher />
         <a
           class="header-button"
-          href="https://github.com/roicort/launchpad"
+          href="https://github.com/marklaptenok"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Visit the GitHub repository"
+          aria-label={t('header.github')}
         >
           <Icon name="tabler:brand-github" size={18} stroke-width={1.6} />
         </a>
@@ -75,7 +83,7 @@ const subpath = import.meta.env.BASE_URL;
           class="header-button"
           type="button"
           id="debug-toggle"
-          aria-label="Toggle debug borders"
+          aria-label={t('header.debug')}
           aria-pressed="false"
         >
           <Icon name="tabler:bug" size={18} stroke-width={1.6} />
@@ -137,8 +145,8 @@ const subpath = import.meta.env.BASE_URL;
     navButton.addEventListener("click", toggleNav);
   }
 
-  const navElement = document.querySelector("nav");
-  const navLinks = document.querySelectorAll("nav a");
+  const navElement = document.getElementById("primary-nav");
+  const navLinks = navElement ? navElement.querySelectorAll("a") : [];
   navLinks.forEach((link) => {
     link.addEventListener("click", () => applyNav("closed"));
   });

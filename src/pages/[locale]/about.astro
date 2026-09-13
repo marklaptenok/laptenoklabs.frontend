@@ -1,0 +1,36 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Values from '../../components/Values.astro';
+import { localePaths, resolveLocale, useTranslations } from '../../i18n/utils';
+
+export const getStaticPaths = localePaths;
+
+const locale = resolveLocale(Astro);
+const t = useTranslations(locale);
+---
+
+<PageLayout title={t('about.title')} description={t('about.description')}>
+	<section class="content-shell py-12 space-y-8">
+		<div class="space-y-3 max-w-3xl">
+			<p class="eyebrow m-0">{t('about.eyebrow')}</p>
+			<p class="m-0 text-ink text-2xl font-semibold leading-tight">{t('about.lead')}</p>
+			<p class="m-0 text-muted">{t('about.body1')}</p>
+			<p class="m-0 text-muted">{t('about.body2')}</p>
+		</div>
+	</section>
+
+	<div class="mt-12 md:mt-16">
+		<Values
+			useShell={false}
+			eyebrow={t('values.eyebrow')}
+			title={t('values.title')}
+			copy={t('values.copy')}
+			values={[
+				{ title: t('values.clarity.title'), description: t('values.clarity.description') },
+				{ title: t('values.shipping.title'), description: t('values.shipping.description') },
+				{ title: t('values.craft.title'), description: t('values.craft.description') },
+				{ title: t('values.partnership.title'), description: t('values.partnership.description') },
+			]}
+		/>
+	</div>
+</PageLayout>
