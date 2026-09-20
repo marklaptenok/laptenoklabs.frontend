@@ -40,7 +40,7 @@ const navLinks: Array<{ key: TranslationKey; href: string }> = [
 ];
 ---
 
-<footer class="site-footer border-t border-[color:var(--color-border)] py-8">
+<footer class="site-footer border-t border-[color:var(--color-border)] pt-8 pb-4">
   <div class="content-shell">
     <div class="grid gap-10 border-b border-[color:var(--color-border)] pb-10 md:grid-cols-2">
       <div class="grid gap-3 content-start">
@@ -83,17 +83,17 @@ const navLinks: Array<{ key: TranslationKey; href: string }> = [
         </div>
       </div>
     </div>
-    <div class="pt-8">
-      <address class="not-italic space-y-1 md:text-right">
+    <div class="footer-meta">
+      <div class="space-y-0.5">
+        <p class="text-sm text-ink m-0">{site.title} &copy; {today.getFullYear()}. {t('footer.rights')}</p>
+        <p class="text-sm text-muted m-0">{t('footer.colophon')}</p>
+      </div>
+      <address class="not-italic space-y-0.5 md:text-right">
         <p class="text-sm text-ink m-0">{t('footer.company')}</p>
         <p class="text-sm text-muted m-0">{t('footer.ico')}</p>
         <p class="text-sm text-muted m-0">{t('footer.address')}</p>
         <p class="text-sm text-muted m-0">{t('footer.registry')}</p>
       </address>
-    </div>
-    <div class="space-y-1 pt-8 pb-2">
-      <p class="text-sm text-ink m-0">{site.title} &copy; {today.getFullYear()}. {t('footer.rights')}</p>
-      <p class="text-sm text-muted m-0">{t('footer.colophon')}</p>
     </div>
   </div>
 </footer>
@@ -101,6 +101,23 @@ const navLinks: Array<{ key: TranslationKey; href: string }> = [
 <style>
   .site-footer {
     background: color-mix(in oklab, var(--color-surface) 80%, transparent);
+  }
+
+  .footer-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding-top: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-meta {
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 2rem;
+    }
   }
 
   .footer-heading {
