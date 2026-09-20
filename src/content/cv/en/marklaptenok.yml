@@ -1,9 +1,13 @@
 name: Mark Laptenok
 altName: Марк Лаптёнок
+role: Co-Founder, Software Engineer, Teacher
+photo: ../../../assets/team/marklaptenok.jpg
 headline: A communicator and a technical leader with a fundamental background in applied mathematics and systems programming. Major SWE expertise is in communication among systems. A teacher. Interested in kernel mode programming and distributed OSes.
 contacts:
   - Pilsen, The Czech Republic
   - mark@laptenoklabs.com
+  - https://www.linkedin.com/in/marklaptenok/
+  - https://github.com/marklaptenok
 
 sections:
   - title: Professional experience
@@ -43,7 +47,7 @@ sections:
       - org: Self-employment
         location: Moscow, RU
         roles:
-          - Commercial Photographer, Instructional Designer, May 2009 – March 2019.
+          - "[Commercial Photographer](asset:MarkLaptenok_Promo_2018.pdf), Instructional Designer, May 2009 – March 2019."
 
       - org: InfoTeCS Internet Trust JSC
         location: Rostov-on-Don, RU
@@ -64,7 +68,7 @@ sections:
         notes:
           - "Qualification: Mathematician and Systems Programmer."
           - 'Thesis: "Pattern-based natural language translation of scientific texts."'
-          - "Research supervisor: Mezhlum A. Sumbatyan. Thesis opponent: Mikhail I. Karyakin."
+          - "Research supervisor: [Mezhlum A. Sumbatyan](https://www.scopus.com/pages/authors/7004050526). Thesis opponent: [Mikhail I. Karyakin](https://www.scopus.com/pages/authors/15055907300)."
 
       - org: Microsoft Training Center
         location: Rostov-on-Don, RU

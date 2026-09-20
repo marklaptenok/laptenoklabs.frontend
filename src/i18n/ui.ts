@@ -74,6 +74,9 @@ const en = {
 	'home.numbers.since.description': 'Alongside engineering work.',
 
 	'team.title': 'Team',
+	'team.eyebrow': 'Laptenok Labs',
+	'team.heading': 'The people behind the work',
+	'team.description': 'The people of Laptenok Labs.',
 	'team.disclaimer':
 		'Employers are named here as a matter of record. This site is my own: it is not affiliated with, sponsored by, or endorsed by any of them.',
 
@@ -187,6 +190,9 @@ const ru: Record<TranslationKey, string> = {
 	'home.numbers.since.description': 'Параллельно с инженерной работой.',
 
 	'team.title': 'Команда',
+	'team.eyebrow': 'Laptenok Labs',
+	'team.heading': 'Люди, которые делают работу',
+	'team.description': 'Команда Laptenok Labs.',
 	'team.disclaimer':
 		'Работодатели названы здесь для точности изложения. Сайт мой собственный: он не связан с ними, не спонсируется и не одобряется ими.',
 

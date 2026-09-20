@@ -1,0 +1,39 @@
+---
+interface Props {
+	text: string;
+	assets?: Record<string, string>;
+}
+
+const { text, assets = {} } = Astro.props as Props;
+
+type Segment = { text: string; href?: string; external?: boolean };
+
+const segments: Segment[] = [];
+const pattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+let cursor = 0;
+let match: RegExpExecArray | null;
+
+while ((match = pattern.exec(text)) !== null) {
+	if (match.index > cursor) segments.push({ text: text.slice(cursor, match.index) });
+	const target = match[2].startsWith('asset:') ? assets[match[2].slice(6)] : match[2];
+	segments.push(
+		target
+			? { text: match[1], href: target, external: /^https?:/.test(target) }
+			: { text: match[1] },
+	);
+	cursor = match.index + match[0].length;
+}
+if (cursor < text.length) segments.push({ text: text.slice(cursor) });
+---
+
+{segments.map((segment) =>
+	segment.href ? (
+		<a
+			href={segment.href}
+			target="_blank"
+			rel={segment.external ? 'noreferrer' : undefined}
+		>{segment.text}</a>
+	) : (
+		segment.text
+	),
+)}

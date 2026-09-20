@@ -39,9 +39,11 @@ const projects = defineCollection({
 
 const cv = defineCollection({
 	loader: glob({ base: './src/content/cv', pattern: '**/*.yml' }),
-	schema: z.object({
+	schema: ({ image }) => z.object({
 		name: z.string(),
 		altName: z.string(),
+		role: z.string(),
+		photo: image(),
 		headline: z.string(),
 		contacts: z.array(z.string()),
 		sections: z.array(

@@ -1,24 +1,41 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
-import PageLayout from '../../layouts/PageLayout.astro';
-import CvButton from '../../components/CvButton.astro';
-import portrait from '../../assets/team/marklaptenok.jpg';
-import { localePaths, localeUrl, resolveLocale, useTranslations } from '../../i18n/utils';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import PageLayout from '../../../layouts/PageLayout.astro';
+import CvButton from '../../../components/CvButton.astro';
+import RichText from '../../../components/RichText.astro';
+import { entryLocale, entrySlug, localeUrl, resolveLocale, useTranslations } from '../../../i18n/utils';
 
-export const getStaticPaths = localePaths;
+export async function getStaticPaths() {
+	const people = await getCollection('cv');
+	return people.map((person) => ({
+		params: { locale: entryLocale(person.id), member: entrySlug(person.id) },
+		props: person,
+	}));
+}
 
+type Props = CollectionEntry<'cv'>;
+
+const person = Astro.props as Props;
+const cv = person.data;
 const locale = resolveLocale(Astro);
 const t = useTranslations(locale);
 
-const cv = (await getCollection('cv')).find((entry) => entry.id === locale)!.data;
+const promoUrls = import.meta.glob('../../../assets/promos/*', {
+	eager: true,
+	query: '?url',
+	import: 'default',
+}) as Record<string, string>;
+const assets = Object.fromEntries(
+	Object.entries(promoUrls).map(([path, url]) => [path.split('/').pop()!, url]),
+);
 ---
 
 <PageLayout title={t('team.title')} description={cv.headline}>
 	<section class="content-shell cv">
 		<header class="cv__header">
 			<figure class="cv__portrait">
-				<Image src={portrait} alt={cv.name} width={440} height={440} />
+				<Image src={cv.photo} alt={cv.name} width={440} height={440} />
 			</figure>
 			<div class="cv__identity">
 				<h1 class="cv__name">{cv.name} <span class="cv__alt">({cv.altName})</span></h1>
@@ -26,9 +43,11 @@ const cv = (await getCollection('cv')).find((entry) => entry.id === locale)!.dat
 				<ul class="cv__contacts">
 					{cv.contacts.map((line) => (
 						<li>
-							{line.includes('@')
-								? <a href={`mailto:${line}`}>{line}</a>
-								: line}
+							{line.startsWith('http')
+								? <a href={line} target="_blank" rel="noreferrer">{line.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</a>
+								: line.includes('@')
+									? <a href={`mailto:${line}`}>{line}</a>
+									: line}
 						</li>
 					))}
 				</ul>
@@ -52,10 +71,12 @@ const cv = (await getCollection('cv')).find((entry) => entry.id === locale)!.dat
 								<p class="cv__role">
 									{entry.href
 										? <a href={localeUrl(locale, entry.href)}>{role}</a>
-										: role}
+										: <RichText text={role} assets={assets} />}
 								</p>
 							))}
-							{entry.notes.map((note) => <p class="cv__note">{note}</p>)}
+							{entry.notes.map((note) => (
+								<p class="cv__note"><RichText text={note} assets={assets} /></p>
+							))}
 						</div>
 					))}
 				</div>
@@ -70,15 +91,16 @@ const cv = (await getCollection('cv')).find((entry) => entry.id === locale)!.dat
 	.cv {
 		display: flex;
 		flex-direction: column;
-		gap: 3rem;
-		padding-block: clamp(2rem, 6vh, 4rem);
+		gap: calc(var(--grid-cell) * 1);
+		padding-block: calc(var(--grid-cell) * 2) calc(var(--grid-cell) * 1);
 	}
 
 	.cv__header {
 		display: grid;
-		grid-template-columns: 160px 1fr auto;
+		grid-template-columns: calc(var(--grid-cell) * 3) 1fr auto;
 		align-items: start;
-		gap: 2rem;
+		column-gap: var(--grid-cell);
+		row-gap: 1.5rem;
 	}
 
 	.cv__portrait {
@@ -97,10 +119,12 @@ const cv = (await getCollection('cv')).find((entry) => entry.id === locale)!.dat
 	}
 
 	.cv__name {
+		position: relative;
+		top: var(--baseline-shift);
 		margin: 0;
 		font-size: clamp(1.75rem, 3.4vw, 2.5rem);
 		font-weight: 600;
-		line-height: 1.15;
+		line-height: var(--grid-cell);
 		color: var(--color-ink);
 	}
 
@@ -134,8 +158,9 @@ const cv = (await getCollection('cv')).find((entry) => entry.id === locale)!.dat
 
 	.cv__section {
 		display: grid;
-		grid-template-columns: 160px 1fr;
-		gap: 2rem;
+		grid-template-columns: calc(var(--grid-cell) * 3) 1fr;
+		column-gap: var(--grid-cell);
+		row-gap: 0.75rem;
 		align-items: start;
 	}
 
@@ -192,7 +217,7 @@ const cv = (await getCollection('cv')).find((entry) => entry.id === locale)!.dat
 
 	@media (max-width: 860px) {
 		.cv__header {
-			grid-template-columns: 120px 1fr;
+			grid-template-columns: calc(var(--grid-cell) * 2) 1fr;
 		}
 
 		.cv__pdf {

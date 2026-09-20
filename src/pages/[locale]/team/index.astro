@@ -1,0 +1,115 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '../../../layouts/PageLayout.astro';
+import {
+	entrySlug,
+	getLocalizedCollection,
+	localePaths,
+	localeUrl,
+	resolveLocale,
+	useTranslations,
+} from '../../../i18n/utils';
+
+export const getStaticPaths = localePaths;
+
+const locale = resolveLocale(Astro);
+const t = useTranslations(locale);
+
+const people = (await getLocalizedCollection('cv', locale)).sort((a, b) =>
+	a.data.name.localeCompare(b.data.name, locale),
+);
+---
+
+<PageLayout title={t('team.title')} description={t('team.description')}>
+	<section class="content-shell team">
+		<header class="team__header">
+			<p class="eyebrow team__eyebrow">{t('team.eyebrow')}</p>
+			<h1 class="section-title">{t('team.heading')}</h1>
+		</header>
+
+		<ul class="team__grid">
+			{people.map((person) => (
+				<li class="team__member">
+					<a class="team__link no-underline" href={localeUrl(locale, `/team/${entrySlug(person.id)}`)}>
+						<figure class="team__portrait">
+							<Image src={person.data.photo} alt={person.data.name} width={480} height={480} />
+						</figure>
+						<p class="team__name">{person.data.name}</p>
+						<p class="team__role">{person.data.role}</p>
+					</a>
+				</li>
+			))}
+		</ul>
+	</section>
+</PageLayout>
+
+<style>
+	.team {
+		display: flex;
+		flex-direction: column;
+		gap: var(--grid-cell);
+		padding-block: calc(var(--grid-cell) * 2) calc(var(--grid-cell) * 1);
+	}
+
+	.team__header {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.team__eyebrow {
+		position: relative;
+		top: var(--baseline-shift);
+		margin: 0;
+		line-height: var(--grid-cell);
+	}
+
+	.team__grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(calc(var(--grid-cell) * 4), 1fr));
+		gap: var(--grid-cell);
+	}
+
+	.team__member {
+		min-width: 0;
+	}
+
+	.team__link {
+		display: grid;
+		gap: 0.5rem;
+		color: inherit;
+	}
+
+	.team__portrait {
+		margin: 0 0 0.5rem;
+	}
+
+	.team__portrait :global(img) {
+		width: 100%;
+		aspect-ratio: 1;
+		border-radius: 18px;
+		border: 1px solid var(--color-border);
+		object-fit: cover;
+	}
+
+	.team__name {
+		margin: 0;
+		font-family: var(--font-header), serif;
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: var(--color-ink);
+	}
+
+	.team__role {
+		margin: 0;
+		font-size: 0.9rem;
+		line-height: 1.5;
+		color: var(--color-muted);
+	}
+
+	.team__link:hover .team__name {
+		color: var(--color-accent);
+	}
+</style>
