@@ -3,8 +3,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import Hero from '../../components/Hero.astro';
 import PostList from '../../components/PostList.astro';
 import Numbers from '../../components/Numbers.astro';
-import Values from '../../components/Values.astro';
-import Technologies from '../../components/Technologies.astro';
+import Services from '../../components/Services.astro';
 import { getSite } from '../../utils/consts';
 import { localePaths, resolveLocale, useTranslations } from '../../i18n/utils';
 
@@ -19,24 +18,27 @@ const site = await getSite();
 	<Hero
 		eyebrow={t('home.hero.eyebrow')}
 		title={t('home.hero.title')}
-		description={t('home.hero.description')}
+		highlights={[
+			{ term: t('home.hero.lead1.term'), rest: t('home.hero.lead1.rest') },
+			{ term: t('home.hero.lead2.term'), rest: t('home.hero.lead2.rest') },
+			{ term: t('home.hero.lead3.term'), rest: t('home.hero.lead3.rest') },
+			{ term: t('home.hero.lead4.term'), rest: t('home.hero.lead4.rest') },
+		]}
 		actions={[
 			{ label: t('home.hero.actionArticles'), href: '/articles' },
 			{ label: t('home.hero.actionTeam'), href: '/team' },
 		]}
 	/>
 
-	<Technologies />
-
-	<Values
-		eyebrow={t('focus.eyebrow')}
-		title={t('focus.title')}
-		copy={t('focus.copy')}
-		values={[
-			{ title: t('focus.systems.title'), description: t('focus.systems.description') },
-			{ title: t('focus.people.title'), description: t('focus.people.description') },
-			{ title: t('focus.kernel.title'), description: t('focus.kernel.description') },
-			{ title: t('focus.teaching.title'), description: t('focus.teaching.description') },
+	<Services
+		eyebrow={t('services.eyebrow')}
+		title={t('services.title')}
+		copy={t('services.copy')}
+		note={t('services.note')}
+		services={[
+			{ title: t('services.one.title'), body: t('services.one.body') },
+			{ title: t('services.two.title'), body: t('services.two.body') },
+			{ title: t('services.three.title'), body: t('services.three.body') },
 		]}
 	/>
 

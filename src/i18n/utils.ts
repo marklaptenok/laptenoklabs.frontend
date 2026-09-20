@@ -7,7 +7,6 @@ import {
 	type Locale,
 } from './config';
 import { ui, type TranslationKey } from './ui';
-import { slugify } from '../utils/slugify';
 
 const base = import.meta.env.BASE_URL?.replace(/\/$/, '') ?? '';
 
@@ -77,14 +76,6 @@ async function hasEntry(collection: 'articles' | 'projects', locale: Locale, slu
 	return entries.some((entry) => entry.id === `${locale}/${slug}`);
 }
 
-async function hasTag(locale: Locale, tagSlug: string) {
-	const posts = await getCollection('articles');
-	return posts.some(
-		(post) =>
-			entryLocale(post.id) === locale &&
-			(post.data.tags ?? []).some((tag) => slugify(tag) === tagSlug),
-	);
-}
 
 export async function getAvailableLocales(currentPath: string): Promise<Locale[]> {
 	const [first, ...rest] = pathSegments(currentPath);
@@ -101,9 +92,6 @@ export async function getAvailableLocales(currentPath: string): Promise<Locale[]
 		return filterLocales((locale) => hasEntry('projects', locale, tail.join('/')));
 	}
 
-	if (section === 'tags' && tail.length) {
-		return filterLocales((locale) => hasTag(locale, tail[0]));
-	}
 
 	return [...locales];
 }

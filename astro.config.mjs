@@ -56,14 +56,14 @@ export default defineConfig({
         name: "Cormorant",
         cssVariable: "--font-main",
         styles: ["normal"],
-        subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
+        subsets: ["latin", "cyrillic"],
     },
     {
         provider: fontProviders.google(),
         name: "Jura",
         cssVariable: "--font-header",
         styles: ["normal"],
-        subsets: ["latin", "latin-ext", "cyrillic"],
+        subsets: ["latin", "cyrillic"],
     },
     {
         provider: fontProviders.local(),

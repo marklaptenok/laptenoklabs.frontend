@@ -4,16 +4,22 @@ interface Action {
 	href: string;
 }
 
+interface Highlight {
+	term: string;
+	rest: string;
+}
+
 interface Props {
 	eyebrow?: string;
 	title: string;
 	description?: string;
+	highlights?: Highlight[];
 	actions?: Action[];
 }
 
 import { localeUrl, resolveLocale } from '../i18n/utils';
 
-const { eyebrow, title, description, actions = [] } = Astro.props;
+const { eyebrow, title, description, highlights = [], actions = [] } = Astro.props;
 const locale = resolveLocale(Astro);
 ---
 
@@ -22,6 +28,18 @@ const locale = resolveLocale(Astro);
 		{eyebrow && <p class="eyebrow">{eyebrow}</p>}
 		<h1 class="hero-title leading-tight m-0">{title}</h1>
 		{description && <p class="text-muted text-base md:text-lg max-w-2xl m-0">{description}</p>}
+		{highlights.length > 0 && (
+			<p class="hero-lead max-w-2xl m-0">
+				{highlights.map((highlight) => (
+					<>
+						<strong class="hero-lead__term">{highlight.term}</strong>
+						{' '}
+						<span class="hero-lead__rest">{highlight.rest}</span>
+						{' '}
+					</>
+				))}
+			</p>
+		)}
 		{actions.length > 0 && (
 			<div class="flex flex-wrap gap-3 mt-3">
 				{actions.map((action, i) => (
@@ -38,6 +56,20 @@ const locale = resolveLocale(Astro);
 	.hero-title {
 		font-size: clamp(1.75rem, 8.2vw, 3.75rem);
 		overflow-wrap: break-word;
+	}
+
+	.hero-lead {
+		font-size: clamp(1rem, 2.1vw, 1.25rem);
+		line-height: 1.7;
+	}
+
+	.hero-lead__term {
+		color: var(--color-accent-soft);
+		font-weight: 600;
+	}
+
+	.hero-lead__rest {
+		color: var(--color-muted);
 	}
 
 	.content-shell {

@@ -2,7 +2,6 @@
 import Card from '../../../components/Card.astro';
 import PageLayout from '../../../layouts/PageLayout.astro';
 import { getSite } from '../../../utils/consts';
-import { slugify } from '../../../utils/slugify';
 import {
 	entrySlug,
 	getLocalizedCollection,
@@ -39,12 +38,7 @@ const [featured, ...rest] = posts;
 					{featured.data.tags.length > 0 && (
 						<div class="flex flex-wrap gap-2 pt-1 text-sm text-muted">
 							{featured.data.tags.map((tag) => (
-								<a
-									class="no-underline inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-3 py-1 hover:text-ink"
-									href={localeUrl(locale, `/tags/${slugify(tag)}`)}
-								>
-									{tag}
-								</a>
+								<span class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-3 py-1 hover:text-ink">{tag}</span>
 							))}
 						</div>
 					)}
@@ -66,12 +60,7 @@ const [featured, ...rest] = posts;
 						{post.data.tags.length > 0 && (
 							<div class="flex flex-wrap gap-2 pt-1 text-sm text-muted">
 								{post.data.tags.map((tag) => (
-									<a
-										class="no-underline inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-3 py-1 hover:text-ink"
-										href={localeUrl(locale, `/tags/${slugify(tag)}`)}
-									>
-										{tag}
-									</a>
+									<span class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-3 py-1 hover:text-ink">{tag}</span>
 								))}
 							</div>
 						)}

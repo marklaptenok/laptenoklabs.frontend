@@ -1,0 +1,110 @@
+---
+interface Service {
+	title: string;
+	body?: string;
+}
+
+interface Props {
+	eyebrow?: string;
+	title?: string;
+	copy?: string;
+	note?: string;
+	services?: Service[];
+}
+
+const { eyebrow, title, copy, note, services = [] } = Astro.props as Props;
+---
+
+<section class="space-y-8">
+	<header class="space-y-2 max-w-3xl">
+		{eyebrow && <p class="eyebrow m-0">{eyebrow}</p>}
+		{title && <h2 class="services__title m-0">{title}</h2>}
+		{copy && <p class="text-muted m-0">{copy}</p>}
+	</header>
+
+	{services.length > 0 && (
+		<ol class="services">
+			{services.map((service, i) => (
+				<li class="services__item">
+					<span class="services__index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+					<div class="services__text">
+						<h3 class="services__name">{service.title}</h3>
+						{service.body && <p class="services__body">{service.body}</p>}
+					</div>
+				</li>
+			))}
+		</ol>
+	)}
+
+	{note && <p class="services__note max-w-3xl">{note}</p>}
+</section>
+
+<style>
+	.services__title {
+		font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+		font-weight: 600;
+		line-height: 1.15;
+		color: var(--color-ink);
+	}
+
+	.services {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		border-top: 1px solid var(--tone-rule);
+	}
+
+	.services__item {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		align-items: baseline;
+		gap: 1.25rem;
+		padding-block: 1.75rem;
+		border-bottom: 1px solid var(--tone-rule);
+	}
+
+	.services__index {
+		font-family: var(--font-header), serif;
+		font-size: clamp(1.75rem, 4vw, 2.75rem);
+		line-height: 1;
+		color: var(--color-accent-soft);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.services__text {
+		min-width: 0;
+	}
+
+	.services__name {
+		margin: 0;
+		font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+		font-weight: 600;
+		line-height: 1.25;
+		color: var(--color-ink);
+		text-wrap: balance;
+	}
+
+	.services__body {
+		margin: 0.5rem 0 0;
+		font-size: 0.98rem;
+		line-height: 1.65;
+		color: var(--color-muted);
+	}
+
+	.services__note {
+		margin: 0;
+		padding-left: 1.1rem;
+		border-left: 2px solid var(--color-accent-soft);
+		color: var(--color-muted);
+		font-size: 0.98rem;
+		line-height: 1.7;
+	}
+
+	@media (max-width: 540px) {
+		.services__item {
+			grid-template-columns: 1fr;
+			gap: 0.4rem;
+			padding-block: 1.4rem;
+		}
+	}
+</style>

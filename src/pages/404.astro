@@ -1,39 +1,64 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { locales, localeNames, localeTags } from '../i18n/config';
-import { localeUrl, useTranslations } from '../i18n/utils';
+import PageLayout from '../layouts/PageLayout.astro';
+import { locales, localeTags } from '../i18n/config';
+import { useTranslations } from '../i18n/utils';
 
-const panels = locales.map((locale) => {
-	const t = useTranslations(locale);
-	return {
-		locale,
-		lang: localeTags[locale],
-		language: localeNames[locale],
-		heading: t('notFound.heading'),
-		description: t('notFound.description'),
-		home: { label: t('notFound.home'), href: localeUrl(locale, '/') },
-		articles: { label: t('notFound.articles'), href: localeUrl(locale, '/articles') },
-	};
+const defaultAddress = 'customercare@laptenoklabs.com';
+
+const messages = locales.map((locale) => {
+	const [before, after] = useTranslations(locale)('notFound.message').split('{email}');
+	return { lang: localeTags[locale], before, after };
 });
+
+const title = useTranslations('en')('notFound.title');
 ---
 
-<BaseLayout title="404 · Laptenok Labs" description="Page not found · Страница не найдена">
-	<section class="content-shell py-12 md:py-16">
-		<div class="relative card overflow-hidden min-h-[70vh] w-full max-w-3xl mx-auto grid place-content-center gap-10 px-6 sm:px-10 py-14 md:py-16">
-			<div class="flex justify-center">
-				<span class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-3 py-1 text-sm font-semibold uppercase tracking-[0.2em] text-muted">404</span>
-			</div>
-
-			{panels.map((panel) => (
-				<div lang={panel.lang} class="space-y-4 text-center">
-					<h2 class="m-0 text-2xl sm:text-3xl font-semibold leading-tight text-ink">{panel.heading}</h2>
-					<p class="m-0 text-muted max-w-2xl mx-auto">{panel.description}</p>
-					<div class="flex flex-wrap justify-center gap-3 pt-1">
-						<a class="button primary" href={panel.home.href}>{panel.home.label}</a>
-						<a class="button secondary" href={panel.articles.href}>{panel.articles.label}</a>
-					</div>
-				</div>
-			))}
-		</div>
+<PageLayout title={title} description={title}>
+	<section class="content-shell not-found">
+		{messages.map((message, i) => (
+			<p
+				class:list={['not-found__message', i > 0 && 'not-found__message--secondary']}
+				lang={message.lang}
+			>
+				{message.before}<a class="contact-email" href={`mailto:${defaultAddress}`}>{defaultAddress}</a>{message.after}
+			</p>
+		))}
 	</section>
-</BaseLayout>
+</PageLayout>
+
+<script is:inline>
+	(() => {
+		const host = location.hostname.replace(/^www\./, '');
+		const tld = host.split('.').pop();
+		if (!tld || host === tld || !/^[a-z]{2,}$/i.test(tld)) return;
+		const address = 'customercare@laptenoklabs.' + tld.toLowerCase();
+		document.querySelectorAll('.contact-email').forEach((node) => {
+			node.textContent = address;
+			node.setAttribute('href', 'mailto:' + address);
+		});
+	})();
+</script>
+
+<style>
+	.not-found {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0.9rem;
+		min-height: 48vh;
+		padding-block: clamp(3rem, 12vh, 7rem);
+	}
+
+	.not-found__message {
+		margin: 0;
+		max-width: 46rem;
+		font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+		line-height: 1.6;
+		color: var(--color-ink);
+	}
+
+	.not-found__message--secondary {
+		font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+		color: var(--color-muted);
+	}
+</style>

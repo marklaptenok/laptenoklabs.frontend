@@ -1,23 +1,18 @@
 import type { Locale } from './config';
 
 const en = {
-	'site.description': 'I build systems software and teach software engineering.',
+	'site.description': 'Laptenok Labs — software engineering, consultancy, education and mentorship.',
 	'site.skipToContent': 'Skip to content',
 
 	'nav.home': 'Home',
 	'nav.articles': 'Articles',
 	'nav.team': 'Team',
 	'nav.projects': 'Projects',
-	'nav.tags': 'Tags',
 	'nav.rss': 'RSS',
 	'nav.primary': 'Main navigation',
 
-	'header.search': 'Search',
 	'header.debug': 'Toggle layout borders',
 	'header.language': 'Change language',
-
-	'lang.en': 'English',
-	'lang.ru': 'Русский',
 
 	'search.title': 'Search',
 	'search.open': 'Open search dialog',
@@ -46,12 +41,18 @@ const en = {
 	'social.linkedin': 'LinkedIn',
 	'social.email': 'Email',
 
-	'home.hero.eyebrow': 'Software engineer · Teacher',
-	'home.hero.title': 'Communication between computer systems — and between the people who build them.',
-	'home.hero.description':
-		'I am Mark Laptenok. I engineer systems software in Pilsen, Czech Republic, and I have taught software engineering since 2019. My background is applied mathematics and systems programming; my interests are kernel-mode programming and distributed operating systems.',
+	'home.hero.eyebrow': 'Software Engineering · Consultancy · Education · Mentorship',
+	'home.hero.title': 'Communication among computer systems — and among the people who build them.',
+	'home.hero.lead1.term': 'Software solutions',
+	'home.hero.lead1.rest': 'which last.',
+	'home.hero.lead2.term': 'Consultancy',
+	'home.hero.lead2.rest': 'which acts.',
+	'home.hero.lead3.term': 'Education',
+	'home.hero.lead3.rest': 'which complements the best ones in the domain.',
+	'home.hero.lead4.term': 'Mentorship',
+	'home.hero.lead4.rest': 'which allows you to do more, more easily.',
 	'home.hero.actionArticles': 'Read the articles',
-	'home.hero.actionTeam': 'More about me',
+	'home.hero.actionTeam': 'About us',
 
 	'home.numbers.eyebrow': 'Teaching',
 	'home.numbers.title': 'Teaching, in numbers',
@@ -101,6 +102,19 @@ const en = {
 		'Employers are named here as a matter of record. This site is my own: it is not affiliated with, sponsored by, or endorsed by any of them.',
 	'team.photoAlt': 'Mark Laptenok',
 
+	'services.eyebrow': 'Engineering',
+	'services.title': 'We help to achieve your goals using software',
+	'services.copy': 'Three services Laptenok Labs proposes',
+	'services.one.title': 'Audit of your IT system',
+	'services.one.body':
+		'Risk analysis, documenting, refactoring, rewriting, fixing, adding functionality, finding maintainers, training.',
+	'services.two.title': 'Create algorithms and mathematical models to optimize your processes',
+	'services.two.body': '',
+	'services.three.title': 'Audit of engineering teams',
+	'services.three.body': 'Helping to hire and build a long-term fruitful environment.',
+	'services.note':
+		'We work at a high level: critical thinking, experience in bigtech and fintech, and interpersonal skills honed over fifteen years. We care that our clients reach their goals, and we are not afraid of challenge, change, or chaos.',
+
 	'cv.label': 'CV',
 	'cv.updated': 'Updated {date}',
 
@@ -121,18 +135,8 @@ const en = {
 	'projects.empty': 'No projects published yet.',
 	'projects.postEyebrow': 'Project',
 
-	'tags.title': 'Tags',
-	'tags.eyebrow': 'Tags',
-	'tags.heading': 'Browse by topic',
-	'tags.description': 'Every tag in use, and the posts filed under it.',
-	'tags.metaDescription': 'Browse posts by tag.',
-	'tags.empty': 'No tags yet.',
-	'tags.single': 'Tag',
-	'tags.taggedWith': 'Posts filed under this tag.',
-	'tags.taggedWithDescription': 'Posts tagged {tag}',
-	'tags.noPosts': 'No posts carry this tag.',
-
 	'notFound.title': 'Page not found',
+	'notFound.message': 'This page does not exist. Feel free to contact us on {email} if it should.',
 	'notFound.heading': 'That page could not be found.',
 	'notFound.description':
 		'The link may be broken, or the page may have moved. Pick a route below to keep going.',
@@ -143,23 +147,18 @@ const en = {
 export type TranslationKey = keyof typeof en;
 
 const ru: Record<TranslationKey, string> = {
-	'site.description': 'Разрабатываю системное ПО и преподаю программную инженерию.',
+	'site.description': 'Laptenok Labs — разработка ПО, консалтинг, обучение и наставничество.',
 	'site.skipToContent': 'Перейти к содержимому',
 
 	'nav.home': 'Главная',
 	'nav.articles': 'Статьи',
 	'nav.team': 'Команда',
 	'nav.projects': 'Проекты',
-	'nav.tags': 'Теги',
 	'nav.rss': 'RSS',
 	'nav.primary': 'Основная навигация',
 
-	'header.search': 'Поиск',
 	'header.debug': 'Показать границы вёрстки',
 	'header.language': 'Сменить язык',
-
-	'lang.en': 'English',
-	'lang.ru': 'Русский',
 
 	'search.title': 'Поиск',
 	'search.open': 'Открыть поиск',
@@ -188,12 +187,18 @@ const ru: Record<TranslationKey, string> = {
 	'social.linkedin': 'LinkedIn',
 	'social.email': 'Почта',
 
-	'home.hero.eyebrow': 'Инженер-программист · Преподаватель',
+	'home.hero.eyebrow': 'Разработка ПО · Консалтинг · Обучение · Наставничество',
 	'home.hero.title': 'Коммуникация между компьютерными системами — и между людьми, которые их создают.',
-	'home.hero.description':
-		'Меня зовут Марк Лаптёнок. Я разрабатываю системное программное обеспечение в Пльзене, Чехия, и с 2019 года преподаю программную инженерию. В основе — прикладная математика и системное программирование; интересуюсь программированием в режиме ядра и распределёнными операционными системами.',
+	'home.hero.lead1.term': 'Программные решения',
+	'home.hero.lead1.rest': 'которые служат долго.',
+	'home.hero.lead2.term': 'Консалтинг',
+	'home.hero.lead2.rest': 'который действует.',
+	'home.hero.lead3.term': 'Обучение',
+	'home.hero.lead3.rest': 'которое дополняет лучшее в отрасли.',
+	'home.hero.lead4.term': 'Наставничество',
+	'home.hero.lead4.rest': 'которое делает путь легче.',
 	'home.hero.actionArticles': 'Читать статьи',
-	'home.hero.actionTeam': 'Подробнее обо мне',
+	'home.hero.actionTeam': 'О нас',
 
 	'home.numbers.eyebrow': 'Преподавание',
 	'home.numbers.title': 'Преподавание в цифрах',
@@ -243,6 +248,19 @@ const ru: Record<TranslationKey, string> = {
 		'Работодатели названы здесь для точности изложения. Сайт мой собственный: он не связан с ними, не спонсируется и не одобряется ими.',
 	'team.photoAlt': 'Марк Лаптёнок',
 
+	'services.eyebrow': 'Инженерия',
+	'services.title': 'Мы помогаем достигать ваших целей с помощью программ',
+	'services.copy': 'Три услуги, которые предлагает Laptenok Labs',
+	'services.one.title': 'Аудит вашей ИТ-системы',
+	'services.one.body':
+		'Анализ рисков, документирование, рефакторинг, переписывание, исправление ошибок, добавление функциональности, поиск сопровождающих, обучение.',
+	'services.two.title': 'Создание алгоритмов и математических моделей для оптимизации ваших процессов',
+	'services.two.body': '',
+	'services.three.title': 'Аудит инженерных команд',
+	'services.three.body': 'Помощь в найме и построении долгосрочной продуктивной среды.',
+	'services.note':
+		'Мы работаем на высоком уровне: критическое мышление, опыт в бигтехе и финтехе и навыки общения, которые оттачивались пятнадцать лет. Нам важно, чтобы клиенты достигали своих целей, и мы не боимся вызовов, перемен и хаоса.',
+
 	'cv.label': 'Резюме',
 	'cv.updated': 'Обновлено {date}',
 
@@ -263,18 +281,8 @@ const ru: Record<TranslationKey, string> = {
 	'projects.empty': 'Проекты пока не опубликованы.',
 	'projects.postEyebrow': 'Проект',
 
-	'tags.title': 'Теги',
-	'tags.eyebrow': 'Теги',
-	'tags.heading': 'Поиск по темам',
-	'tags.description': 'Все используемые теги и записи под ними.',
-	'tags.metaDescription': 'Записи по тегам.',
-	'tags.empty': 'Тегов пока нет.',
-	'tags.single': 'Тег',
-	'tags.taggedWith': 'Записи с этим тегом.',
-	'tags.taggedWithDescription': 'Записи с тегом {tag}',
-	'tags.noPosts': 'С этим тегом пока нет записей.',
-
 	'notFound.title': 'Страница не найдена',
+	'notFound.message': 'Такой страницы не существует. Если она должна быть, напишите нам на {email}.',
 	'notFound.heading': 'Такую страницу найти не удалось.',
 	'notFound.description':
 		'Возможно, ссылка сломана или страница переехала. Выберите, куда двигаться дальше.',
