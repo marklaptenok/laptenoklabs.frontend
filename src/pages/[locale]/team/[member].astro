@@ -92,7 +92,7 @@ const assets = Object.fromEntries(
 		display: flex;
 		flex-direction: column;
 		gap: calc(var(--grid-cell) * 1);
-		padding-block: calc(var(--grid-cell) * 2) calc(var(--grid-cell) * 1);
+		padding-block: var(--grid-cell) var(--grid-cell);
 	}
 
 	.cv__header {
@@ -120,11 +120,11 @@ const assets = Object.fromEntries(
 
 	.cv__name {
 		position: relative;
-		top: var(--baseline-shift);
+		top: var(--baseline-shift-half);
 		margin: 0;
 		font-size: clamp(1.75rem, 3.4vw, 2.5rem);
 		font-weight: 600;
-		line-height: var(--grid-cell);
+		line-height: calc(var(--grid-cell) / 2);
 		color: var(--color-ink);
 	}
 

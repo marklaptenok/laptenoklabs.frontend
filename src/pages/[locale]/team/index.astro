@@ -48,7 +48,7 @@ const people = (await getLocalizedCollection('cv', locale)).sort((a, b) =>
 		display: flex;
 		flex-direction: column;
 		gap: var(--grid-cell);
-		padding-block: calc(var(--grid-cell) * 2) calc(var(--grid-cell) * 1);
+		padding-block: var(--grid-cell) var(--grid-cell);
 	}
 
 	.team__header {
