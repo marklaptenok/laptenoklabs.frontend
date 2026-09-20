@@ -5,9 +5,12 @@
 @theme {
     --radius-card: 20px;
     --grid-divisions: 20;
-    --content-columns: 18;
-    --grid-cell: clamp(1.75rem, 8.2vw, 3.75rem);
+    --content-columns: 12;
+    --grid-cell: clamp(2.625rem, 12.3vw, 5.625rem);
     --baseline-shift: calc(var(--grid-cell) / 2 - 0.378em);
+    --baseline-step: calc(var(--grid-cell) / 3);
+    --baseline-shift-half: calc(var(--grid-cell) / 4 - 0.378em);
+    --baseline-shift-step: calc(var(--baseline-step) / 2 - 0.378em);
     --content-width: calc(var(--grid-cell) * var(--content-columns));
 
     --color-paper: var(--brand-graphite);
@@ -43,6 +46,12 @@
 
     body > main {
         flex: 1 0 auto;
+    }
+
+    @media (max-width: 860px) {
+        :root {
+            --baseline-step: calc(var(--grid-cell) / 2);
+        }
     }
 
     a {

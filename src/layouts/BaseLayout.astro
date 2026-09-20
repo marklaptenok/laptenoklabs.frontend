@@ -37,8 +37,8 @@ const {
                 const root = document.documentElement;
                 const apply = () => {
                     const rem = parseFloat(getComputedStyle(root).fontSize) || 16;
-                    const fluid = 0.082 * root.clientWidth;
-                    const cell = Math.floor(Math.min(Math.max(1.75 * rem, fluid), 3.75 * rem));
+                    const fluid = 0.123 * root.clientWidth;
+                    const cell = Math.floor(Math.min(Math.max(2.625 * rem, fluid), 5.625 * rem));
                     if (cell > 0) root.style.setProperty('--grid-cell', cell + 'px');
                 };
                 apply();
