@@ -37,6 +37,30 @@ const projects = defineCollection({
 		}),
 });
 
+const cv = defineCollection({
+	loader: glob({ base: './src/content/cv', pattern: '**/*.yml' }),
+	schema: z.object({
+		name: z.string(),
+		altName: z.string(),
+		headline: z.string(),
+		contacts: z.array(z.string()),
+		sections: z.array(
+			z.object({
+				title: z.string(),
+				entries: z.array(
+					z.object({
+						org: z.string().optional(),
+						location: z.string().optional(),
+						href: z.string().optional(),
+						roles: z.array(z.string()).default([]),
+						notes: z.array(z.string()).default([]),
+					}),
+				),
+			}),
+		),
+	}),
+});
+
 const site = defineCollection({
 	loader: file('src/site-config.yml'),
 	schema: z.object({
@@ -44,4 +68,4 @@ const site = defineCollection({
 	}),
 });
 
-export const collections = { articles, socials, projects, site };
+export const collections = { articles, cv, socials, projects, site };

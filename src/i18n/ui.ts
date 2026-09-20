@@ -73,38 +73,9 @@ const en = {
 	'home.numbers.since.label': 'Teaching since',
 	'home.numbers.since.description': 'Alongside engineering work.',
 
-	'focus.eyebrow': 'Focus',
-	'focus.title': 'What I work on',
-	'focus.copy': 'Three kinds of communication, and the systems programming underneath them.',
-	'focus.systems.title': 'Communication between systems',
-	'focus.systems.description':
-		'Protocol design, data serialisation, and resilience — the core of my engineering work in banking, retail, and desktop clients.',
-	'focus.people.title': 'Communication between people',
-	'focus.people.description':
-		'Cross-team and customer–engineer communication: turning what one side needs into something the other can build.',
-	'focus.kernel.title': 'Systems programming',
-	'focus.kernel.description':
-		'Kernel-mode programming and distributed operating systems. I am currently writing one for the BCM2711 SoC in Rust.',
-	'focus.teaching.title': 'Teaching',
-	'focus.teaching.description':
-		'Computer networks, operating systems, databases, algorithms and data structures, parallel computing, discrete mathematics.',
-
 	'team.title': 'Team',
-	'team.eyebrow': 'Team',
-	'team.description':
-		'Mark Laptenok — software engineer and engineering teacher in Pilsen, Czech Republic.',
-	'team.lead':
-		'A communicator and a technical leader with a fundamental background in applied mathematics and systems programming.',
-	'team.body1':
-		'My main engineering expertise is communication among computer systems: protocol design, data serialisation, and resilience. Since January 2026 I have been a Senior Software Engineer at Microsoft, working on the reliability of the Teams desktop client. Before that I spent three years at Diebold Nixdorf on communication stacks for banking and retail, and two years at Silixcon on systems for motor controllers.',
-	'team.body2':
-		'Since March 2019 I have taught software engineering as Laptenok Labs: computer networks, operating systems, databases, algorithms and data structures, parallel computing, probability theory and discrete mathematics. By 1 September 2026 that came to 4,525 hours of classes with 172 people.',
-	'team.body3':
-		'I studied at the Faculty of Mathematics, Mechanics and Computer Sciences of the Southern Federal University in Rostov-on-Don, qualifying as a mathematician and systems programmer. I speak Russian, English and Czech, and write C, C++, Rust and Go.',
-	'team.motto': 'Make people benefit from Computer Science.',
 	'team.disclaimer':
 		'Employers are named here as a matter of record. This site is my own: it is not affiliated with, sponsored by, or endorsed by any of them.',
-	'team.photoAlt': 'Mark Laptenok',
 
 	'services.eyebrow': 'Engineering · Consultancy',
 	'services.title': 'We help to achieve your goals using software',
@@ -221,38 +192,9 @@ const ru: Record<TranslationKey, string> = {
 	'home.numbers.since.label': 'Преподаём с',
 	'home.numbers.since.description': 'Параллельно с инженерной работой.',
 
-	'focus.eyebrow': 'Направления',
-	'focus.title': 'Чем я занимаюсь',
-	'focus.copy': 'Три вида коммуникации и системное программирование под ними.',
-	'focus.systems.title': 'Коммуникация между системами',
-	'focus.systems.description':
-		'Проектирование протоколов, сериализация данных и отказоустойчивость — основа моей инженерной работы в банковской сфере, ритейле и настольных клиентах.',
-	'focus.people.title': 'Коммуникация между людьми',
-	'focus.people.description':
-		'Общение между командами и между заказчиком и инженером: превращаю то, что нужно одной стороне, в то, что может построить другая.',
-	'focus.kernel.title': 'Системное программирование',
-	'focus.kernel.description':
-		'Программирование в режиме ядра и распределённые операционные системы. Сейчас пишу такую для SoC BCM2711 на Rust.',
-	'focus.teaching.title': 'Преподавание',
-	'focus.teaching.description':
-		'Компьютерные сети, операционные системы, базы данных, алгоритмы и структуры данных, параллельные вычисления, дискретная математика.',
-
 	'team.title': 'Команда',
-	'team.eyebrow': 'Команда',
-	'team.description':
-		'Марк Лаптёнок — инженер-программист и преподаватель программной инженерии, Пльзень, Чехия.',
-	'team.lead':
-		'Коммуникатор и технический лидер с фундаментальной базой в прикладной математике и системном программировании.',
-	'team.body1':
-		'Моя основная инженерная специализация — коммуникация между компьютерными системами: проектирование протоколов, сериализация данных и отказоустойчивость. С января 2026 года работаю старшим инженером-программистом в Microsoft над надёжностью настольного клиента Teams. До этого три года занимался коммуникационными стеками для банков и ритейла в Diebold Nixdorf и два года — системами для контроллеров двигателей в Silixcon.',
-	'team.body2':
-		'С марта 2019 года преподаю программную инженерию под маркой Laptenok Labs: компьютерные сети, операционные системы, базы данных, алгоритмы и структуры данных, параллельные вычисления, теорию вероятностей и дискретную математику. К 1 сентября 2026 года это 4 525 часов занятий со 172 людьми.',
-	'team.body3':
-		'Учился на факультете математики, механики и компьютерных наук Южного федерального университета в Ростове-на-Дону, квалификация — математик, системный программист. Говорю по-русски, по-английски и по-чешски, пишу на C, C++, Rust и Go.',
-	'team.motto': 'Сделать так, чтобы информатика приносила людям пользу.',
 	'team.disclaimer':
 		'Работодатели названы здесь для точности изложения. Сайт мой собственный: он не связан с ними, не спонсируется и не одобряется ими.',
-	'team.photoAlt': 'Марк Лаптёнок',
 
 	'services.eyebrow': 'Инженерия · Консалтинг',
 	'services.title': 'Мы помогаем достигать ваших целей с помощью программ',

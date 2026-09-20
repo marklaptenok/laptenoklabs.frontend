@@ -1,0 +1,122 @@
+name: Mark Laptenok
+altName: Марк Лаптёнок
+headline: A communicator and a technical leader with a fundamental background in applied mathematics and systems programming. Major SWE expertise is in communication among systems. A teacher. Interested in kernel mode programming and distributed OSes.
+contacts:
+  - Pilsen, The Czech Republic
+  - mark@laptenoklabs.com
+
+sections:
+  - title: Professional experience
+    entries:
+      - org: Microsoft Corporation
+        roles:
+          - Senior Software Engineer, January 2026 – present.
+        notes:
+          - In the Craft & Reliability team of the Microsoft Teams desktop client for Windows and macOS, responsible for reaching 99.9% reliability.
+          - Designed, implemented with custom AI agents, and delivered web-content identification of failed WebView2 renderers; delivered statistics on the most fail-prone web applications to the area owner.
+          - Researching Out-of-Memory failures; designed a tool to track and distinguish causes of OOM states, with further improvements to resilience.
+          - "Side project: analysed the Teams desktop client SDLC gaps and introduced a list of solutions to the infrastructure teams. Proposed a mathematical model for greedy E2E testing of code changes; verification in progress."
+
+      - org: Diebold Nixdorf
+        roles:
+          - Advanced Software Engineer, July 2022 – December 2025.
+        notes:
+          - Designed the endpoint communication module for the next-generation monitoring and remote-control system for banking and retail; implemented the resilience layer and the data serialization based on schema exchange.
+          - As DRI, refactored and delivered the communication stack of the proprietary remote-control and monitoring software for banking — a project initiated by Bank of America that took two years to complete.
+          - Fixed database connection issues.
+
+      - org: Laptenok Labs
+        roles:
+          - Software Engineering Teacher and Consultant, March 2019 – present.
+        notes:
+          - As of 1 September 2026, completed 4,525 hours of classes in Computer Networks, Operating Systems, SQL/NoSQL Databases, Parallel Computations (pthreads, OpenMP, C++ STL, WinAPI), Algorithms and Data Structures, Software Engineering, Probability Theory, Discrete Mathematics, and various programming languages.
+          - Tutored 172 people, including Amdocs interns and students of Imperial College London, the University of Bremen, the University of Auckland, Moscow State University and Moscow Engineering Physics Institute, to improve their engineering and programming skills.
+
+      - org: Silixcon
+        roles:
+          - Software Engineer, March 2020 – June 2022.
+        notes:
+          - Designed and implemented a Python parser embedded into the C++ desktop client for proprietary motor controllers.
+          - Designed an API, a user permission model, and a desktop client for the remote registration, update and monitoring system for motor controllers.
+          - Refactored the remote firmware update system for motor controllers; designed and implemented its runtime environment based on Type 3 virtualization.
+
+      - org: Self-employment
+        location: Moscow, RU
+        roles:
+          - Commercial Photographer, Instructional Designer, May 2009 – March 2019.
+
+      - org: InfoTeCS Internet Trust JSC
+        location: Rostov-on-Don, RU
+        roles:
+          - Network Administrator, January 2007 – January 2008.
+
+      - org: Faculty of Mathematics, Mechanics and Computer Sciences, SFedU
+        location: Rostov-on-Don, RU
+        roles:
+          - Network Administrator, September 2006 – December 2006.
+
+  - title: Education
+    entries:
+      - org: Faculty of Mathematics, Mechanics and Computer Sciences, Southern Federal University
+        location: Rostov-on-Don, RU
+        roles:
+          - 5-year degree and 3 years of unfinished postgraduate education, September 2003 – May 2011.
+        notes:
+          - "Qualification: Mathematician and Systems Programmer."
+          - 'Thesis: "Pattern-based natural language translation of scientific texts."'
+          - "Research supervisor: Mezhlum A. Sumbatyan. Thesis opponent: Mikhail I. Karyakin."
+
+      - org: Microsoft Training Center
+        location: Rostov-on-Don, RU
+        roles:
+          - Microsoft Certified Professional, January 2007 – March 2007.
+        notes:
+          - Credential ID 5745808, Internet Security and Acceleration Server 2004.
+
+  - title: Awards
+    entries:
+      - roles:
+          - UMNIK, the Russian abbreviation for "Member of the Youth Research and Innovation Competition", 2009.
+        notes:
+          - Awarded for research in automated natural language translation.
+
+  - title: Projects
+    entries:
+      - org: E.ON
+        roles:
+          - Identity and Access Management System.
+        notes:
+          - Designed and implemented the PoC and a stack manager.
+
+      - org: Laptenok Labs
+        href: /bigologn
+        roles:
+          - "O(log n) — learning platform for software engineers."
+        notes:
+          - A platform for the distribution of self-produced learning courses in software engineering.
+
+      - org: Laptenok Labs
+        roles:
+          - Operating System for the aarch64 SoC.
+        notes:
+          - Implementing a distributed operating system for BCM2711 in Rust.
+
+      - org: Laptenok Labs
+        href: /projects/soft-engineer
+        roles:
+          - "Soft Engineer — a podcast about software engineering."
+
+  - title: Skills
+    entries:
+      - notes:
+          - Problem-solving.
+          - Cross-team and customer–engineer communication.
+          - Communication between computer systems.
+          - Design and performance analysis of algorithms and data structures.
+          - Communication protocol design.
+
+  - title: Languages
+    entries:
+      - notes:
+          - Russian — native speaker. English — C1. Czech — B2.
+          - C, C++, Rust, Go — fluent.
