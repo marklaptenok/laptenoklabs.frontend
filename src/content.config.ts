@@ -14,14 +14,6 @@ const articles = defineCollection({
 		}),
 });
 
-const socials = defineCollection({
-	loader: file('src/content/socials.yml'),
-	schema: z.object({
-		id: z.string().optional(),
-		label: z.string(),
-		href: z.string(),
-	}),
-});
 
 const projects = defineCollection({
 	loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
@@ -70,4 +62,4 @@ const site = defineCollection({
 	}),
 });
 
-export const collections = { articles, cv, socials, projects, site };
+export const collections = { articles, cv, projects, site };

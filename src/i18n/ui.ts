@@ -38,11 +38,11 @@ const en = {
 	'footer.ico': 'IČO 21777641',
 	'footer.address': 'Prosincová č.ev. 1583/12, Litice, 321 00 Plzeň, Czech Republic',
 	'footer.registry': 'Registered at the Regional Court in Plzeň, file C 45452',
-	'footer.colophon': 'Built with Astro on the Launchpad template by Rodrigo Cortez.',
+	'footer.colophon': 'Built with Astro on the Launchpad template by Rodrigo Cortez and Mark Laptenok.',
 
-	'social.github': 'GitHub',
-	'social.linkedin': 'LinkedIn',
-	'social.email': 'Email',
+	'contact.email': 'customercare@laptenoklabs.com',
+	'contact.phone': '(420) 732 662 170',
+	'contact.hours': '10:00 – 18:00 UTC',
 
 	'home.hero.eyebrow': 'Software Engineering · Consultancy · Education · Mentorship',
 	'home.hero.title': 'Communication among computer systems — and among the people who build them.',
@@ -154,11 +154,11 @@ const ru: Record<TranslationKey, string> = {
 	'footer.ico': 'IČO 21777641',
 	'footer.address': 'Prosincová č.ev. 1583/12, Litice, 321 00 Пльзень, Чехия',
 	'footer.registry': 'Зарегистрировано в Краевом суде в Пльзене, дело C 45452',
-	'footer.colophon': 'Сделано на Astro, шаблон Launchpad, автор — Rodrigo Cortez.',
+	'footer.colophon': 'Сделано на Astro, шаблон Launchpad, авторы — Rodrigo Cortez и Марк Лаптёнок.',
 
-	'social.github': 'GitHub',
-	'social.linkedin': 'LinkedIn',
-	'social.email': 'Почта',
+	'contact.email': 'customercare@laptenoklabs.com',
+	'contact.phone': '(420) 732 662 170',
+	'contact.hours': '10:00 – 18:00 UTC',
 
 	'home.hero.eyebrow': 'Разработка ПО · Консалтинг · Обучение · Наставничество',
 	'home.hero.title': 'Коммуникация между компьютерными системами — и между людьми, которые их создают.',

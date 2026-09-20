@@ -1,6 +1,5 @@
 ---
 import { getSite } from '../utils/consts';
-import { getCollection } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 import { localeUrl, resolveLocale, useTranslations } from '../i18n/utils';
 import type { TranslationKey } from '../i18n/ui';
@@ -10,26 +9,12 @@ const locale = resolveLocale(Astro);
 const t = useTranslations(locale);
 
 const today = new Date();
-const socialOrder = ['email', 'linkedin', 'github'];
-const socials = (await getCollection('socials'))
-  .map((entry) => entry.data)
-  .sort((a, b) => socialOrder.indexOf(a.id ?? '') - socialOrder.indexOf(b.id ?? ''));
 
-const iconMap: Record<string, string> = {
-  x: 'tabler:brand-x',
-  twitter: 'tabler:brand-x',
-  github: 'tabler:brand-github',
-  linkedin: 'tabler:brand-linkedin',
-  email: 'tabler:mail',
-  mastodon: 'tabler:brand-mastodon',
-};
-
-const socialLabel = (id: string | undefined, fallback: string) => {
-  if (!id) return fallback;
-  const key = `social.${id.toLowerCase()}` as TranslationKey;
-  const translated = t(key);
-  return translated === key ? fallback : translated;
-};
+const contacts: Array<{ icon: string; key: TranslationKey; href?: string }> = [
+  { icon: 'tabler:mail', key: 'contact.email', href: `mailto:${t('contact.email')}` },
+  { icon: 'tabler:phone', key: 'contact.phone', href: `tel:${t('contact.phone').replace(/[^\d+]/g, '')}` },
+  { icon: 'tabler:clock', key: 'contact.hours' },
+];
 
 const navLinks: Array<{ key: TranslationKey; href: string }> = [
   { key: 'nav.home', href: '/' },
@@ -40,55 +25,42 @@ const navLinks: Array<{ key: TranslationKey; href: string }> = [
 ];
 ---
 
-<footer class="site-footer border-t border-[color:var(--color-border)] pt-8 pb-4">
-  <div class="content-shell">
-    <div class="grid gap-10 border-b border-[color:var(--color-border)] pb-10 md:grid-cols-2">
-      <div class="grid gap-3 content-start">
+<footer class="site-footer">
+  <div class="content-shell footer-inner">
+    <div class="footer-columns">
+      <div class="footer-column">
         <p class="footer-heading">{t('footer.connect')}</p>
-        <div class="grid gap-2 text-sm text-ink">
-          {socials.map((social) => {
-            const iconName = social.id ? iconMap[social.id.toLowerCase()] : undefined;
-            const label = socialLabel(social.id, social.label);
-            const fallback = label?.trim()?.[0]?.toUpperCase() ?? '?';
-            return (
-              <a
-                href={social.href}
-                target={social.href.startsWith('http') ? '_blank' : undefined}
-                rel={social.href.startsWith('http') ? 'noreferrer' : undefined}
-                class="flex items-center gap-2 py-1"
-              >
-                {iconName ? (
-                  <Icon
-                    name={iconName}
-                    size={18}
-                    strokeWidth={1.5}
-                    class="text-ink"
-                    aria-hidden={true}
-                  />
-                ) : (
-                  <span class="inline-flex h-[26px] w-[26px] items-center justify-center rounded-full border border-[color:var(--color-border)] text-[0.7rem] font-semibold text-ink" aria-hidden="true">{fallback}</span>
-                )}
+        <div class="footer-list">
+          {contacts.map((contact) => {
+            const label = t(contact.key);
+            return contact.href ? (
+              <a href={contact.href} class="footer-item">
+                <Icon name={contact.icon} size={18} strokeWidth={1.5} class="text-ink" aria-hidden={true} />
                 <span class="leading-tight">{label}</span>
               </a>
+            ) : (
+              <p class="footer-item m-0">
+                <Icon name={contact.icon} size={18} strokeWidth={1.5} class="text-ink" aria-hidden={true} />
+                <span class="leading-tight">{label}</span>
+              </p>
             );
           })}
         </div>
       </div>
-      <div class="grid gap-3 content-start">
+      <div class="footer-column">
         <p class="footer-heading">{t('footer.navigation')}</p>
-        <div class="grid gap-2 text-sm text-ink">
+        <div class="footer-list">
           {navLinks.map((link) => (
-            <a class="py-1" href={localeUrl(locale, link.href)}>{t(link.key)}</a>
+            <a class="footer-item" href={localeUrl(locale, link.href)}>{t(link.key)}</a>
           ))}
         </div>
       </div>
     </div>
+
     <div class="footer-meta">
-      <div class="space-y-0.5">
-        <p class="text-sm text-ink m-0">{site.title} &copy; {today.getFullYear()}. {t('footer.rights')}</p>
-        <p class="text-sm text-muted m-0">{t('footer.colophon')}</p>
-      </div>
-      <address class="not-italic space-y-0.5 md:text-right">
+      <p class="text-sm text-ink m-0">{site.title} &copy; {today.getFullYear()}. {t('footer.rights')}</p>
+      <p class="text-sm text-muted m-0">{t('footer.colophon')}</p>
+      <address class="not-italic footer-address">
         <p class="text-sm text-ink m-0">{t('footer.company')}</p>
         <p class="text-sm text-muted m-0">{t('footer.ico')}</p>
         <p class="text-sm text-muted m-0">{t('footer.address')}</p>
@@ -100,24 +72,27 @@ const navLinks: Array<{ key: TranslationKey; href: string }> = [
 
 <style>
   .site-footer {
-    background: color-mix(in oklab, var(--color-surface) 80%, transparent);
+    background: color-mix(in oklab, var(--color-surface) 80%, var(--color-paper));
+    border-top: 1px solid var(--color-border);
+    padding-block: 2rem 1rem;
   }
 
-  .footer-meta {
+  .footer-inner {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1.25rem;
-    padding-top: 1.25rem;
+    gap: 2.5rem;
   }
 
-  @media (min-width: 768px) {
-    .footer-meta {
-      flex-direction: row;
-      align-items: flex-end;
-      gap: 2rem;
-    }
+  .footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 4rem;
+  }
+
+  .footer-column {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
   }
 
   .footer-heading {
@@ -126,5 +101,39 @@ const navLinks: Array<{ key: TranslationKey; href: string }> = [
     letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--color-accent-soft);
+  }
+
+  .footer-list {
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+  }
+
+  .footer-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-block: 0.25rem;
+  }
+
+  .footer-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+    text-align: right;
+  }
+
+  .footer-address {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  @media (max-width: 640px) {
+    .footer-meta {
+      align-items: flex-start;
+      text-align: left;
+    }
   }
 </style>
