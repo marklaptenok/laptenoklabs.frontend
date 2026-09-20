@@ -14,8 +14,8 @@ interface Props {
 const { eyebrow, title, copy, services = [] } = Astro.props as Props;
 ---
 
-<section class="space-y-8">
-	<header class="space-y-3 max-w-4xl">
+<section class="services-section">
+	<header class="services-header max-w-4xl">
 		{eyebrow && <p class="eyebrow m-0">{eyebrow}</p>}
 		{title && <h2 class="section-title">{title}</h2>}
 		{copy && <p class="services__copy m-0">{copy}</p>}
@@ -34,10 +34,28 @@ const { eyebrow, title, copy, services = [] } = Astro.props as Props;
 </section>
 
 <style>
+	.services-section {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.services-header {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.services-header :global(.eyebrow) {
+		position: relative;
+		top: var(--baseline-shift);
+		margin: 0;
+		line-height: var(--grid-cell);
+	}
+
 	.services__copy {
+		margin-block: 0 var(--grid-cell);
 		max-width: 52rem;
 		font-size: clamp(0.89rem, 1.7vw, 1.11rem);
-		line-height: 1.65;
+		line-height: calc(var(--grid-cell) / 2);
 		color: var(--color-muted);
 	}
 
@@ -46,7 +64,7 @@ const { eyebrow, title, copy, services = [] } = Astro.props as Props;
 		margin: 0;
 		padding: 0;
 		display: grid;
-		gap: 2rem;
+		gap: var(--grid-cell);
 	}
 
 	.services__item {
@@ -54,19 +72,21 @@ const { eyebrow, title, copy, services = [] } = Astro.props as Props;
 	}
 
 	.services__name {
+		position: relative;
+		top: var(--baseline-shift);
 		margin: 0;
 		font-size: clamp(1.15rem, 2.4vw, 1.6rem);
 		font-weight: 600;
-		line-height: 1.25;
+		line-height: var(--grid-cell);
 		color: var(--color-ink);
 		text-wrap: balance;
 	}
 
 	.services__body {
-		margin: 0.5rem 0 0;
+		margin: 0;
 		max-width: 52rem;
 		font-size: clamp(0.89rem, 1.62vw, 1.02rem);
-		line-height: 1.65;
+		line-height: calc(var(--grid-cell) / 2);
 		color: var(--color-muted);
 	}
 </style>

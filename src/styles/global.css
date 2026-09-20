@@ -6,7 +6,8 @@
     --radius-card: 20px;
     --grid-divisions: 20;
     --content-columns: 18;
-    --grid-cell: calc(100vw / var(--grid-divisions));
+    --grid-cell: clamp(1.75rem, 8.2vw, 3.75rem);
+    --baseline-shift: calc(var(--grid-cell) / 2 - 0.378em);
     --content-width: calc(var(--grid-cell) * var(--content-columns));
 
     --color-paper: var(--brand-graphite);
@@ -170,10 +171,12 @@
     }
 
     .section-title {
+        position: relative;
+        top: var(--baseline-shift);
         margin: 0;
         font-size: clamp(1.75rem, 3.4vw, 2.5rem);
         font-weight: 600;
-        line-height: 1.15;
+        line-height: var(--grid-cell);
         color: var(--color-ink);
     }
 
@@ -256,6 +259,17 @@
         margin-inline: var(--grid-cell) auto;
         padding-left: var(--grid-cell);
         padding-right: var(--grid-cell);
+    }
+
+    @supports (margin-left: round(down, 10px, 3px)) {
+        .content-shell {
+            margin-inline-start: round(
+                down,
+                max(0px, calc((100% - var(--content-width)) / 2)),
+                var(--grid-cell)
+            );
+            margin-inline-end: auto;
+        }
     }
 
     .content-shell .content-shell {

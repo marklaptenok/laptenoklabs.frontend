@@ -36,9 +36,9 @@ const {
             (() => {
                 const root = document.documentElement;
                 const apply = () => {
-                    const divisions =
-                        parseInt(getComputedStyle(root).getPropertyValue('--grid-divisions'), 10) || 20;
-                    const cell = Math.floor(root.clientWidth / divisions);
+                    const rem = parseFloat(getComputedStyle(root).fontSize) || 16;
+                    const fluid = 0.082 * root.clientWidth;
+                    const cell = Math.floor(Math.min(Math.max(1.75 * rem, fluid), 3.75 * rem));
                     if (cell > 0) root.style.setProperty('--grid-cell', cell + 'px');
                 };
                 apply();
@@ -58,12 +58,12 @@ const {
 
 <style>
     .content-shell {
-        padding-top: max(calc(var(--grid-cell) * 1), 4.5rem);
+        padding-top: calc(var(--grid-cell) * 2);
     }
 
     @media (max-width: 860px) {
         .content-shell {
-            padding-top: max(calc(var(--grid-cell) * 2), 6.5rem);
+            padding-top: calc(var(--grid-cell) * 3);
         }
     }
 

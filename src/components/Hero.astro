@@ -23,10 +23,10 @@ const { eyebrow, title, description, highlights = [], actions = [] } = Astro.pro
 const locale = resolveLocale(Astro);
 ---
 
-<section class="content-shell flex items-center">
-	<div class="grid gap-4 max-w-3xl">
-		{eyebrow && <p class="eyebrow">{eyebrow}</p>}
-		<h1 class="hero-title leading-tight m-0">{title}</h1>
+<section class="content-shell hero-shell">
+	<div class="hero-stack max-w-3xl">
+		{eyebrow && <p class="eyebrow hero-eyebrow">{eyebrow}</p>}
+		<h1 class="hero-title m-0">{title}</h1>
 		{description && <p class="text-muted text-base md:text-lg max-w-2xl m-0">{description}</p>}
 		{highlights.length > 0 && (
 			<p class="hero-lead max-w-2xl m-0">
@@ -40,7 +40,7 @@ const locale = resolveLocale(Astro);
 			</p>
 		)}
 		{actions.length > 0 && (
-			<div class="flex flex-wrap gap-3 mt-3">
+			<div class="hero-actions">
 				{actions.map((action, i) => (
 					<a class:list={['button', i === 0 ? 'primary' : 'secondary']} href={localeUrl(locale, action.href)}>
 						{action.label}
@@ -52,14 +52,45 @@ const locale = resolveLocale(Astro);
 </section>
 
 <style>
+	.hero-shell {
+		display: flex;
+		align-items: flex-start;
+		padding-top: calc(var(--grid-cell) * 2);
+	}
+
+	.hero-stack {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.hero-eyebrow {
+		position: relative;
+		top: var(--baseline-shift);
+		margin: 0;
+		line-height: var(--grid-cell);
+	}
+
 	.hero-title {
-		font-size: clamp(1.75rem, 8.2vw, 3.75rem);
+		position: relative;
+		top: var(--baseline-shift);
+		font-size: var(--grid-cell);
+		line-height: 1;
 		overflow-wrap: break-word;
+		margin-block: var(--grid-cell) 0;
+	}
+
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: 0.75rem;
+		height: calc(var(--grid-cell) * 2);
 	}
 
 	.hero-lead {
+		margin-block: var(--grid-cell) 0;
 		font-size: clamp(1rem, 2.1vw, 1.25rem);
-		line-height: 1.7;
+		line-height: calc(var(--grid-cell) / 2);
 	}
 
 	.hero-lead__term {
@@ -71,13 +102,8 @@ const locale = resolveLocale(Astro);
 		color: var(--color-muted);
 	}
 
-	.content-shell {
-		min-height: calc(100vh - max(calc(var(--grid-cell) * 1), 4.5rem));
-	}
-
-	@media (max-width: 860px) {
-		.content-shell {
-			min-height: calc(100vh - max(calc(var(--grid-cell) * 2), 6.5rem));
-		}
+	.hero-shell {
+		min-height: calc(100vh - var(--grid-cell) * 2);
+		padding-bottom: var(--grid-cell);
 	}
 </style>
