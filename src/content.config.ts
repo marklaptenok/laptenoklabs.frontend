@@ -33,6 +33,7 @@ const projects = defineCollection({
 			updatedDate: z.coerce.date().optional(),
 			heroImage: image().optional(),
 			tags: z.array(z.string()).default([]),
+			url: z.string().startsWith('/').optional(),
 		}),
 });
 
@@ -40,7 +41,6 @@ const site = defineCollection({
 	loader: file('src/site-config.yml'),
 	schema: z.object({
 		title: z.string(),
-		timezone: z.string().optional(),
 	}),
 });
 

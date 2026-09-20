@@ -179,8 +179,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
         background: color-mix(in oklab, var(--color-surface) 92%, transparent);
-        transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease,
-            transform 150ms ease;
+        transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
     }
 
     .button.primary {
@@ -195,19 +194,12 @@
         border-color: var(--color-accent-soft);
     }
 
-    .button:hover {
-        transform: translateY(-1px);
-    }
-
-    .button.primary:hover {
+    .button:hover,
+    .button.primary:hover,
+    .button.secondary:hover {
         background: var(--color-accent-soft);
         border-color: var(--color-accent-soft);
-    }
-
-    .button.secondary:hover {
-        color: var(--color-accent);
-        border-color: var(--color-accent);
-        background: var(--tone-accent-wash);
+        color: var(--brand-graphite);
     }
 
     .card {

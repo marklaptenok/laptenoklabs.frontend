@@ -10,6 +10,10 @@ const site = await getSite();
 const locale = resolveLocale(Astro);
 const t = useTranslations(locale);
 const homeHref = localeUrl(locale, "/");
+
+const productLogos: Record<string, string> = { "/bigologn": "O(log n)" };
+const section = "/" + (Astro.url.pathname.split("/").filter(Boolean)[1] ?? "");
+const productLogo = productLogos[section];
 ---
 
 <header class="site-header">
@@ -17,6 +21,7 @@ const homeHref = localeUrl(locale, "/");
     <div class="site-header__bar">
       <h1 class="site-title">
         <a href={homeHref}>{site.title}</a>
+        {productLogo && <span class="site-title__product">{productLogo}</span>}
       </h1>
 
       <div class="site-header__actions">
@@ -105,6 +110,10 @@ const homeHref = localeUrl(locale, "/");
 	grid-area: title;
 	margin: 0;
 	min-width: 0;
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	gap: 2em;
 	font-family: var(--font-title), var(--font-header), serif;
 	font-size: clamp(1.05rem, 3.2vw, 1.35rem);
 	font-weight: 400;
@@ -117,6 +126,11 @@ const homeHref = localeUrl(locale, "/");
 	text-decoration: none;
 	display: inline-block;
 	overflow-wrap: break-word;
+  }
+
+  .site-title__product {
+	color: var(--color-accent);
+	white-space: nowrap;
   }
 
   .site-header__actions {

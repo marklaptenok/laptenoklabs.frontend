@@ -49,6 +49,11 @@ export function switchLocaleUrl(currentPath: string, target: Locale): string {
 
 export const entrySlug = (id: string) => id.replace(/^[a-z]{2}\//, '');
 
+export const projectUrl = (
+	locale: Locale,
+	entry: { id: string; data: { url?: string } },
+) => localeUrl(locale, entry.data.url ?? `/projects/${entrySlug(entry.id)}`);
+
 export const entryLocale = (id: string): Locale => {
 	const prefix = id.split('/')[0];
 	return isLocale(prefix) ? prefix : defaultLocale;

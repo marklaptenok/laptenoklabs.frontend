@@ -7,6 +7,5 @@ export async function getSite() {
 	const entry = await getEntry('site', 'site');
 	return {
 		title: entry?.data.title ?? 'Laptenok Labs',
-		timezone: entry?.data.timezone ?? 'Europe/Prague',
 	};
 }

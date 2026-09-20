@@ -1,7 +1,6 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import Hero from '../../components/Hero.astro';
-import PostList from '../../components/PostList.astro';
 import Numbers from '../../components/Numbers.astro';
 import Services from '../../components/Services.astro';
 import { getSite } from '../../utils/consts';
@@ -25,8 +24,8 @@ const site = await getSite();
 			{ term: t('home.hero.lead4.term'), rest: t('home.hero.lead4.rest') },
 		]}
 		actions={[
-			{ label: t('home.hero.actionArticles'), href: '/articles' },
-			{ label: t('home.hero.actionTeam'), href: '/team' },
+			{ label: t('home.hero.actionLearning'), href: '/bigologn' },
+			{ label: t('home.hero.actionProjects'), href: '/projects' },
 		]}
 	/>
 
@@ -34,7 +33,6 @@ const site = await getSite();
 		eyebrow={t('services.eyebrow')}
 		title={t('services.title')}
 		copy={t('services.copy')}
-		note={t('services.note')}
 		services={[
 			{ title: t('services.one.title'), body: t('services.one.body') },
 			{ title: t('services.two.title'), body: t('services.two.body') },
@@ -64,6 +62,4 @@ const site = await getSite();
 			},
 		]}
 	/>
-
-	<PostList limit={3} />
 </PageLayout>

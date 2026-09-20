@@ -8,35 +8,29 @@ interface Props {
 	eyebrow?: string;
 	title?: string;
 	copy?: string;
-	note?: string;
 	services?: Service[];
 }
 
-const { eyebrow, title, copy, note, services = [] } = Astro.props as Props;
+const { eyebrow, title, copy, services = [] } = Astro.props as Props;
 ---
 
 <section class="space-y-8">
-	<header class="space-y-2 max-w-3xl">
+	<header class="space-y-3 max-w-4xl">
 		{eyebrow && <p class="eyebrow m-0">{eyebrow}</p>}
 		{title && <h2 class="services__title m-0">{title}</h2>}
-		{copy && <p class="text-muted m-0">{copy}</p>}
+		{copy && <p class="services__copy m-0">{copy}</p>}
 	</header>
 
 	{services.length > 0 && (
 		<ol class="services">
-			{services.map((service, i) => (
+			{services.map((service) => (
 				<li class="services__item">
-					<span class="services__index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-					<div class="services__text">
-						<h3 class="services__name">{service.title}</h3>
-						{service.body && <p class="services__body">{service.body}</p>}
-					</div>
+					<h3 class="services__name">{service.title}</h3>
+					{service.body && <p class="services__body">{service.body}</p>}
 				</li>
 			))}
 		</ol>
 	)}
-
-	{note && <p class="services__note max-w-3xl">{note}</p>}
 </section>
 
 <style>
@@ -47,31 +41,22 @@ const { eyebrow, title, copy, note, services = [] } = Astro.props as Props;
 		color: var(--color-ink);
 	}
 
+	.services__copy {
+		max-width: 52rem;
+		font-size: clamp(1.05rem, 2vw, 1.3rem);
+		line-height: 1.65;
+		color: var(--color-muted);
+	}
+
 	.services {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		border-top: 1px solid var(--tone-rule);
+		display: grid;
+		gap: 2rem;
 	}
 
 	.services__item {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		align-items: baseline;
-		gap: 1.25rem;
-		padding-block: 1.75rem;
-		border-bottom: 1px solid var(--tone-rule);
-	}
-
-	.services__index {
-		font-family: var(--font-header), serif;
-		font-size: clamp(1.75rem, 4vw, 2.75rem);
-		line-height: 1;
-		color: var(--color-accent-soft);
-		font-variant-numeric: tabular-nums;
-	}
-
-	.services__text {
 		min-width: 0;
 	}
 
@@ -86,25 +71,9 @@ const { eyebrow, title, copy, note, services = [] } = Astro.props as Props;
 
 	.services__body {
 		margin: 0.5rem 0 0;
-		font-size: 0.98rem;
+		max-width: 52rem;
+		font-size: clamp(1.05rem, 1.9vw, 1.2rem);
 		line-height: 1.65;
 		color: var(--color-muted);
-	}
-
-	.services__note {
-		margin: 0;
-		padding-left: 1.1rem;
-		border-left: 2px solid var(--color-accent-soft);
-		color: var(--color-muted);
-		font-size: 0.98rem;
-		line-height: 1.7;
-	}
-
-	@media (max-width: 540px) {
-		.services__item {
-			grid-template-columns: 1fr;
-			gap: 0.4rem;
-			padding-block: 1.4rem;
-		}
 	}
 </style>

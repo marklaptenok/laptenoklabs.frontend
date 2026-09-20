@@ -34,7 +34,10 @@ const en = {
 	'footer.connect': 'Connect',
 	'footer.navigation': 'Navigation',
 	'footer.rights': 'All rights reserved.',
-	'footer.based': 'Pilsen, Czech Republic',
+	'footer.company': 'Laptenok Labs s.r.o.',
+	'footer.ico': 'IČO 21777641',
+	'footer.address': 'Prosincová č.ev. 1583/12, Litice, 321 00 Plzeň, Czech Republic',
+	'footer.registry': 'Registered at the Regional Court in Plzeň, file C 45452',
 	'footer.colophon': 'Built with Astro on the Launchpad template by Rodrigo Cortez.',
 
 	'social.github': 'GitHub',
@@ -51,12 +54,13 @@ const en = {
 	'home.hero.lead3.rest': 'which complements the best ones in the domain.',
 	'home.hero.lead4.term': 'Mentorship',
 	'home.hero.lead4.rest': 'which allows you to do more, more easily.',
-	'home.hero.actionArticles': 'Read the articles',
-	'home.hero.actionTeam': 'About us',
+	'home.hero.actionLearning': 'Learning platform',
+	'home.hero.actionProjects': 'Other projects',
 
-	'home.numbers.eyebrow': 'Teaching',
-	'home.numbers.title': 'Teaching, in numbers',
-	'home.numbers.copy': 'Laptenok Labs, since March 2019. Figures as of 1 September 2026.',
+	'home.numbers.eyebrow': 'Education · Mentorship',
+	'home.numbers.title':
+		'We teach software engineering to people and help engineers achieve their personal goals',
+	'home.numbers.copy': 'Figures as of 1 September 2026.',
 	'home.numbers.hours.value': '4,525',
 	'home.numbers.hours.label': 'Hours of classes',
 	'home.numbers.hours.description':
@@ -65,9 +69,9 @@ const en = {
 	'home.numbers.people.label': 'People tutored',
 	'home.numbers.people.description':
 		'Including interns and students of Imperial College London, the universities of Bremen and Auckland, and Moscow State University.',
-	'home.numbers.since.value': '2019',
+	'home.numbers.since.value': '2009',
 	'home.numbers.since.label': 'Teaching since',
-	'home.numbers.since.description': 'Alongside full-time engineering work.',
+	'home.numbers.since.description': 'Alongside engineering work.',
 
 	'focus.eyebrow': 'Focus',
 	'focus.title': 'What I work on',
@@ -102,9 +106,10 @@ const en = {
 		'Employers are named here as a matter of record. This site is my own: it is not affiliated with, sponsored by, or endorsed by any of them.',
 	'team.photoAlt': 'Mark Laptenok',
 
-	'services.eyebrow': 'Engineering',
-	'services.title': 'We help to achieve your goals using software',
-	'services.copy': 'Three services Laptenok Labs proposes',
+	'services.eyebrow': 'Engineering · Consultancy',
+	'services.title': 'We help to achieve your goals using software',
+	'services.copy':
+		'We bring critical thinking, experience in bigtech and fintech, and interpersonal skills honed over fifteen years. We care that our clients reach their goals, and we face challenge, change, and chaos with open eyes.',
 	'services.one.title': 'Audit of your IT system',
 	'services.one.body':
 		'Risk analysis, documenting, refactoring, rewriting, fixing, adding functionality, finding maintainers, training.',
@@ -112,17 +117,13 @@ const en = {
 	'services.two.body': '',
 	'services.three.title': 'Audit of engineering teams',
 	'services.three.body': 'Helping to hire and build a long-term fruitful environment.',
-	'services.note':
-		'We work at a high level: critical thinking, experience in bigtech and fintech, and interpersonal skills honed over fifteen years. We care that our clients reach their goals, and we are not afraid of challenge, change, or chaos.',
 
 	'cv.label': 'CV',
 	'cv.updated': 'Updated {date}',
 
 	'articles.title': 'Articles',
-	'articles.eyebrow': 'Writing',
 	'articles.heading': 'Articles',
 	'articles.description': 'Notes on software engineering.',
-	'articles.viewAll': 'All articles',
 	'articles.empty': 'No articles published yet.',
 	'articles.postEyebrow': 'Article',
 	'articles.updated': 'Updated',
@@ -180,7 +181,10 @@ const ru: Record<TranslationKey, string> = {
 	'footer.connect': 'Связаться',
 	'footer.navigation': 'Навигация',
 	'footer.rights': 'Все права защищены.',
-	'footer.based': 'Пльзень, Чехия',
+	'footer.company': 'Laptenok Labs s.r.o.',
+	'footer.ico': 'IČO 21777641',
+	'footer.address': 'Prosincová č.ev. 1583/12, Litice, 321 00 Пльзень, Чехия',
+	'footer.registry': 'Зарегистрировано в Краевом суде в Пльзене, дело C 45452',
 	'footer.colophon': 'Сделано на Astro, шаблон Launchpad, автор — Rodrigo Cortez.',
 
 	'social.github': 'GitHub',
@@ -197,12 +201,13 @@ const ru: Record<TranslationKey, string> = {
 	'home.hero.lead3.rest': 'которое дополняет лучшее в отрасли.',
 	'home.hero.lead4.term': 'Наставничество',
 	'home.hero.lead4.rest': 'которое делает путь легче.',
-	'home.hero.actionArticles': 'Читать статьи',
-	'home.hero.actionTeam': 'О нас',
+	'home.hero.actionLearning': 'Учебная платформа',
+	'home.hero.actionProjects': 'Другие проекты',
 
-	'home.numbers.eyebrow': 'Преподавание',
-	'home.numbers.title': 'Преподавание в цифрах',
-	'home.numbers.copy': 'Laptenok Labs, с марта 2019 года. Данные на 1 сентября 2026 года.',
+	'home.numbers.eyebrow': 'Обучение · Наставничество',
+	'home.numbers.title':
+		'Мы учим программной инженерии и помогаем инженерам достигать личных целей',
+	'home.numbers.copy': 'Данные на 1 сентября 2026 года.',
 	'home.numbers.hours.value': '4 525',
 	'home.numbers.hours.label': 'Часов занятий',
 	'home.numbers.hours.description':
@@ -211,9 +216,9 @@ const ru: Record<TranslationKey, string> = {
 	'home.numbers.people.label': 'Человек обучено',
 	'home.numbers.people.description':
 		'В том числе стажёры и студенты Imperial College London, университетов Бремена и Окленда, МГУ.',
-	'home.numbers.since.value': '2019',
-	'home.numbers.since.label': 'Преподаю с',
-	'home.numbers.since.description': 'Параллельно с основной инженерной работой.',
+	'home.numbers.since.value': '2009',
+	'home.numbers.since.label': 'Преподаём с',
+	'home.numbers.since.description': 'Параллельно с инженерной работой.',
 
 	'focus.eyebrow': 'Направления',
 	'focus.title': 'Чем я занимаюсь',
@@ -248,9 +253,10 @@ const ru: Record<TranslationKey, string> = {
 		'Работодатели названы здесь для точности изложения. Сайт мой собственный: он не связан с ними, не спонсируется и не одобряется ими.',
 	'team.photoAlt': 'Марк Лаптёнок',
 
-	'services.eyebrow': 'Инженерия',
-	'services.title': 'Мы помогаем достигать ваших целей с помощью программ',
-	'services.copy': 'Три услуги, которые предлагает Laptenok Labs',
+	'services.eyebrow': 'Инженерия · Консалтинг',
+	'services.title': 'Мы помогаем достигать ваших целей с помощью программ',
+	'services.copy':
+		'Мы приносим критическое мышление, опыт в бигтехе и финтехе и навыки общения, которые оттачивались пятнадцать лет. Нам важно, чтобы клиенты достигали своих целей, и мы встречаем вызовы, перемены и хаос с открытыми глазами.',
 	'services.one.title': 'Аудит вашей ИТ-системы',
 	'services.one.body':
 		'Анализ рисков, документирование, рефакторинг, переписывание, исправление ошибок, добавление функциональности, поиск сопровождающих, обучение.',
@@ -258,17 +264,13 @@ const ru: Record<TranslationKey, string> = {
 	'services.two.body': '',
 	'services.three.title': 'Аудит инженерных команд',
 	'services.three.body': 'Помощь в найме и построении долгосрочной продуктивной среды.',
-	'services.note':
-		'Мы работаем на высоком уровне: критическое мышление, опыт в бигтехе и финтехе и навыки общения, которые оттачивались пятнадцать лет. Нам важно, чтобы клиенты достигали своих целей, и мы не боимся вызовов, перемен и хаоса.',
 
 	'cv.label': 'Резюме',
 	'cv.updated': 'Обновлено {date}',
 
 	'articles.title': 'Статьи',
-	'articles.eyebrow': 'Тексты',
 	'articles.heading': 'Статьи',
 	'articles.description': 'Заметки о программной инженерии.',
-	'articles.viewAll': 'Все статьи',
 	'articles.empty': 'Статей пока нет.',
 	'articles.postEyebrow': 'Статья',
 	'articles.updated': 'Обновлено',
