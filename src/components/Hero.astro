@@ -24,8 +24,8 @@ const locale = resolveLocale(Astro);
 		{description && <p class="text-muted text-base md:text-lg max-w-2xl m-0">{description}</p>}
 		{actions.length > 0 && (
 			<div class="flex flex-wrap gap-3 mt-3">
-				{actions.map((action) => (
-					<a class="button primary" href={localeUrl(locale, action.href)}>
+				{actions.map((action, i) => (
+					<a class:list={['button', i === 0 ? 'primary' : 'secondary']} href={localeUrl(locale, action.href)}>
 						{action.label}
 					</a>
 				))}

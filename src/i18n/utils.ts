@@ -55,7 +55,7 @@ export const entryLocale = (id: string): Locale => {
 	return isLocale(prefix) ? prefix : defaultLocale;
 };
 
-type LocalizedCollection = 'blog' | 'projects';
+type LocalizedCollection = 'articles' | 'projects';
 
 export async function getLocalizedCollection<C extends LocalizedCollection>(
 	collection: C,
@@ -72,13 +72,13 @@ export async function getLocalizedCollection<C extends LocalizedCollection>(
 	});
 }
 
-async function hasEntry(collection: 'blog' | 'projects', locale: Locale, slug: string) {
+async function hasEntry(collection: 'articles' | 'projects', locale: Locale, slug: string) {
 	const entries = await getCollection(collection);
 	return entries.some((entry) => entry.id === `${locale}/${slug}`);
 }
 
 async function hasTag(locale: Locale, tagSlug: string) {
-	const posts = await getCollection('blog');
+	const posts = await getCollection('articles');
 	return posts.some(
 		(post) =>
 			entryLocale(post.id) === locale &&
@@ -92,9 +92,9 @@ export async function getAvailableLocales(currentPath: string): Promise<Locale[]
 
 	const [section, ...tail] = rest;
 
-	if (section === 'blog' && tail.length) {
+	if (section === 'articles' && tail.length) {
 		const slug = tail.join('/');
-		return filterLocales((locale) => hasEntry('blog', locale, slug));
+		return filterLocales((locale) => hasEntry('articles', locale, slug));
 	}
 
 	if (section === 'projects' && tail.length) {

@@ -7,7 +7,7 @@ type Props = Omit<HTMLAttributes<'a'>, 'href'> & {
 	activeClass?: string;
 };
 
-const { href, class: className, activeClass = 'text-ink font-semibold', ...props } = Astro.props;
+const { href, class: className, activeClass = 'font-semibold', ...props } = Astro.props;
 
 const locale = resolveLocale(Astro);
 const resolved = localeUrl(locale, href);

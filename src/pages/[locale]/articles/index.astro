@@ -18,19 +18,19 @@ const locale = resolveLocale(Astro);
 const t = useTranslations(locale);
 const site = await getSite();
 
-const posts = await getLocalizedCollection('blog', locale);
+const posts = await getLocalizedCollection('articles', locale);
 const [featured, ...rest] = posts;
 ---
 
-<PageLayout title={`${t('blog.title')} · ${site.title}`} description={t('blog.description')}>
+<PageLayout title={`${t('articles.title')} · ${site.title}`} description={t('articles.description')}>
 	<section class="content-shell py-12 space-y-8">
-		{posts.length === 0 && <p class="text-muted">{t('blog.empty')}</p>}
+		{posts.length === 0 && <p class="text-muted">{t('articles.empty')}</p>}
 
 		{featured && (
 			<div class="grid grid-cols-1">
 				<Card
 					title={featured.data.title}
-					href={localeUrl(locale, `/blog/${entrySlug(featured.id)}`)}
+					href={localeUrl(locale, `/articles/${entrySlug(featured.id)}`)}
 					description={featured.data.description}
 					date={featured.data.pubDate}
 					image={featured.data.heroImage}
@@ -40,7 +40,7 @@ const [featured, ...rest] = posts;
 						<div class="flex flex-wrap gap-2 pt-1 text-sm text-muted">
 							{featured.data.tags.map((tag) => (
 								<a
-									class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-3 py-1 hover:text-ink"
+									class="no-underline inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-3 py-1 hover:text-ink"
 									href={localeUrl(locale, `/tags/${slugify(tag)}`)}
 								>
 									{tag}
@@ -57,7 +57,7 @@ const [featured, ...rest] = posts;
 				{rest.map((post) => (
 					<Card
 						title={post.data.title}
-						href={localeUrl(locale, `/blog/${entrySlug(post.id)}`)}
+						href={localeUrl(locale, `/articles/${entrySlug(post.id)}`)}
 						description={post.data.description}
 						date={post.data.pubDate}
 						image={post.data.heroImage}
@@ -67,7 +67,7 @@ const [featured, ...rest] = posts;
 							<div class="flex flex-wrap gap-2 pt-1 text-sm text-muted">
 								{post.data.tags.map((tag) => (
 									<a
-										class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-3 py-1 hover:text-ink"
+										class="no-underline inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-3 py-1 hover:text-ink"
 										href={localeUrl(locale, `/tags/${slugify(tag)}`)}
 									>
 										{tag}

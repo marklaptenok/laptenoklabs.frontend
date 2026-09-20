@@ -1,0 +1,61 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { formatLocales } from '../i18n/config';
+import { resolveLocale, useTranslations } from '../i18n/utils';
+
+const locale = resolveLocale(Astro);
+const t = useTranslations(locale);
+
+const urls = import.meta.glob('../assets/cv/*.pdf', {
+	eager: true,
+	query: '?url',
+	import: 'default',
+}) as Record<string, string>;
+
+const cvDir = path.join(process.cwd(), 'src/assets/cv');
+
+const entries = Object.entries(urls)
+	.map(([relative, url]) => ({
+		url,
+		updated: fs.statSync(path.join(cvDir, path.basename(relative))).mtime,
+	}))
+	.sort((a, b) => b.updated.valueOf() - a.updated.valueOf());
+
+const cv = entries[0];
+
+const updatedLabel = cv
+	? new Intl.DateTimeFormat(formatLocales[locale], {
+			month: 'short',
+			year: 'numeric',
+	  })
+			.format(cv.updated)
+			.replace(/\s*г\.$/, '')
+	: null;
+---
+
+{cv && (
+	<div class="cv-button">
+		<a class="button primary" href={cv.url} target="_blank" rel="noopener noreferrer">
+			{t('cv.label')}
+		</a>
+		<span class="cv-button__updated">{t('cv.updated', { date: updatedLabel ?? '' })}</span>
+	</div>
+)}
+
+<style>
+	.cv-button {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 0.35rem;
+		text-align: right;
+	}
+
+	.cv-button__updated {
+		font-size: 0.7rem;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--color-accent-soft);
+	}
+</style>

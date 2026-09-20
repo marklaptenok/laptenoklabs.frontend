@@ -12,7 +12,7 @@ const panels = locales.map((locale) => {
 		heading: t('notFound.heading'),
 		description: t('notFound.description'),
 		home: { label: t('notFound.home'), href: localeUrl(locale, '/') },
-		blog: { label: t('notFound.blog'), href: localeUrl(locale, '/blog') },
+		articles: { label: t('notFound.articles'), href: localeUrl(locale, '/articles') },
 	};
 });
 ---
@@ -30,7 +30,7 @@ const panels = locales.map((locale) => {
 					<p class="m-0 text-muted max-w-2xl mx-auto">{panel.description}</p>
 					<div class="flex flex-wrap justify-center gap-3 pt-1">
 						<a class="button primary" href={panel.home.href}>{panel.home.label}</a>
-						<a class="button secondary" href={panel.blog.href}>{panel.blog.label}</a>
+						<a class="button secondary" href={panel.articles.href}>{panel.articles.label}</a>
 					</div>
 				</div>
 			))}

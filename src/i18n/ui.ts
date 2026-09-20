@@ -5,8 +5,8 @@ const en = {
 	'site.skipToContent': 'Skip to content',
 
 	'nav.home': 'Home',
-	'nav.blog': 'Blog',
-	'nav.about': 'About',
+	'nav.articles': 'Articles',
+	'nav.team': 'Team',
 	'nav.projects': 'Projects',
 	'nav.tags': 'Tags',
 	'nav.rss': 'RSS',
@@ -50,8 +50,8 @@ const en = {
 	'home.hero.title': 'Communication between computer systems — and between the people who build them.',
 	'home.hero.description':
 		'I am Mark Laptenok. I engineer systems software in Pilsen, Czech Republic, and I have taught software engineering since 2019. My background is applied mathematics and systems programming; my interests are kernel-mode programming and distributed operating systems.',
-	'home.hero.actionBlog': 'Read the blog',
-	'home.hero.actionAbout': 'More about me',
+	'home.hero.actionArticles': 'Read the articles',
+	'home.hero.actionTeam': 'More about me',
 
 	'home.numbers.eyebrow': 'Teaching',
 	'home.numbers.title': 'Teaching, in numbers',
@@ -84,31 +84,34 @@ const en = {
 	'focus.teaching.description':
 		'Computer networks, operating systems, databases, algorithms and data structures, parallel computing, discrete mathematics.',
 
-	'about.title': 'About',
-	'about.eyebrow': 'About',
-	'about.description':
+	'team.title': 'Team',
+	'team.eyebrow': 'Team',
+	'team.description':
 		'Mark Laptenok — software engineer and engineering teacher in Pilsen, Czech Republic.',
-	'about.lead':
+	'team.lead':
 		'A communicator and a technical leader with a fundamental background in applied mathematics and systems programming.',
-	'about.body1':
+	'team.body1':
 		'My main engineering expertise is communication among computer systems: protocol design, data serialisation, and resilience. Since January 2026 I have been a Senior Software Engineer at Microsoft, working on the reliability of the Teams desktop client. Before that I spent three years at Diebold Nixdorf on communication stacks for banking and retail, and two years at Silixcon on systems for motor controllers.',
-	'about.body2':
+	'team.body2':
 		'Since March 2019 I have taught software engineering as Laptenok Labs: computer networks, operating systems, databases, algorithms and data structures, parallel computing, probability theory and discrete mathematics. By 1 September 2026 that came to 4,525 hours of classes with 172 people.',
-	'about.body3':
+	'team.body3':
 		'I studied at the Faculty of Mathematics, Mechanics and Computer Sciences of the Southern Federal University in Rostov-on-Don, qualifying as a mathematician and systems programmer. I speak Russian, English and Czech, and write C, C++, Rust and Go.',
-	'about.motto': 'Make people benefit from Computer Science.',
-	'about.disclaimer':
+	'team.motto': 'Make people benefit from Computer Science.',
+	'team.disclaimer':
 		'Employers are named here as a matter of record. This site is my own: it is not affiliated with, sponsored by, or endorsed by any of them.',
-	'about.photoAlt': 'Mark Laptenok',
+	'team.photoAlt': 'Mark Laptenok',
 
-	'blog.title': 'Blog',
-	'blog.eyebrow': 'Writing',
-	'blog.heading': 'Blog',
-	'blog.description': 'Notes on software engineering.',
-	'blog.viewAll': 'All posts',
-	'blog.empty': 'No posts published yet.',
-	'blog.postEyebrow': 'Post',
-	'blog.updated': 'Updated',
+	'cv.label': 'CV',
+	'cv.updated': 'Updated {date}',
+
+	'articles.title': 'Articles',
+	'articles.eyebrow': 'Writing',
+	'articles.heading': 'Articles',
+	'articles.description': 'Notes on software engineering.',
+	'articles.viewAll': 'All articles',
+	'articles.empty': 'No articles published yet.',
+	'articles.postEyebrow': 'Article',
+	'articles.updated': 'Updated',
 
 	'projects.title': 'Projects',
 	'projects.eyebrow': 'Projects',
@@ -134,7 +137,7 @@ const en = {
 	'notFound.description':
 		'The link may be broken, or the page may have moved. Pick a route below to keep going.',
 	'notFound.home': 'Back to home',
-	'notFound.blog': 'Go to the blog',
+	'notFound.articles': 'Go to the articles',
 } as const;
 
 export type TranslationKey = keyof typeof en;
@@ -144,8 +147,8 @@ const ru: Record<TranslationKey, string> = {
 	'site.skipToContent': 'Перейти к содержимому',
 
 	'nav.home': 'Главная',
-	'nav.blog': 'Блог',
-	'nav.about': 'Обо мне',
+	'nav.articles': 'Статьи',
+	'nav.team': 'Команда',
 	'nav.projects': 'Проекты',
 	'nav.tags': 'Теги',
 	'nav.rss': 'RSS',
@@ -189,8 +192,8 @@ const ru: Record<TranslationKey, string> = {
 	'home.hero.title': 'Коммуникация между компьютерными системами — и между людьми, которые их создают.',
 	'home.hero.description':
 		'Меня зовут Марк Лаптёнок. Я разрабатываю системное программное обеспечение в Пльзене, Чехия, и с 2019 года преподаю программную инженерию. В основе — прикладная математика и системное программирование; интересуюсь программированием в режиме ядра и распределёнными операционными системами.',
-	'home.hero.actionBlog': 'Читать блог',
-	'home.hero.actionAbout': 'Подробнее обо мне',
+	'home.hero.actionArticles': 'Читать статьи',
+	'home.hero.actionTeam': 'Подробнее обо мне',
 
 	'home.numbers.eyebrow': 'Преподавание',
 	'home.numbers.title': 'Преподавание в цифрах',
@@ -223,31 +226,34 @@ const ru: Record<TranslationKey, string> = {
 	'focus.teaching.description':
 		'Компьютерные сети, операционные системы, базы данных, алгоритмы и структуры данных, параллельные вычисления, дискретная математика.',
 
-	'about.title': 'Обо мне',
-	'about.eyebrow': 'Обо мне',
-	'about.description':
+	'team.title': 'Команда',
+	'team.eyebrow': 'Команда',
+	'team.description':
 		'Марк Лаптёнок — инженер-программист и преподаватель программной инженерии, Пльзень, Чехия.',
-	'about.lead':
+	'team.lead':
 		'Коммуникатор и технический лидер с фундаментальной базой в прикладной математике и системном программировании.',
-	'about.body1':
+	'team.body1':
 		'Моя основная инженерная специализация — коммуникация между компьютерными системами: проектирование протоколов, сериализация данных и отказоустойчивость. С января 2026 года работаю старшим инженером-программистом в Microsoft над надёжностью настольного клиента Teams. До этого три года занимался коммуникационными стеками для банков и ритейла в Diebold Nixdorf и два года — системами для контроллеров двигателей в Silixcon.',
-	'about.body2':
+	'team.body2':
 		'С марта 2019 года преподаю программную инженерию под маркой Laptenok Labs: компьютерные сети, операционные системы, базы данных, алгоритмы и структуры данных, параллельные вычисления, теорию вероятностей и дискретную математику. К 1 сентября 2026 года это 4 525 часов занятий со 172 людьми.',
-	'about.body3':
+	'team.body3':
 		'Учился на факультете математики, механики и компьютерных наук Южного федерального университета в Ростове-на-Дону, квалификация — математик, системный программист. Говорю по-русски, по-английски и по-чешски, пишу на C, C++, Rust и Go.',
-	'about.motto': 'Сделать так, чтобы информатика приносила людям пользу.',
-	'about.disclaimer':
+	'team.motto': 'Сделать так, чтобы информатика приносила людям пользу.',
+	'team.disclaimer':
 		'Работодатели названы здесь для точности изложения. Сайт мой собственный: он не связан с ними, не спонсируется и не одобряется ими.',
-	'about.photoAlt': 'Марк Лаптёнок',
+	'team.photoAlt': 'Марк Лаптёнок',
 
-	'blog.title': 'Блог',
-	'blog.eyebrow': 'Записи',
-	'blog.heading': 'Блог',
-	'blog.description': 'Заметки о программной инженерии.',
-	'blog.viewAll': 'Все записи',
-	'blog.empty': 'Записей пока нет.',
-	'blog.postEyebrow': 'Запись',
-	'blog.updated': 'Обновлено',
+	'cv.label': 'Резюме',
+	'cv.updated': 'Обновлено {date}',
+
+	'articles.title': 'Статьи',
+	'articles.eyebrow': 'Тексты',
+	'articles.heading': 'Статьи',
+	'articles.description': 'Заметки о программной инженерии.',
+	'articles.viewAll': 'Все статьи',
+	'articles.empty': 'Статей пока нет.',
+	'articles.postEyebrow': 'Статья',
+	'articles.updated': 'Обновлено',
 
 	'projects.title': 'Проекты',
 	'projects.eyebrow': 'Проекты',
@@ -273,7 +279,7 @@ const ru: Record<TranslationKey, string> = {
 	'notFound.description':
 		'Возможно, ссылка сломана или страница переехала. Выберите, куда двигаться дальше.',
 	'notFound.home': 'На главную',
-	'notFound.blog': 'В блог',
+	'notFound.articles': 'К статьям',
 };
 
 export const ui: Record<Locale, Record<TranslationKey, string>> = { en, ru };

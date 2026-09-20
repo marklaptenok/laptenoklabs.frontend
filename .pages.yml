@@ -69,18 +69,18 @@ definitions:
       order: desc
 
 content:
-  - name: blog_en
-    label: Posts — English
+  - name: articles_en
+    label: Articles — English
     type: collection
-    path: src/content/blog/en
+    path: src/content/articles/en
     filename: '{year}-{month}-{day}-{primary}.md'
     view: *post_view
     fields: *post_fields
 
-  - name: blog_ru
-    label: Записи — Русский
+  - name: articles_ru
+    label: Статьи — Русский
     type: collection
-    path: src/content/blog/ru
+    path: src/content/articles/ru
     filename: '{year}-{month}-{day}-{primary}.md'
     view: *post_view
     fields: *post_fields

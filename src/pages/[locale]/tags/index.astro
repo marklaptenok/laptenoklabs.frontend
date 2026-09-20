@@ -16,7 +16,7 @@ const locale = resolveLocale(Astro);
 const t = useTranslations(locale);
 const site = await getSite();
 
-const posts = await getLocalizedCollection('blog', locale);
+const posts = await getLocalizedCollection('articles', locale);
 
 const tagCounts = new Map<string, number>();
 posts.forEach((post) => {
@@ -46,7 +46,7 @@ const tags = Array.from(tagCounts.entries()).sort((a, b) => {
 				{tags.map(([tag, count]) => (
 					<li>
 						<a
-							class="flex items-center justify-between rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-4 py-3 hover:-translate-y-[1px] hover:border-[color-mix(in_oklab,var(--color-ink)_25%,transparent)] transition duration-150"
+							class="no-underline flex items-center justify-between rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-4 py-3 hover:-translate-y-[1px] hover:border-[color-mix(in_oklab,var(--color-ink)_25%,transparent)] transition duration-150"
 							href={localeUrl(locale, `/tags/${slugify(tag)}`)}
 						>
 							<span class="font-medium text-ink">{tag}</span>

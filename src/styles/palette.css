@@ -1,0 +1,18 @@
+:root {
+    color-scheme: dark;
+
+    --brand-graphite: #0d0d10;
+    --brand-slate: #1f1f22;
+    --brand-orange: #ff8a21;
+    --brand-orange-soft: #ffc977;
+    --brand-text: #f5f5f5;
+
+    --tone-muted: color-mix(in oklab, var(--brand-text) 72%, transparent);
+    --tone-subtle: color-mix(in oklab, var(--brand-text) 45%, transparent);
+    --tone-border: color-mix(in oklab, var(--brand-orange-soft) 38%, transparent);
+    --tone-rule: color-mix(in oklab, var(--brand-orange-soft) 22%, transparent);
+    --tone-grid: color-mix(in oklab, var(--brand-orange-soft) 10%, transparent);
+    --tone-accent-wash: color-mix(in oklab, var(--brand-orange) 14%, transparent);
+
+    --grid-line: var(--tone-grid);
+}

@@ -15,7 +15,7 @@ import {
 import { locales } from '../../../i18n/config';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
+	const posts = await getCollection('articles');
 
 	return locales.flatMap((locale) => {
 		const tags = new Map<string, string>();
@@ -42,7 +42,7 @@ const t = useTranslations(locale);
 const site = await getSite();
 
 const tagParam = Astro.params.tag ?? '';
-const posts = (await getLocalizedCollection('blog', locale)).filter((post) =>
+const posts = (await getLocalizedCollection('articles', locale)).filter((post) =>
 	(post.data.tags ?? []).some((tag) => slugify(tag) === tagParam),
 );
 ---
@@ -65,7 +65,7 @@ const posts = (await getLocalizedCollection('blog', locale)).filter((post) =>
 				{posts.map((post) => (
 					<Card
 						title={post.data.title}
-						href={localeUrl(locale, `/blog/${entrySlug(post.id)}`)}
+						href={localeUrl(locale, `/articles/${entrySlug(post.id)}`)}
 						description={post.data.description}
 						date={post.data.pubDate}
 						image={post.data.heroImage}
@@ -75,7 +75,7 @@ const posts = (await getLocalizedCollection('blog', locale)).filter((post) =>
 							<div class="flex flex-wrap gap-2 pt-1 text-sm text-muted">
 								{post.data.tags.map((tag) => (
 									<a
-										class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color-mix(in_oklab,var(--color-surface)_95%,transparent)] px-3 py-1 hover:text-ink"
+										class="no-underline inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color-mix(in_oklab,var(--color-surface)_95%,transparent)] px-3 py-1 hover:text-ink"
 										href={localeUrl(locale, `/tags/${slugify(tag)}`)}
 									>
 										{tag}

@@ -9,10 +9,10 @@ export async function GET(context) {
 	const locale = context.params.locale;
 	const t = useTranslations(locale);
 	const site = await getSite();
-	const posts = await getLocalizedCollection('blog', locale);
+	const posts = await getLocalizedCollection('articles', locale);
 
 	return rss({
-		title: `${site.title} — ${t('blog.title')}`,
+		title: `${site.title} — ${t('articles.title')}`,
 		description: t('site.description'),
 		site: context.site,
 		customData: `<language>${locale}</language>`,
@@ -20,7 +20,7 @@ export async function GET(context) {
 			title: post.data.title,
 			description: post.data.description,
 			pubDate: post.data.pubDate,
-			link: localeUrl(locale, `/blog/${entrySlug(post.id)}`),
+			link: localeUrl(locale, `/articles/${entrySlug(post.id)}`),
 		})),
 	});
 }

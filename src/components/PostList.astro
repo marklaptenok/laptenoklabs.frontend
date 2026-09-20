@@ -21,15 +21,15 @@ const locale = resolveLocale(Astro);
 const t = useTranslations(locale);
 
 const {
-  heading = t("blog.heading"),
-  eyebrow = t("blog.eyebrow"),
-  copy = t("blog.description"),
+  heading = t("articles.heading"),
+  eyebrow = t("articles.eyebrow"),
+  copy = t("articles.description"),
   limit = 6,
-  viewAllHref = "/blog",
-  viewAllLabel = t("blog.viewAll"),
+  viewAllHref = "/articles",
+  viewAllLabel = t("articles.viewAll"),
 } = Astro.props as Props;
 
-const posts = await getLocalizedCollection("blog", locale);
+const posts = await getLocalizedCollection("articles", locale);
 const visiblePosts = typeof limit === "number" ? posts.slice(0, limit) : posts;
 ---
 
@@ -48,7 +48,7 @@ const visiblePosts = typeof limit === "number" ? posts.slice(0, limit) : posts;
           visiblePosts.map((post) => (
             <Card
               title={post.data.title}
-              href={localeUrl(locale, `/blog/${entrySlug(post.id)}`)}
+              href={localeUrl(locale, `/articles/${entrySlug(post.id)}`)}
               image={post.data.heroImage}
               imageAlt={post.data.title}
               description={post.data.description}
