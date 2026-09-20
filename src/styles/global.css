@@ -252,9 +252,16 @@
     .content-shell {
         width: 100%;
         max-width: var(--content-width);
-        margin: 0 auto;
+        margin-block: 0;
+        margin-inline: var(--grid-cell) auto;
         padding-left: var(--grid-cell);
         padding-right: var(--grid-cell);
+    }
+
+    .content-shell .content-shell {
+        max-width: none;
+        margin-inline: 0;
+        padding-inline: 0;
     }
 
     .post-hero-image img {

@@ -32,6 +32,19 @@ const {
         <Font cssVariable="--font-main" preload />
         <Font cssVariable="--font-header" preload />
         <Font cssVariable="--font-title" preload />
+        <script is:inline>
+            (() => {
+                const root = document.documentElement;
+                const apply = () => {
+                    const divisions =
+                        parseInt(getComputedStyle(root).getPropertyValue('--grid-divisions'), 10) || 20;
+                    const cell = Math.floor(root.clientWidth / divisions);
+                    if (cell > 0) root.style.setProperty('--grid-cell', cell + 'px');
+                };
+                apply();
+                addEventListener('resize', apply, { passive: true });
+            })();
+        </script>
     </head>
     <body>
         <a class="skip-link" href="#main">{t('site.skipToContent')}</a>
