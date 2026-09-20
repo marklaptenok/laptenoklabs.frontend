@@ -18,7 +18,7 @@ const en = {
 	'search.open': 'Open search dialog',
 	'search.heading': 'Find anything on the site',
 	'search.close': 'Close search dialog',
-	'search.footnote': 'Powered by Pagefind. Start typing to search posts and pages.',
+	'search.footnote': 'Powered by Pagefind. Start typing to search articles and pages.',
 	'pagefind.placeholder': 'Search the site',
 	'pagefind.clear_search': 'Clear',
 	'pagefind.load_more': 'Load more results',
@@ -47,13 +47,13 @@ const en = {
 	'home.hero.eyebrow': 'Software Engineering · Consultancy · Education · Mentorship',
 	'home.hero.title': 'Communication among computer systems — and among the people who build them.',
 	'home.hero.lead1.term': 'Software solutions',
-	'home.hero.lead1.rest': 'which last.',
+	'home.hero.lead1.rest': ' which last.',
 	'home.hero.lead2.term': 'Consultancy',
-	'home.hero.lead2.rest': 'which acts.',
+	'home.hero.lead2.rest': ' which acts.',
 	'home.hero.lead3.term': 'Education',
-	'home.hero.lead3.rest': 'which complements the best ones in the domain.',
+	'home.hero.lead3.rest': ' which complements the best ones in the domain.',
 	'home.hero.lead4.term': 'Mentorship',
-	'home.hero.lead4.rest': 'which allows you to do more, more easily.',
+	'home.hero.lead4.rest': ' which allows you to do more, more easily.',
 	'home.hero.actionLearning': 'Learning platform',
 	'home.hero.actionProjects': 'Other projects',
 
@@ -84,7 +84,7 @@ const en = {
 	'services.one.title': 'Audit of your IT system',
 	'services.one.body':
 		'Risk analysis, documenting, refactoring, rewriting, fixing, adding functionality, finding maintainers, training.',
-	'services.two.title': 'Create algorithms and mathematical models to optimize your processes',
+	'services.two.title': 'Creation of algorithms and mathematical models to optimize your processes',
 	'services.two.body': '',
 	'services.three.title': 'Audit of engineering teams',
 	'services.three.body': 'Helping to hire and build a long-term fruitful environment.',
@@ -93,7 +93,6 @@ const en = {
 	'cv.updated': 'Updated {date}',
 
 	'articles.title': 'Articles',
-	'articles.heading': 'Articles',
 	'articles.description': 'Notes on software engineering.',
 	'articles.empty': 'No articles published yet.',
 	'articles.postEyebrow': 'Article',
@@ -101,8 +100,8 @@ const en = {
 
 	'projects.title': 'Projects',
 	'projects.eyebrow': 'Projects',
-	'projects.heading': 'Things I build',
-	'projects.description': 'Work and side projects I can write about.',
+	'projects.heading': 'Things we build',
+	'projects.description': 'Work and side projects we can write about.',
 	'projects.metaDescription': 'Projects by Mark Laptenok.',
 	'projects.empty': 'No projects published yet.',
 	'projects.postEyebrow': 'Project',
@@ -110,11 +109,6 @@ const en = {
 
 	'notFound.title': 'Page not found',
 	'notFound.message': 'This page does not exist. Feel free to contact us on {email} if it should.',
-	'notFound.heading': 'That page could not be found.',
-	'notFound.description':
-		'The link may be broken, or the page may have moved. Pick a route below to keep going.',
-	'notFound.home': 'Back to home',
-	'notFound.articles': 'Go to the articles',
 } as const;
 
 export type TranslationKey = keyof typeof en;
@@ -137,7 +131,7 @@ const ru: Record<TranslationKey, string> = {
 	'search.open': 'Открыть поиск',
 	'search.heading': 'Найти что угодно на сайте',
 	'search.close': 'Закрыть поиск',
-	'search.footnote': 'Работает на Pagefind. Начните вводить запрос, чтобы искать по записям и страницам.',
+	'search.footnote': 'Работает на Pagefind. Начните вводить запрос, чтобы искать по статьям и страницам.',
 	'pagefind.placeholder': 'Искать по сайту',
 	'pagefind.clear_search': 'Очистить',
 	'pagefind.load_more': 'Показать ещё',
@@ -166,13 +160,13 @@ const ru: Record<TranslationKey, string> = {
 	'home.hero.eyebrow': 'Разработка ПО · Консалтинг · Обучение · Наставничество',
 	'home.hero.title': 'Коммуникация между компьютерными системами — и между людьми, которые их создают.',
 	'home.hero.lead1.term': 'Программные решения',
-	'home.hero.lead1.rest': 'которые служат долго.',
+	'home.hero.lead1.rest': ', которые служат долго.',
 	'home.hero.lead2.term': 'Консалтинг',
-	'home.hero.lead2.rest': 'который действует.',
+	'home.hero.lead2.rest': ', который действует.',
 	'home.hero.lead3.term': 'Обучение',
-	'home.hero.lead3.rest': 'которое дополняет лучшее в отрасли.',
+	'home.hero.lead3.rest': ', которое дополняет лучшее в отрасли.',
 	'home.hero.lead4.term': 'Наставничество',
-	'home.hero.lead4.rest': 'которое делает путь легче.',
+	'home.hero.lead4.rest': ', которое делает путь легче.',
 	'home.hero.actionLearning': 'Учебная платформа',
 	'home.hero.actionProjects': 'Другие проекты',
 
@@ -185,7 +179,7 @@ const ru: Record<TranslationKey, string> = {
 	'home.numbers.hours.description':
 		'Компьютерные сети, операционные системы, базы данных, алгоритмы, параллельные вычисления.',
 	'home.numbers.people.value': '172',
-	'home.numbers.people.label': 'Человек обучено',
+	'home.numbers.people.label': 'Обучено человек',
 	'home.numbers.people.description':
 		'В том числе стажёры и студенты Imperial College London, университетов Бремена и Окленда, МГУ.',
 	'home.numbers.since.value': '2009',
@@ -199,7 +193,7 @@ const ru: Record<TranslationKey, string> = {
 	'services.eyebrow': 'Инженерия · Консалтинг',
 	'services.title': 'Мы помогаем достигать ваших целей с помощью программ',
 	'services.copy':
-		'Мы приносим критическое мышление, опыт в бигтехе и финтехе и навыки общения, которые оттачивались пятнадцать лет. Нам важно, чтобы клиенты достигали своих целей, и мы встречаем вызовы, перемены и хаос с открытыми глазами.',
+		'Мы привносим критическое мышление, опыт в бигтехе и финтехе и навыки общения, которые оттачивались пятнадцать лет. Нам важно, чтобы клиенты достигали своих целей, и мы встречаем вызовы, перемены и хаос с открытыми глазами.',
 	'services.one.title': 'Аудит вашей ИТ-системы',
 	'services.one.body':
 		'Анализ рисков, документирование, рефакторинг, переписывание, исправление ошибок, добавление функциональности, поиск сопровождающих, обучение.',
@@ -212,7 +206,6 @@ const ru: Record<TranslationKey, string> = {
 	'cv.updated': 'Обновлено {date}',
 
 	'articles.title': 'Статьи',
-	'articles.heading': 'Статьи',
 	'articles.description': 'Заметки о программной инженерии.',
 	'articles.empty': 'Статей пока нет.',
 	'articles.postEyebrow': 'Статья',
@@ -220,7 +213,7 @@ const ru: Record<TranslationKey, string> = {
 
 	'projects.title': 'Проекты',
 	'projects.eyebrow': 'Проекты',
-	'projects.heading': 'Что я делаю',
+	'projects.heading': 'Что мы делаем',
 	'projects.description': 'Рабочие и личные проекты, о которых можно рассказать.',
 	'projects.metaDescription': 'Проекты Марка Лаптёнка.',
 	'projects.empty': 'Проекты пока не опубликованы.',
@@ -229,11 +222,6 @@ const ru: Record<TranslationKey, string> = {
 
 	'notFound.title': 'Страница не найдена',
 	'notFound.message': 'Такой страницы не существует. Если она должна быть, напишите нам на {email}.',
-	'notFound.heading': 'Такую страницу найти не удалось.',
-	'notFound.description':
-		'Возможно, ссылка сломана или страница переехала. Выберите, куда двигаться дальше.',
-	'notFound.home': 'На главную',
-	'notFound.articles': 'К статьям',
 };
 
 export const ui: Record<Locale, Record<TranslationKey, string>> = { en, ru };
