@@ -33,6 +33,10 @@ export default defineConfig({
     ],
     trailingSlash: 'never',
 
+    build: {
+        inlineStylesheets: 'always',
+    },
+
     i18n: {
         locales,
         defaultLocale,

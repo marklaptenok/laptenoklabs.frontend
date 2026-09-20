@@ -1,7 +1,7 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
-import ProjectPost from '../../layouts/ProjectPost.astro';
-import { entryLocale } from '../../i18n/utils';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { entryLocale, resolveLocale, useTranslations } from '../../i18n/utils';
 
 export async function getStaticPaths() {
 	const projects = await getCollection('projects');
@@ -16,9 +16,31 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'projects'>;
 
 const project = Astro.props as Props;
-const { Content } = await render(project);
+const locale = resolveLocale(Astro);
+const t = useTranslations(locale);
 ---
 
-<ProjectPost {...project.data}>
-	<Content />
-</ProjectPost>
+<PageLayout title={project.data.title} description={project.data.description}>
+	<section class="content-shell in-progress">
+		<p class="in-progress__status">{t('projects.inProgress')}</p>
+	</section>
+</PageLayout>
+
+<style>
+	.in-progress {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 60vh;
+		padding-block: clamp(3rem, 12vh, 7rem);
+	}
+
+	.in-progress__status {
+		margin: 0;
+		font-family: var(--font-header), serif;
+		font-size: clamp(1.5rem, 4vw, 2.5rem);
+		letter-spacing: 0.04em;
+		color: var(--color-accent-soft);
+		text-align: center;
+	}
+</style>

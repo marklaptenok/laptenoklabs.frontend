@@ -17,7 +17,7 @@ const { eyebrow, title, copy, services = [] } = Astro.props as Props;
 <section class="space-y-8">
 	<header class="space-y-3 max-w-4xl">
 		{eyebrow && <p class="eyebrow m-0">{eyebrow}</p>}
-		{title && <h2 class="services__title m-0">{title}</h2>}
+		{title && <h2 class="section-title">{title}</h2>}
 		{copy && <p class="services__copy m-0">{copy}</p>}
 	</header>
 
@@ -34,16 +34,9 @@ const { eyebrow, title, copy, services = [] } = Astro.props as Props;
 </section>
 
 <style>
-	.services__title {
-		font-size: clamp(1.75rem, 3.4vw, 2.5rem);
-		font-weight: 600;
-		line-height: 1.15;
-		color: var(--color-ink);
-	}
-
 	.services__copy {
 		max-width: 52rem;
-		font-size: clamp(1.05rem, 2vw, 1.3rem);
+		font-size: clamp(0.89rem, 1.7vw, 1.11rem);
 		line-height: 1.65;
 		color: var(--color-muted);
 	}
@@ -72,7 +65,7 @@ const { eyebrow, title, copy, services = [] } = Astro.props as Props;
 	.services__body {
 		margin: 0.5rem 0 0;
 		max-width: 52rem;
-		font-size: clamp(1.05rem, 1.9vw, 1.2rem);
+		font-size: clamp(0.89rem, 1.62vw, 1.02rem);
 		line-height: 1.65;
 		color: var(--color-muted);
 	}

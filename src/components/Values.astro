@@ -17,7 +17,7 @@ const { eyebrow, title, copy, values = [] } = Astro.props as Props;
 <section class="space-y-6">
   <header class="space-y-3 max-w-3xl">
     {eyebrow && <p class="eyebrow m-0">{eyebrow}</p>}
-    {title && <h2 class="text-3xl sm:text-4xl font-semibold leading-tight text-ink m-0">{title}</h2>}
+    {title && <h2 class="section-title">{title}</h2>}
     {copy && <p class="text-muted m-0">{copy}</p>}
   </header>
 

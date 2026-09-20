@@ -59,7 +59,7 @@ const en = {
 
 	'home.numbers.eyebrow': 'Education · Mentorship',
 	'home.numbers.title':
-		'We teach software engineering to people and help engineers achieve their personal goals',
+		'We teach software engineering to people and help engineers achieve their personal goals',
 	'home.numbers.copy': 'Figures as of 1 September 2026.',
 	'home.numbers.hours.value': '4,525',
 	'home.numbers.hours.label': 'Hours of classes',
@@ -135,6 +135,7 @@ const en = {
 	'projects.metaDescription': 'Projects by Mark Laptenok.',
 	'projects.empty': 'No projects published yet.',
 	'projects.postEyebrow': 'Project',
+	'projects.inProgress': 'In progress... 0%',
 
 	'notFound.title': 'Page not found',
 	'notFound.message': 'This page does not exist. Feel free to contact us on {email} if it should.',
@@ -206,7 +207,7 @@ const ru: Record<TranslationKey, string> = {
 
 	'home.numbers.eyebrow': 'Обучение · Наставничество',
 	'home.numbers.title':
-		'Мы учим программной инженерии и помогаем инженерам достигать личных целей',
+		'Мы учим программной инженерии и помогаем инженерам достигать личных целей',
 	'home.numbers.copy': 'Данные на 1 сентября 2026 года.',
 	'home.numbers.hours.value': '4 525',
 	'home.numbers.hours.label': 'Часов занятий',
@@ -282,6 +283,7 @@ const ru: Record<TranslationKey, string> = {
 	'projects.metaDescription': 'Проекты Марка Лаптёнка.',
 	'projects.empty': 'Проекты пока не опубликованы.',
 	'projects.postEyebrow': 'Проект',
+	'projects.inProgress': 'В работе... 0%',
 
 	'notFound.title': 'Страница не найдена',
 	'notFound.message': 'Такой страницы не существует. Если она должна быть, напишите нам на {email}.',

@@ -40,26 +40,28 @@ const site = await getSite();
 		]}
 	/>
 
-	<Numbers
-		eyebrow={t('home.numbers.eyebrow')}
-		title={t('home.numbers.title')}
-		copy={t('home.numbers.copy')}
-		stats={[
-			{
-				value: t('home.numbers.hours.value'),
-				label: t('home.numbers.hours.label'),
-				description: t('home.numbers.hours.description'),
-			},
-			{
-				value: t('home.numbers.people.value'),
-				label: t('home.numbers.people.label'),
-				description: t('home.numbers.people.description'),
-			},
-			{
-				value: t('home.numbers.since.value'),
-				label: t('home.numbers.since.label'),
-				description: t('home.numbers.since.description'),
-			},
-		]}
-	/>
+	<div class="pt-[calc(var(--grid-cell)*2)]">
+		<Numbers
+			eyebrow={t('home.numbers.eyebrow')}
+			title={t('home.numbers.title')}
+			copy={t('home.numbers.copy')}
+			stats={[
+				{
+					value: t('home.numbers.hours.value'),
+					label: t('home.numbers.hours.label'),
+					description: t('home.numbers.hours.description'),
+				},
+				{
+					value: t('home.numbers.people.value'),
+					label: t('home.numbers.people.label'),
+					description: t('home.numbers.people.description'),
+				},
+				{
+					value: t('home.numbers.since.value'),
+					label: t('home.numbers.since.label'),
+					description: t('home.numbers.since.description'),
+				},
+			]}
+		/>
+	</div>
 </PageLayout>
