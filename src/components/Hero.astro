@@ -23,13 +23,13 @@ const { eyebrow, title, description, highlights = [], actions = [] } = Astro.pro
 const locale = resolveLocale(Astro);
 ---
 
-<section class="content-shell hero-shell">
-	<div class="hero-stack max-w-3xl">
+<section class="content-shell hero-shell" data-hero>
+	<div class="hero-stack">
 		{eyebrow && <p class="eyebrow hero-eyebrow">{eyebrow}</p>}
 		<h1 class="hero-title m-0">{title}</h1>
-		{description && <p class="text-muted text-base md:text-lg max-w-2xl m-0">{description}</p>}
+		{description && <p class="hero-description text-muted m-0">{description}</p>}
 		{highlights.length > 0 && (
-			<p class="hero-lead max-w-2xl m-0">
+			<p class="hero-lead m-0">
 				{highlights.map((highlight) => (
 					<>
 						<strong class="hero-lead__term">{highlight.term}</strong>
@@ -55,12 +55,22 @@ const locale = resolveLocale(Astro);
 	.hero-shell {
 		display: flex;
 		align-items: flex-start;
-		padding-top: calc(var(--grid-cell) * 2);
+		margin-top: calc(var(--grid-cell) * -1);
+		padding-top: 0;
+		padding-bottom: var(--grid-cell);
+		min-height: calc(100vh - var(--grid-cell));
+	}
+
+	@supports (height: round(down, 10px, 3px)) {
+		.hero-shell {
+			min-height: round(down, calc(100vh - var(--grid-cell)), var(--grid-cell));
+		}
 	}
 
 	.hero-stack {
 		display: flex;
 		flex-direction: column;
+		width: 100%;
 	}
 
 	.hero-eyebrow {
@@ -73,24 +83,21 @@ const locale = resolveLocale(Astro);
 	.hero-title {
 		position: relative;
 		top: var(--baseline-shift);
-		font-size: var(--grid-cell);
-		line-height: 1;
+		font-size: calc(var(--grid-cell) * 0.7);
+		line-height: var(--grid-cell);
 		overflow-wrap: break-word;
 		margin-block: var(--grid-cell) 0;
 	}
 
-	.hero-actions {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: flex-start;
-		gap: 0.75rem;
-		height: calc(var(--grid-cell) * 2);
-	}
-
+	.hero-description,
 	.hero-lead {
+		position: relative;
+		top: var(--baseline-shift-step);
 		margin-block: var(--grid-cell) 0;
+		max-width: calc(var(--grid-cell) * 10);
+		height: var(--grid-cell);
 		font-size: clamp(1rem, 2.1vw, 1.25rem);
-		line-height: calc(var(--grid-cell) / 2);
+		line-height: var(--baseline-step);
 	}
 
 	.hero-lead__term {
@@ -102,8 +109,34 @@ const locale = resolveLocale(Astro);
 		color: var(--color-muted);
 	}
 
-	.hero-shell {
-		min-height: calc(100vh - var(--grid-cell) * 2);
-		padding-bottom: var(--grid-cell);
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: 0.75rem;
+		height: var(--grid-cell);
+	}
+
+	@media (max-width: 1100px) {
+		.hero-title {
+			font-size: calc(var(--grid-cell) * 0.5);
+		}
+	}
+
+	@media (max-width: 860px) {
+		.hero-eyebrow {
+			top: var(--baseline-shift-half);
+			height: calc(var(--grid-cell) * 2);
+			line-height: calc(var(--grid-cell) / 2);
+		}
+
+		.hero-description,
+		.hero-lead {
+			height: calc(var(--grid-cell) * 3);
+		}
+
+		.hero-actions {
+			height: calc(var(--grid-cell) * 2);
+		}
 	}
 </style>

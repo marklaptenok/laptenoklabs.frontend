@@ -40,9 +40,22 @@ const {
                     const fluid = 0.123 * root.clientWidth;
                     const cell = Math.floor(Math.min(Math.max(2.625 * rem, fluid), 5.625 * rem));
                     if (cell > 0) root.style.setProperty('--grid-cell', cell + 'px');
+
+                    const hero = document.querySelector('[data-hero]');
+                    const stack = hero && hero.firstElementChild;
+                    if (!stack) return;
+                    const header = document.querySelector('.site-header');
+                    const headerCells = Math.round((header ? header.offsetHeight : cell) / cell);
+                    const free = root.clientHeight - headerCells * cell - stack.offsetHeight;
+                    const target = (headerCells + Math.max(0, Math.round(free / 2 / cell))) * cell;
+                    const top = hero.getBoundingClientRect().top + window.scrollY;
+                    hero.style.paddingTop = Math.max(0, target - top) + 'px';
                 };
                 apply();
                 addEventListener('resize', apply, { passive: true });
+                addEventListener('DOMContentLoaded', apply);
+                addEventListener('load', apply);
+                if (document.fonts) document.fonts.ready.then(apply);
             })();
         </script>
     </head>
