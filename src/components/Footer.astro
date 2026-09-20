@@ -79,8 +79,20 @@ const navLinks: Array<{ key: TranslationKey; href: string }> = [
 
   .footer-inner {
     display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 2.5rem 4rem;
+  }
+
+  .footer-columns {
+    flex: 0 0 auto;
+  }
+
+  .footer-meta {
+    flex: 0 1 auto;
+    min-width: 0;
   }
 
   .footer-columns {
@@ -128,6 +140,19 @@ const navLinks: Array<{ key: TranslationKey; href: string }> = [
   .footer-address {
     display: grid;
     gap: 0.15rem;
+    margin-top: auto;
+  }
+
+  @media (max-width: 860px) {
+    .footer-inner {
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+    }
+
+    .footer-address {
+      margin-top: 0;
+    }
   }
 
   @media (max-width: 640px) {
