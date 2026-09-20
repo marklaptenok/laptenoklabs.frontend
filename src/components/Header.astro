@@ -87,7 +87,7 @@ const productLogo = productLogos[section];
 	inset-inline: 0;
 	top: 0;
 	z-index: 30;
-	min-height: calc(var(--grid-cell) * 2);
+	min-height: var(--grid-cell);
 	display: flex;
 	align-items: center;
 	background: color-mix(in oklab, var(--color-surface) 80%, transparent);
@@ -100,7 +100,7 @@ const productLogo = productLogos[section];
 	grid-template-columns: auto 1fr auto;
 	grid-template-areas: "title nav actions";
 	align-items: center;
-	column-gap: 1.5rem;
+	column-gap: clamp(1.5rem, 5vw, var(--grid-cell));
 	row-gap: 0.35rem;
 	width: 100%;
 	padding-block: 0.6rem;
@@ -162,7 +162,7 @@ const productLogo = productLogos[section];
 
   @media (max-width: 860px) {
 	.site-header {
-		min-height: calc(var(--grid-cell) * 3);
+		min-height: calc(var(--grid-cell) * 2);
 	}
 
 	.site-header__bar {
