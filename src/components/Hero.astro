@@ -125,14 +125,18 @@ const locale = resolveLocale(Astro);
 
 	@media (max-width: 860px) {
 		.hero-shell {
-			margin-top: 0;
 			padding-top: var(--grid-cell);
 		}
 
 		.hero-eyebrow {
 			top: var(--baseline-shift-half);
-			height: calc(var(--grid-cell) * 2);
+			height: calc(var(--grid-cell) * 3);
+			padding-top: var(--grid-cell);
 			line-height: calc(var(--grid-cell) / 2);
+		}
+
+		.hero-title {
+			margin-block-start: 0;
 		}
 
 		.hero-description,

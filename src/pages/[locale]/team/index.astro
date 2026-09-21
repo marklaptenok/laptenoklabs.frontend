@@ -114,4 +114,10 @@ const people = (await getLocalizedCollection('cv', locale)).sort((a, b) =>
 	.team__link:hover .team__name {
 		color: var(--color-accent);
 	}
+
+	@media (max-width: 860px) {
+		.team {
+			padding-block-start: 0;
+		}
+	}
 </style>
