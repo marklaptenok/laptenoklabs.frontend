@@ -7,9 +7,23 @@ groups:
       - title: O(log n)
         description: Наша учебная платформа для инженеров-программистов.
         href: /bigologn
-      - title: Мягкий инженер
-        description: Серия подкастов об инженерии программ.
-        href: /projects/soft-engineer
+      - title: Codelearning.online в Telegram
+        description: Почитать, посмотреть, послушать, пообщаться.
+        href: https://t.me/codelearning_online
+  - items:
+      - title: «Мягкий инженер» на Mave.digital
+        description: Наш подкаст об инженерии программ. Для тех, кто в России.
+        href: https://laptenoklabspodcasts.mave.digital/
+      - title: «Мягкий инженер» на Spotify
+        description: Тот же подкаст. Для всех.
+        href: https://open.spotify.com/show/4WHR3Gho9yEczk0R0qkQth
+  - items:
+      - title: Будни программиста. CLOCI
+        description: Система удалённой изолированной компиляции и исполнения пользовательского кода для учебной платформы.
+        href: https://www.youtube.com/playlist?list=PL4ClxmLo20SCqHmCqHIf_Ei-kSS_RuQBZ
+      - title: Разбор кода libusb
+        description: Анализ исходного кода популярной C-библиотеки, через которую программа общается с устройствами по USB.
+        href: https://www.youtube.com/playlist?list=PL4ClxmLo20SAFYGiLb3bojcvqZcM4VByl
   - items:
       - title: LinkedIn
         description: Инженерный профиль Марка.
