@@ -9,7 +9,7 @@ import {
 } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 
 import icon from "astro-icon";
 
@@ -24,6 +24,31 @@ const emptyListings = locales
     .filter((locale) => !hasArticles(locale))
     .map((locale) => `/${locale}/articles`);
 
+const buildDate = new Date().toISOString().slice(0, 10);
+
+const contentDates = () => {
+    const dates = new Map();
+    for (const collection of ["projects", "legal"]) {
+        for (const locale of locales) {
+            const dir = `src/content/${collection}/${locale}`;
+            if (!existsSync(dir)) continue;
+            for (const file of readdirSync(dir)) {
+                if (!/\.mdx?$/.test(file)) continue;
+                const text = readFileSync(`${dir}/${file}`, "utf8");
+                const updated = text.match(/^updatedDate:\s*(\S+)/m);
+                const published = text.match(/^pubDate:\s*(\S+)/m);
+                const url = text.match(/^url:\s*(\S+)/m);
+                const slug = file.replace(/\.mdx?$/, "");
+                const path = url ? `/${locale}${url[1]}` : `/${locale}/${collection === "legal" ? slug : `projects/${slug}`}`;
+                dates.set(path, (updated?.[1] ?? published?.[1] ?? buildDate).slice(0, 10));
+            }
+        }
+    }
+    return dates;
+};
+
+const lastmod = contentDates();
+
 // https://astro.build/config
 export default defineConfig({
     site: "https://laptenoklabs.com",
@@ -35,6 +60,10 @@ export default defineConfig({
                 const path = new URL(page).pathname;
                 return path !== "/" && !emptyListings.includes(path);
             },
+            serialize: (item) => ({
+                ...item,
+                lastmod: lastmod.get(new URL(item.url).pathname) ?? buildDate,
+            }),
             i18n: {
                 defaultLocale,
                 locales: { en: "en", ru: "ru" },

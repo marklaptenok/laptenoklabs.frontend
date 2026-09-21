@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import PageLayout from '../../../layouts/PageLayout.astro';
+import { getSite } from '../../../utils/consts';
 import {
 	entrySlug,
 	getLocalizedCollection,
@@ -12,6 +13,7 @@ import {
 
 export const getStaticPaths = localePaths;
 
+const site = await getSite();
 const locale = resolveLocale(Astro);
 const t = useTranslations(locale);
 
@@ -20,7 +22,7 @@ const people = (await getLocalizedCollection('cv', locale)).sort((a, b) =>
 );
 ---
 
-<PageLayout title={t('team.title')} description={t('team.description')}>
+<PageLayout title={`${t('team.title')} · ${site.title}`} description={t('team.description')}>
 	<section class="content-shell team">
 		<header class="team__header">
 			<p class="eyebrow team__eyebrow">{t('team.eyebrow')}</p>

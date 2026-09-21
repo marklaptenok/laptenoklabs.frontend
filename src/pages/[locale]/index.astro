@@ -3,17 +3,39 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import Hero from '../../components/Hero.astro';
 import Numbers from '../../components/Numbers.astro';
 import Services from '../../components/Services.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { getSite } from '../../utils/consts';
-import { localePaths, resolveLocale, useTranslations } from '../../i18n/utils';
+import { localePaths, localeUrl, resolveLocale, useTranslations } from '../../i18n/utils';
 
 export const getStaticPaths = localePaths;
 
 const locale = resolveLocale(Astro);
 const t = useTranslations(locale);
 const site = await getSite();
+
+const organization = {
+	'@type': 'Organization',
+	name: t('footer.company'),
+	alternateName: site.title,
+	url: new URL(localeUrl(locale, '/'), Astro.site).toString(),
+	logo: new URL('/favicon.svg', Astro.site).toString(),
+	email: t('contact.email'),
+	telephone: t('contact.phone'),
+	description: t('site.description'),
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: 'Prosincová č.ev. 1583/12, Litice',
+		postalCode: '321 00',
+		addressLocality: 'Plzeň',
+		addressCountry: 'CZ',
+	},
+	identifier: t('footer.ico'),
+	knowsLanguage: ['en', 'ru', 'cs'],
+};
 ---
 
-<PageLayout title={site.title} description={t('site.description')}>
+<PageLayout title={`${site.title} — ${t('home.hero.eyebrow')}`} description={t('site.description')}>
+	<JsonLd schema={organization} />
 	<Hero
 		eyebrow={t('home.hero.eyebrow')}
 		title={t('home.hero.title')}

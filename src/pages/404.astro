@@ -2,7 +2,9 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import { locales, localeTags } from '../i18n/config';
 import { useTranslations } from '../i18n/utils';
+import { getSite } from '../utils/consts';
 
+const site = await getSite();
 const defaultAddress = 'customercare@laptenoklabs.com';
 
 const messages = locales.map((locale) => {
@@ -13,7 +15,7 @@ const messages = locales.map((locale) => {
 const title = useTranslations('en')('notFound.title');
 ---
 
-<PageLayout title={title} description={title}>
+<PageLayout title={`${title} · ${site.title}`} description={title}>
 	<section class="content-shell not-found">
 		{messages.map((message, i) => (
 			<p

@@ -3,7 +3,9 @@ import { Image } from 'astro:assets';
 import { type CollectionEntry, getCollection } from 'astro:content';
 import PageLayout from '../../../layouts/PageLayout.astro';
 import CvButton from '../../../components/CvButton.astro';
+import { getSite } from '../../../utils/consts';
 import RichText from '../../../components/RichText.astro';
+import JsonLd from '../../../components/JsonLd.astro';
 import { entryLocale, entrySlug, localeUrl, resolveLocale, useTranslations } from '../../../i18n/utils';
 
 export async function getStaticPaths() {
@@ -18,8 +20,24 @@ type Props = CollectionEntry<'cv'>;
 
 const person = Astro.props as Props;
 const cv = person.data;
+const site = await getSite();
+const sentenceEnd = cv.headline.indexOf('. ');
+const metaDescription = cv.headline.length > 160 && sentenceEnd > 0
+	? cv.headline.slice(0, sentenceEnd + 1)
+	: cv.headline;
 const locale = resolveLocale(Astro);
 const t = useTranslations(locale);
+
+const personSchema = {
+	'@type': 'Person',
+	name: cv.name,
+	alternateName: cv.altName,
+	jobTitle: cv.role,
+	description: metaDescription,
+	url: new URL(Astro.url.pathname, Astro.site).toString(),
+	worksFor: { '@type': 'Organization', name: t('footer.company') },
+	sameAs: cv.contacts.filter((line) => line.startsWith('http')),
+};
 
 const promoUrls = import.meta.glob('../../../assets/promos/*', {
 	eager: true,
@@ -31,7 +49,8 @@ const assets = Object.fromEntries(
 );
 ---
 
-<PageLayout title={t('team.title')} description={cv.headline}>
+<PageLayout title={`${cv.name} · ${site.title}`} description={metaDescription}>
+	<JsonLd schema={personSchema} />
 	<section class="content-shell cv">
 		<header class="cv__header">
 			<figure class="cv__portrait">

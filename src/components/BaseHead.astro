@@ -3,10 +3,11 @@
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
-import FallbackImage from '../assets/blog-placeholder-about.png';
+import SocialCardEn from '../assets/social/social-card-en.png';
+import SocialCardRu from '../assets/social/social-card-ru.png';
 import { getSite } from '../utils/consts';
 import { SEO } from 'astro-seo';
-import { localeTags } from '../i18n/config';
+import { localeTags, openGraphLocales } from '../i18n/config';
 import { alternateUrls, localeUrl, resolveLocale } from '../i18n/utils';
 
 const site = await getSite();
@@ -15,12 +16,22 @@ interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata;
+	type?: 'website' | 'article';
+	publishedTime?: Date;
 	noindex?: boolean;
 }
 
-const { title, description, image = FallbackImage, noindex = false } = Astro.props;
-
 const locale = resolveLocale(Astro);
+const socialCards: Record<string, ImageMetadata> = { en: SocialCardEn, ru: SocialCardRu };
+
+const {
+	title,
+	description,
+	image = socialCards[locale] ?? SocialCardEn,
+	type = 'website',
+	publishedTime,
+	noindex = false,
+} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const imageURL = new URL((image as ImageMetadata).src, Astro.site ?? Astro.url);
 
@@ -37,15 +48,16 @@ const rssHref = new URL(localeUrl(locale, '/rss.xml'), Astro.site ?? Astro.url).
 	openGraph={{
 		basic: {
 			title,
-			type: 'website',
+			type,
 			image: imageURL.toString(),
 			url: canonicalURL.toString(),
 		},
 		optional: {
 			description,
 			siteName: site.title,
-			locale: localeTags[locale],
+			locale: openGraphLocales[locale],
 		},
+		article: type === 'article' && publishedTime ? { publishedTime: publishedTime.toISOString() } : undefined,
 	}}
 	twitter={{
 		card: 'summary_large_image',

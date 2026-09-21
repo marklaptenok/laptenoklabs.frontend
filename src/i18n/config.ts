@@ -19,6 +19,11 @@ export const localeTags: Record<Locale, string> = {
 	ru: 'ru',
 };
 
+export const openGraphLocales: Record<Locale, string> = {
+	en: 'en_US',
+	ru: 'ru_RU',
+};
+
 export const formatLocales: Record<Locale, string> = {
 	en: 'en-US',
 	ru: 'ru-RU',
