@@ -21,8 +21,13 @@ const posts = await getLocalizedCollection('articles', locale);
 const [featured, ...rest] = posts;
 ---
 
-<PageLayout title={`${t('articles.title')} · ${site.title}`} description={t('articles.description')}>
+<PageLayout title={`${t('articles.title')} · ${site.title}`} description={t('articles.description')} noindex={posts.length === 0}>
 	<section class="content-shell py-12 space-y-8">
+		<header class="space-y-2">
+			<h1 class="text-4xl font-semibold text-ink">{t('articles.title')}</h1>
+			<p class="text-muted">{t('articles.description')}</p>
+		</header>
+
 		{posts.length === 0 && <p class="text-muted">{t('articles.empty')}</p>}
 
 		{featured && (

@@ -15,9 +15,10 @@ interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata;
+	noindex?: boolean;
 }
 
-const { title, description, image = FallbackImage } = Astro.props;
+const { title, description, image = FallbackImage, noindex = false } = Astro.props;
 
 const locale = resolveLocale(Astro);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -29,6 +30,7 @@ const rssHref = new URL(localeUrl(locale, '/rss.xml'), Astro.site ?? Astro.url).
 
 <SEO
 	charset="utf-8"
+	noindex={noindex}
 	title={title}
 	description={description}
 	canonical={canonicalURL.toString()}

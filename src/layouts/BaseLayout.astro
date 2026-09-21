@@ -12,6 +12,7 @@ interface Props {
 	title?: string;
 	description?: string;
 	image?: ImageMetadata;
+	noindex?: boolean;
 }
 
 const locale = resolveLocale(Astro);
@@ -22,13 +23,14 @@ const {
 	title = site.title,
 	description = t('site.description'),
 	image,
+	noindex = false,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={localeTags[locale]}>
     <head>
-        <BaseHead title={title} description={description} image={image} />
+        <BaseHead title={title} description={description} image={image} noindex={noindex} />
         <Font cssVariable="--font-main" preload />
         <Font cssVariable="--font-header" preload />
         <Font cssVariable="--font-title" preload />

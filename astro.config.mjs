@@ -9,11 +9,20 @@ import {
 } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
+import { existsSync, readdirSync } from "node:fs";
 
 import icon from "astro-icon";
 
 const locales = ["en", "ru"];
 const defaultLocale = "en";
+
+const hasArticles = (locale) =>
+    existsSync(`src/content/articles/${locale}`) &&
+    readdirSync(`src/content/articles/${locale}`).some((file) => /\.mdx?$/.test(file));
+
+const emptyListings = locales
+    .filter((locale) => !hasArticles(locale))
+    .map((locale) => `/${locale}/articles`);
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,7 +31,10 @@ export default defineConfig({
     integrations: [
         mdx(),
         sitemap({
-            filter: (page) => new URL(page).pathname !== "/",
+            filter: (page) => {
+                const path = new URL(page).pathname;
+                return path !== "/" && !emptyListings.includes(path);
+            },
             i18n: {
                 defaultLocale,
                 locales: { en: "en", ru: "ru" },
