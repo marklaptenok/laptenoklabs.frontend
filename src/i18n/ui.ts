@@ -90,7 +90,8 @@ const en = {
 	'services.one.body':
 		'Risk analysis, documenting, refactoring, rewriting, fixing, adding functionality, finding maintainers, training.',
 	'services.two.title': 'Creation of algorithms and mathematical models to optimize your processes',
-	'services.two.body': '',
+	'services.two.body':
+		'Formalizing the process, designing and analyzing algorithms, parallel computation, measuring the real effect. Grounded in applied mathematics and systems programming.',
 	'services.three.title': 'Audit of engineering teams',
 	'services.three.body': 'Helping to hire and build a long-term fruitful environment.',
 
@@ -209,7 +210,8 @@ const ru: Record<TranslationKey, string> = {
 	'services.one.body':
 		'Анализ рисков, документирование, рефакторинг, переписывание, исправление ошибок, добавление функциональности, поиск сопровождающих, обучение.',
 	'services.two.title': 'Создание алгоритмов и математических моделей для оптимизации ваших процессов',
-	'services.two.body': '',
+	'services.two.body':
+		'Формализация процесса, проектирование и анализ алгоритмов, параллельные вычисления, измерение реального эффекта. В основе — прикладная математика и системное программирование.',
 	'services.three.title': 'Аудит инженерных команд',
 	'services.three.body': 'Помощь в найме и построении долгосрочной продуктивной среды.',
 
