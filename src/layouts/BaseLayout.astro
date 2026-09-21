@@ -46,6 +46,10 @@ const {
                     const hero = document.querySelector('[data-hero]');
                     const stack = hero && hero.firstElementChild;
                     if (!stack) return;
+                    if (matchMedia('(max-width: 860px)').matches) {
+                        hero.style.paddingTop = '';
+                        return;
+                    }
                     const header = document.querySelector('.site-header');
                     const headerCells = Math.round((header ? header.offsetHeight : cell) / cell);
                     const free = root.clientHeight - headerCells * cell - stack.offsetHeight;
