@@ -1,0 +1,33 @@
+title: Quick menu
+heading: Laptenok Labs
+tagline: Software engineering, consultancy, education and mentorship.
+photo: ../../../assets/team/marklaptenok.jpg
+groups:
+  - items:
+      - title: O(log n)
+        description: Our learning platform for software engineers.
+        href: /bigologn
+      - title: Soft Engineer
+        description: A podcast series about software engineering.
+        href: /projects/soft-engineer
+  - items:
+      - title: LinkedIn
+        description: Mark's engineering profile.
+        href: https://www.linkedin.com/in/marklaptenok/
+      - title: GitHub
+        description: Code in the open.
+        href: https://github.com/marklaptenok
+  - items:
+      - title: What we do
+        description: Three services, and how we work.
+        href: /
+      - title: Curriculum vitae
+        description: Mark Laptenok — the full professional record.
+        href: /team/marklaptenok
+  - items:
+      - title: mark@laptenoklabs.com
+        description: Write to Mark directly.
+        href: mailto:mark@laptenoklabs.com
+      - title: (420) 732 662 170
+        description: 10:00 – 18:00 UTC.
+        href: tel:+420732662170

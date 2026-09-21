@@ -1,0 +1,33 @@
+title: Быстрое меню
+heading: Laptenok Labs
+tagline: Разработка ПО, консалтинг, обучение и наставничество.
+photo: ../../../assets/team/marklaptenok.jpg
+groups:
+  - items:
+      - title: O(log n)
+        description: Наша учебная платформа для инженеров-программистов.
+        href: /bigologn
+      - title: Мягкий инженер
+        description: Серия подкастов об инженерии программ.
+        href: /projects/soft-engineer
+  - items:
+      - title: LinkedIn
+        description: Инженерный профиль Марка.
+        href: https://www.linkedin.com/in/marklaptenok/
+      - title: GitHub
+        description: Открытый код.
+        href: https://github.com/marklaptenok
+  - items:
+      - title: Чем мы занимаемся
+        description: Три услуги и то, как мы работаем.
+        href: /
+      - title: Резюме
+        description: Марк Лаптёнок — полная профессиональная биография.
+        href: /team/marklaptenok
+  - items:
+      - title: mark@laptenoklabs.com
+        description: Написать Марку напрямую.
+        href: mailto:mark@laptenoklabs.com
+      - title: (420) 732 662 170
+        description: 10:00 – 18:00 UTC.
+        href: tel:+420732662170

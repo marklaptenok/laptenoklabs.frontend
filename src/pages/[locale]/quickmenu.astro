@@ -1,0 +1,178 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { getSite } from '../../utils/consts';
+import {
+	getLocalizedCollection,
+	localePaths,
+	localeUrl,
+	resolveLocale,
+} from '../../i18n/utils';
+
+export const getStaticPaths = localePaths;
+
+const locale = resolveLocale(Astro);
+const site = await getSite();
+
+const [entry] = await getLocalizedCollection('quickmenu', locale);
+const menu = entry.data;
+
+const isExternal = (href: string) => /^(https?:|mailto:|tel:)/.test(href);
+---
+
+<PageLayout title={`${menu.title} · ${site.title}`} description={menu.tagline} noindex={true}>
+	<section class="quickmenu">
+		<header class="quickmenu__header">
+			<figure class="quickmenu__portrait">
+				<Image src={menu.photo} alt={menu.heading} width={220} height={220} />
+			</figure>
+			<h1 class="quickmenu__heading">{menu.heading}</h1>
+			<p class="quickmenu__tagline">{menu.tagline}</p>
+		</header>
+
+		{menu.groups.map((group) => (
+			<ul class="quickmenu__group">
+				{group.items.map((item) => (
+					<li>
+						<a
+							class="quickmenu__link no-underline"
+							href={isExternal(item.href) ? item.href : localeUrl(locale, item.href)}
+							target={item.href.startsWith('http') ? '_blank' : undefined}
+							rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+						>
+							<span class="quickmenu__title">{item.title}</span>
+							{item.description && <span class="quickmenu__description">{item.description}</span>}
+						</a>
+					</li>
+				))}
+			</ul>
+		))}
+	</section>
+</PageLayout>
+
+<style>
+	.quickmenu {
+		width: 100%;
+		max-width: calc(var(--grid-cell) * 8);
+		margin-inline: auto;
+		display: flex;
+		flex-direction: column;
+		gap: calc(var(--grid-cell) / 2);
+		padding-block: calc(var(--grid-cell) / 2) var(--grid-cell);
+	}
+
+	.quickmenu__header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 0.5rem;
+		padding-block-end: calc(var(--grid-cell) / 2);
+	}
+
+	.quickmenu__portrait {
+		margin: 0 0 0.75rem;
+		width: 110px;
+	}
+
+	.quickmenu__portrait :global(img) {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 1;
+		border-radius: 999px;
+		border: 1px solid var(--color-border);
+		object-fit: cover;
+	}
+
+	.quickmenu__heading {
+		margin: 0;
+		font-family: var(--font-title), var(--font-header), serif;
+		font-size: 1.5rem;
+		font-weight: 400;
+		line-height: 1.2;
+		color: var(--color-ink);
+	}
+
+	.quickmenu__tagline {
+		margin: 0;
+		max-width: 26rem;
+		font-size: 0.95rem;
+		line-height: 1.5;
+		color: var(--color-muted);
+	}
+
+	.quickmenu__group {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+	}
+
+	.quickmenu__link {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+		min-height: 56px;
+		padding: 0.9rem 1.1rem;
+		text-align: center;
+		border: 1px solid var(--color-border);
+		border-radius: 14px;
+		background: var(--color-surface);
+		color: var(--color-ink);
+		transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+	}
+
+	.quickmenu__title {
+		font-family: var(--font-header), serif;
+		font-size: 1.02rem;
+		font-weight: 600;
+		color: var(--color-accent-soft);
+		transition: color 150ms ease;
+	}
+
+	.quickmenu__description {
+		font-size: 0.85rem;
+		line-height: 1.45;
+		color: var(--color-muted);
+		transition: color 150ms ease;
+	}
+
+	@media (hover: hover) {
+		.quickmenu__link:hover {
+			background: var(--color-accent-soft);
+			border-color: var(--color-accent-soft);
+		}
+
+		.quickmenu__link:hover .quickmenu__title,
+		.quickmenu__link:hover .quickmenu__description {
+			color: var(--brand-graphite);
+		}
+	}
+
+	.quickmenu__link:active {
+		background: var(--color-accent-soft);
+		border-color: var(--color-accent-soft);
+	}
+
+	.quickmenu__link:active .quickmenu__title,
+	.quickmenu__link:active .quickmenu__description {
+		color: var(--brand-graphite);
+	}
+
+	@media (min-width: 861px) {
+		.quickmenu {
+			gap: calc(var(--grid-cell) / 2);
+			padding-block: var(--grid-cell) calc(var(--grid-cell) * 2);
+		}
+
+		.quickmenu__portrait {
+			width: 140px;
+		}
+
+		.quickmenu__heading {
+			font-size: 1.9rem;
+		}
+	}
+</style>

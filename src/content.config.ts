@@ -29,6 +29,28 @@ const projects = defineCollection({
 		}),
 });
 
+const quickmenu = defineCollection({
+	loader: glob({ base: './src/content/quickmenu', pattern: '**/*.yml' }),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			heading: z.string(),
+			tagline: z.string(),
+			photo: image(),
+			groups: z.array(
+				z.object({
+					items: z.array(
+						z.object({
+							title: z.string(),
+							description: z.string().optional(),
+							href: z.string(),
+						}),
+					),
+				}),
+			),
+		}),
+});
+
 const legal = defineCollection({
 	loader: glob({ base: './src/content/legal', pattern: '**/*.md' }),
 	schema: z.object({
@@ -71,4 +93,4 @@ const site = defineCollection({
 	}),
 });
 
-export const collections = { articles, cv, legal, projects, site };
+export const collections = { articles, cv, legal, projects, quickmenu, site };

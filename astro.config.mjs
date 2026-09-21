@@ -24,6 +24,8 @@ const emptyListings = locales
     .filter((locale) => !hasArticles(locale))
     .map((locale) => `/${locale}/articles`);
 
+const unlisted = locales.map((locale) => `/${locale}/quickmenu`);
+
 const buildDate = new Date().toISOString().slice(0, 10);
 
 const contentDates = () => {
@@ -58,7 +60,7 @@ export default defineConfig({
         sitemap({
             filter: (page) => {
                 const path = new URL(page).pathname;
-                return path !== "/" && !emptyListings.includes(path);
+                return path !== "/" && !emptyListings.includes(path) && !unlisted.includes(path);
             },
             serialize: (item) => ({
                 ...item,
