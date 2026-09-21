@@ -59,7 +59,7 @@ export const entryLocale = (id: string): Locale => {
 	return isLocale(prefix) ? prefix : defaultLocale;
 };
 
-type LocalizedCollection = 'articles' | 'projects' | 'cv' | 'legal' | 'quickmenu';
+type LocalizedCollection = 'articles' | 'projects' | 'cv' | 'legal' | 'quickmenu' | 'faq';
 
 export async function getLocalizedCollection<C extends LocalizedCollection>(
 	collection: C,

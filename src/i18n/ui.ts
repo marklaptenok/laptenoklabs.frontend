@@ -9,6 +9,7 @@ const en = {
 	'nav.team': 'Team',
 	'nav.projects': 'Projects',
 	'nav.rss': 'RSS',
+	'nav.faq': 'Questions',
 	'nav.privacy': 'Privacy',
 	'nav.primary': 'Main navigation',
 
@@ -129,6 +130,7 @@ const ru: Record<TranslationKey, string> = {
 	'nav.team': 'Команда',
 	'nav.projects': 'Проекты',
 	'nav.rss': 'RSS',
+	'nav.faq': 'Вопросы',
 	'nav.privacy': 'Конфиденциальность',
 	'nav.primary': 'Основная навигация',
 

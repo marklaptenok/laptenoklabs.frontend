@@ -1,0 +1,43 @@
+title: Questions and answers
+description: What Laptenok Labs does, who does it, where it works, and how to start.
+intro: Short answers to what people ask before they write to us.
+items:
+  - question: What does Laptenok Labs do?
+    answer: >-
+      Laptenok Labs is a software engineering company in Plzeň, Czech Republic. It does three
+      things: audits of IT systems, creation of algorithms and mathematical models that optimize
+      a process, and audits of engineering teams. Alongside that it teaches software engineering
+      and mentors engineers.
+  - question: What does an audit of an IT system include?
+    answer: >-
+      Risk analysis, documenting, refactoring, rewriting, fixing, adding functionality, finding
+      maintainers, and training the people who will keep the system running.
+  - question: What does an audit of an engineering team include?
+    answer: >-
+      Help with hiring, and with building an environment that stays productive over years rather
+      than quarters.
+  - question: What kind of algorithmic work do you take on?
+    answer: >-
+      Formalizing the process, designing and analyzing algorithms, parallel computation, and
+      measuring what the change is actually worth. The work is grounded in applied mathematics and
+      systems programming.
+  - question: Who does the work?
+    answer: >-
+      Mark Laptenok, co-founder, software engineer and teacher. He is a senior software engineer at
+      Microsoft, qualified as a mathematician and systems programmer, and has taught since 2009 —
+      4,525 hours of classes to 172 people, including interns and students of Imperial College
+      London, the universities of Bremen and Auckland, and Moscow State University.
+  - question: What does Laptenok Labs teach?
+    answer: >-
+      Computer networks, operating systems, databases, algorithms and data structures, and parallel
+      computing. O(log n) is the company's own learning platform for software engineers.
+  - question: In which languages do you work?
+    answer: English, Russian and Czech.
+  - question: Where are you, and whom do you work with?
+    answer: >-
+      The company is registered in Plzeň, Czech Republic, as Laptenok Labs s.r.o. (IČO 21777641).
+      The people taught so far are in the United Kingdom, Germany, New Zealand and Russia.
+  - question: How do I start?
+    answer: >-
+      Write to mark@laptenoklabs.com. Office hours are 10:00 – 18:00 UTC, and the phone is
+      (420) 732 662 170.

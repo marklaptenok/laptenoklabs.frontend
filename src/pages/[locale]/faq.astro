@@ -1,0 +1,98 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { getSite } from '../../utils/consts';
+import { getLocalizedCollection, localePaths, resolveLocale } from '../../i18n/utils';
+
+export const getStaticPaths = localePaths;
+
+const locale = resolveLocale(Astro);
+const site = await getSite();
+
+const [entry] = await getLocalizedCollection('faq', locale);
+const faq = entry.data;
+
+const schema = {
+	'@type': 'FAQPage',
+	inLanguage: locale,
+	mainEntity: faq.items.map((item) => ({
+		'@type': 'Question',
+		name: item.question,
+		acceptedAnswer: { '@type': 'Answer', text: item.answer },
+	})),
+};
+---
+
+<PageLayout title={`${faq.title} · ${site.title}`} description={faq.description}>
+	<JsonLd schema={schema} />
+	<section class="content-shell faq">
+		<header class="faq__header">
+			<h1 class="section-title">{faq.title}</h1>
+			<p class="faq__intro">{faq.intro}</p>
+		</header>
+
+		<dl class="faq__list">
+			{faq.items.map((item) => (
+				<div class="faq__item">
+					<dt class="faq__question">{item.question}</dt>
+					<dd class="faq__answer">{item.answer}</dd>
+				</div>
+			))}
+		</dl>
+	</section>
+</PageLayout>
+
+<style>
+	.faq {
+		display: flex;
+		flex-direction: column;
+		gap: var(--grid-cell);
+		padding-block: var(--grid-cell) calc(var(--grid-cell) * 2);
+	}
+
+	.faq__header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.faq__intro {
+		margin: 0;
+		max-width: 52rem;
+		color: var(--color-muted);
+		line-height: 1.65;
+	}
+
+	.faq__list {
+		display: flex;
+		flex-direction: column;
+		gap: calc(var(--grid-cell) / 2);
+		margin: 0;
+		max-width: 52rem;
+	}
+
+	.faq__item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.faq__question {
+		font-family: var(--font-header), serif;
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: var(--color-ink);
+	}
+
+	.faq__answer {
+		margin: 0;
+		color: var(--color-muted);
+		line-height: 1.7;
+	}
+
+	@media (max-width: 860px) {
+		.faq {
+			padding-block-start: 0;
+		}
+	}
+</style>

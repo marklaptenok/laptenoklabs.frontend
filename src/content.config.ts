@@ -68,6 +68,7 @@ const cv = defineCollection({
 		role: z.string(),
 		photo: image(),
 		headline: z.string(),
+		knowsAbout: z.array(z.string()).default([]),
 		contacts: z.array(z.string()),
 		sections: z.array(
 			z.object({
@@ -90,7 +91,18 @@ const site = defineCollection({
 	loader: file('src/site-config.yml'),
 	schema: z.object({
 		title: z.string(),
+		profiles: z.array(z.string()).default([]),
 	}),
 });
 
-export const collections = { articles, cv, legal, projects, quickmenu, site };
+const faq = defineCollection({
+	loader: glob({ base: './src/content/faq', pattern: '**/*.yml' }),
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		intro: z.string(),
+		items: z.array(z.object({ question: z.string(), answer: z.string() })),
+	}),
+});
+
+export const collections = { articles, cv, faq, legal, projects, quickmenu, site };
