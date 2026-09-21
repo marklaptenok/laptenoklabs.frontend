@@ -7,5 +7,6 @@ export async function getSite() {
 	const entry = await getEntry('site', 'site');
 	return {
 		title: entry?.data.title ?? 'Laptenok Labs',
+		profiles: entry?.data.profiles ?? [],
 	};
 }
