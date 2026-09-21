@@ -79,18 +79,10 @@ const productLogo = productLogos[section];
 <style>
   @reference "tailwindcss";
 
-  #debug-toggle {
-	border-color: var(--color-accent);
-	color: var(--color-accent);
-	background: var(--tone-accent-wash);
-  }
-
-  #debug-toggle:hover,
   #debug-toggle[aria-pressed='false'] {
 	border-color: var(--color-muted);
 	color: var(--color-muted);
 	background: color-mix(in oklab, var(--color-surface) 92%, transparent);
-	transform: none;
   }
 
   .site-header {

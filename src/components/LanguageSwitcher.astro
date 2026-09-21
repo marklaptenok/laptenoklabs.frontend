@@ -71,9 +71,11 @@ const options = available.map((locale) => ({
 		background: color-mix(in oklab, var(--color-ink) 10%, transparent);
 	}
 
-	.lang-switcher__option:hover,
-	.lang-switcher__option.is-current:hover {
-		background: var(--color-accent-soft);
-		color: var(--brand-graphite);
+	@media (hover: hover) {
+		.lang-switcher__option:hover,
+		.lang-switcher__option.is-current:hover {
+			background: var(--color-accent-soft);
+			color: var(--brand-graphite);
+		}
 	}
 </style>

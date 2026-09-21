@@ -159,10 +159,12 @@
         transition-timing-function: ease-out;
     }
 
-    .header-button:hover {
-        background: var(--color-accent-soft);
-        border-color: var(--color-accent-soft);
-        color: var(--brand-graphite);
+    @media (hover: hover) {
+        .header-button:hover {
+            background: var(--color-accent-soft);
+            border-color: var(--color-accent-soft);
+            color: var(--brand-graphite);
+        }
     }
 
     .header-button .search-trigger__icon,
