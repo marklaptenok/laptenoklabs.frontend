@@ -38,7 +38,8 @@ const en = {
 	'footer.ico': 'IČO 21777641',
 	'footer.address': 'Prosincová č.ev. 1583/12, Litice, 321 00 Plzeň, Czech Republic',
 	'footer.registry': 'Registered at the Regional Court in Plzeň, file C 45452',
-	'footer.colophon': 'Built with Astro on the Launchpad template by Rodrigo Cortez and Mark Laptenok.',
+	'footer.colophon': 'Built with Astro on the Launchpad template',
+	'footer.colophonCredit': 'by Rodrigo Cortez and Mark Laptenok.',
 
 	'contact.email': 'customercare@laptenoklabs.com',
 	'contact.phone': '(420) 732 662 170',
@@ -154,7 +155,8 @@ const ru: Record<TranslationKey, string> = {
 	'footer.ico': 'IČO 21777641',
 	'footer.address': 'Prosincová č.ev. 1583/12, Litice, 321 00 Пльзень, Чехия',
 	'footer.registry': 'Зарегистрировано в Краевом суде в Пльзене, дело C 45452',
-	'footer.colophon': 'Сделано на Astro, шаблон Launchpad, авторы — Rodrigo Cortez и Марк Лаптёнок.',
+	'footer.colophon': 'Сделано на Astro, шаблон Launchpad,',
+	'footer.colophonCredit': 'авторы — Rodrigo Cortez и Марк Лаптёнок.',
 
 	'contact.email': 'customercare@laptenoklabs.com',
 	'contact.phone': '(420) 732 662 170',
