@@ -1,24 +1,11 @@
 ---
-import Search from "astro-pagefind/components/Search.astro";
+import "@pagefind/component-ui/css/pagefind-component-ui.css";
 import { Icon } from 'astro-icon/components';
 import { resolveLocale, useTranslations } from '../i18n/utils';
 
 const locale = resolveLocale(Astro);
 const t = useTranslations(locale);
 
-const pagefindTranslations = {
-	placeholder: t('pagefind.placeholder'),
-	clear_search: t('pagefind.clear_search'),
-	load_more: t('pagefind.load_more'),
-	search_label: t('pagefind.search_label'),
-	filters_label: t('pagefind.filters_label'),
-	zero_results: t('pagefind.zero_results'),
-	many_results: t('pagefind.many_results'),
-	one_result: t('pagefind.one_result'),
-	alt_search: t('pagefind.alt_search'),
-	search_suggestion: t('pagefind.search_suggestion'),
-	searching: t('pagefind.searching'),
-};
 ---
 
 <button
@@ -61,15 +48,22 @@ const pagefindTranslations = {
 			</div>
 		</div>
 		<div id="search-root" hidden>
-			<Search
-				id="search"
-				className="pagefind-ui"
-				uiOptions={{ showImages: false, translations: pagefindTranslations }}
-			/>
+			<pagefind-config bundle-path="/pagefind/"></pagefind-config>
+			<pagefind-searchbox class="pagefind-ui" placeholder={t('pagefind.placeholder')}></pagefind-searchbox>
 		</div>
 		<p class="search-modal__footnote">{t('search.footnote')}</p>
 	</div>
 </div>
+
+<script>
+	const loadSearchUi = () => import('@pagefind/component-ui');
+	const trigger = document.getElementById('search-toggle');
+	if (trigger) {
+		trigger.addEventListener('pointerenter', loadSearchUi, { once: true });
+		trigger.addEventListener('focus', loadSearchUi, { once: true });
+		trigger.addEventListener('click', loadSearchUi, { once: true });
+	}
+</script>
 
 <script is:inline>
 const searchModal = document.getElementById('search-modal');
