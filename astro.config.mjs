@@ -101,14 +101,14 @@ export default defineConfig({
         name: "Cormorant",
         cssVariable: "--font-main",
         styles: ["normal"],
-        subsets: ["latin", "cyrillic"],
+        subsets: ["latin", "latin-ext", "cyrillic"],
     },
     {
         provider: fontProviders.google(),
         name: "Jura",
         cssVariable: "--font-header",
         styles: ["normal"],
-        subsets: ["latin", "cyrillic"],
+        subsets: ["latin", "latin-ext", "cyrillic"],
     },
     {
         provider: fontProviders.local(),
