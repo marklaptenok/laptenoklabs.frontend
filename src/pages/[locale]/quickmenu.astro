@@ -2,14 +2,12 @@
 import { Image } from 'astro:assets';
 import PageLayout from '../../layouts/PageLayout.astro';
 import { getSite } from '../../utils/consts';
-import {
-	getLocalizedCollection,
-	localePaths,
-	localeUrl,
-	resolveLocale,
-} from '../../i18n/utils';
+import { getLocalizedCollection, localeUrl, localesWith, resolveLocale } from '../../i18n/utils';
 
-export const getStaticPaths = localePaths;
+export async function getStaticPaths() {
+	const available = await localesWith('quickmenu');
+	return available.map((locale) => ({ params: { locale } }));
+}
 
 const locale = resolveLocale(Astro);
 const site = await getSite();

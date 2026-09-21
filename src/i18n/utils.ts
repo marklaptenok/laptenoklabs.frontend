@@ -81,6 +81,14 @@ async function hasEntry(collection: 'articles' | 'projects', locale: Locale, slu
 	return entries.some((entry) => entry.id === `${locale}/${slug}`);
 }
 
+async function hasLocale(collection: LocalizedCollection, locale: Locale) {
+	const entries = await getCollection(collection);
+	return entries.some((entry) => entryLocale(entry.id) === locale);
+}
+
+export const localesWith = (collection: LocalizedCollection) =>
+	filterLocales((locale) => hasLocale(collection, locale));
+
 
 export async function getAvailableLocales(currentPath: string): Promise<Locale[]> {
 	const [first, ...rest] = pathSegments(currentPath);
@@ -95,6 +103,10 @@ export async function getAvailableLocales(currentPath: string): Promise<Locale[]
 
 	if (section === 'projects' && tail.length) {
 		return filterLocales((locale) => hasEntry('projects', locale, tail.join('/')));
+	}
+
+	if (section === 'quickmenu') {
+		return localesWith('quickmenu');
 	}
 
 

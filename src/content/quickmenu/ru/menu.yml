@@ -31,6 +31,9 @@ groups:
       - title: GitHub
         description: Открытый код.
         href: https://github.com/marklaptenok
+      - title: Profi.ru
+        description: Профиль преподавателя Марка.
+        href: https://profi.ru/profile/LaptenokMA/
   - items:
       - title: Чем мы занимаемся
         description: Три услуги и то, как мы работаем.
@@ -38,6 +41,10 @@ groups:
       - title: Резюме
         description: Марк Лаптёнок — полная профессиональная биография.
         href: /team/marklaptenok
+  - items:
+      - title: История переезда в Чехию
+        description: "Рассказ Марка о переезде в 2021 году: виза, полиция, синяя карта."
+        href: https://t.me/codelearning_online/197
   - items:
       - title: mark@laptenoklabs.com
         description: Написать Марку напрямую.
