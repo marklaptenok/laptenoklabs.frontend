@@ -34,7 +34,7 @@ const people = (await getLocalizedCollection('cv', locale)).sort((a, b) =>
 				<li class="team__member">
 					<a class="team__link no-underline" href={localeUrl(locale, `/team/${entrySlug(person.id)}`)}>
 						<figure class="team__portrait">
-							<Image src={person.data.photo} alt={person.data.name} width={480} height={480} />
+							<Image src={person.data.photo} alt={person.data.name} width={480} height={480} loading="eager" />
 						</figure>
 						<p class="team__name">{person.data.name}</p>
 						<p class="team__role">{person.data.role}</p>

@@ -54,7 +54,7 @@ const assets = Object.fromEntries(
 	<section class="content-shell cv">
 		<header class="cv__header">
 			<figure class="cv__portrait">
-				<Image src={cv.photo} alt={cv.name} width={440} height={440} />
+				<Image src={cv.photo} alt={cv.name} width={440} height={440} loading="eager" fetchpriority="high" />
 			</figure>
 			<div class="cv__identity">
 				<h1 class="cv__name">{cv.name} <span class="cv__alt">({cv.altName})</span></h1>
@@ -169,6 +169,7 @@ const assets = Object.fromEntries(
 		gap: 0.35rem 1.25rem;
 		font-size: 0.95rem;
 		color: var(--color-muted);
+		overflow-wrap: anywhere;
 	}
 
 	.cv__pdf {
@@ -235,13 +236,48 @@ const assets = Object.fromEntries(
 	}
 
 	@media (max-width: 860px) {
+		.cv {
+			gap: calc(var(--grid-cell) / 2);
+			padding-block: 0 var(--grid-cell);
+		}
+
 		.cv__header {
-			grid-template-columns: calc(var(--grid-cell) * 2) 1fr;
+			grid-template-columns: minmax(0, 1fr);
+			row-gap: 1.25rem;
+		}
+
+		.cv__portrait {
+			grid-row: 1;
+			width: min(60%, calc(var(--grid-cell) * 4));
 		}
 
 		.cv__pdf {
-			grid-column: 1 / -1;
+			grid-row: 2;
+			grid-column: 1;
 			justify-self: start;
+		}
+
+		.cv__pdf :global(.cv-button) {
+			align-items: flex-start;
+			text-align: left;
+		}
+
+		.cv__identity {
+			grid-row: 3;
+		}
+
+		.cv__name {
+			top: 0;
+			line-height: 1.15;
+		}
+
+		.cv__alt {
+			display: block;
+			white-space: normal;
+		}
+
+		.cv__headline {
+			margin-top: 0.5rem;
 		}
 
 		.cv__section {
