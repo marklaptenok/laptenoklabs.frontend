@@ -29,6 +29,15 @@ const projects = defineCollection({
 		}),
 });
 
+const legal = defineCollection({
+	loader: glob({ base: './src/content/legal', pattern: '**/*.md' }),
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		updatedDate: z.coerce.date(),
+	}),
+});
+
 const cv = defineCollection({
 	loader: glob({ base: './src/content/cv', pattern: '**/*.yml' }),
 	schema: ({ image }) => z.object({
@@ -62,4 +71,4 @@ const site = defineCollection({
 	}),
 });
 
-export const collections = { articles, cv, projects, site };
+export const collections = { articles, cv, legal, projects, site };

@@ -9,6 +9,7 @@ const en = {
 	'nav.team': 'Team',
 	'nav.projects': 'Projects',
 	'nav.rss': 'RSS',
+	'nav.privacy': 'Privacy',
 	'nav.primary': 'Main navigation',
 
 	'header.debug': 'Toggle the layout grid',
@@ -93,6 +94,7 @@ const en = {
 	'services.three.title': 'Audit of engineering teams',
 	'services.three.body': 'Helping to hire and build a long-term fruitful environment.',
 
+	'legal.updated': 'Updated',
 	'cv.label': 'CV',
 	'cv.updated': 'Updated {date}',
 
@@ -126,6 +128,7 @@ const ru: Record<TranslationKey, string> = {
 	'nav.team': 'Команда',
 	'nav.projects': 'Проекты',
 	'nav.rss': 'RSS',
+	'nav.privacy': 'Конфиденциальность',
 	'nav.primary': 'Основная навигация',
 
 	'header.debug': 'Показать сетку вёрстки',
@@ -210,6 +213,7 @@ const ru: Record<TranslationKey, string> = {
 	'services.three.title': 'Аудит инженерных команд',
 	'services.three.body': 'Помощь в найме и построении долгосрочной продуктивной среды.',
 
+	'legal.updated': 'Обновлено',
 	'cv.label': 'Резюме',
 	'cv.updated': 'Обновлено {date}',
 

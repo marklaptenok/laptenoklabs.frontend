@@ -1,0 +1,71 @@
+---
+import { render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { getSite } from '../../utils/consts';
+import {
+	formatDate,
+	getLocalizedCollection,
+	localePaths,
+	resolveLocale,
+	useTranslations,
+} from '../../i18n/utils';
+
+export const getStaticPaths = localePaths;
+
+const locale = resolveLocale(Astro);
+const t = useTranslations(locale);
+const site = await getSite();
+
+const [entry] = await getLocalizedCollection('legal', locale);
+const { Content } = await render(entry);
+---
+
+<PageLayout title={`${entry.data.title} · ${site.title}`} description={entry.data.description}>
+	<section class="content-shell legal">
+		<header class="legal__header">
+			<h1 class="section-title">{entry.data.title}</h1>
+			<p class="legal__updated">{t('legal.updated')} {formatDate(entry.data.updatedDate, locale)}</p>
+		</header>
+		<div class="legal__body prose prose-invert max-w-none">
+			<Content />
+		</div>
+	</section>
+</PageLayout>
+
+<style>
+	.legal {
+		display: flex;
+		flex-direction: column;
+		gap: var(--grid-cell);
+		padding-block: var(--grid-cell) calc(var(--grid-cell) * 2);
+	}
+
+	.legal__header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.legal__updated {
+		margin: 0;
+		font-size: 0.85rem;
+		color: var(--tone-subtle);
+	}
+
+	.legal__body {
+		max-width: 52rem;
+		color: var(--color-muted);
+		line-height: 1.7;
+	}
+
+	.legal__body :global(h2) {
+		margin-block: 2rem 0.75rem;
+		font-size: 1.1rem;
+		letter-spacing: 0.04em;
+		color: var(--color-ink);
+	}
+
+	.legal__body :global(p) {
+		margin-block: 0 1rem;
+	}
+</style>
