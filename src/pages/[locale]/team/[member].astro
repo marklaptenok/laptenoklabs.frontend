@@ -35,7 +35,16 @@ const personSchema = {
 	jobTitle: cv.role,
 	description: metaDescription,
 	url: new URL(Astro.url.pathname, Astro.site).toString(),
-	worksFor: { '@type': 'Organization', name: t('footer.company') },
+	image: new URL(cv.photo.src, Astro.site).toString(),
+	email: cv.contacts.find((line) => line.includes('@')),
+	knowsLanguage: ['en', 'ru', 'cs'],
+	knowsAbout: cv.knowsAbout,
+	homeLocation: { '@type': 'Place', name: cv.contacts[0] },
+	worksFor: {
+		'@type': 'Organization',
+		name: t('footer.company'),
+		url: new URL(localeUrl(locale, '/'), Astro.site).toString(),
+	},
 	sameAs: cv.contacts.filter((line) => line.startsWith('http')),
 };
 

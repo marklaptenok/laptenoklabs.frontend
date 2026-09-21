@@ -3,6 +3,20 @@ altName: Марк Лаптёнок
 role: Co-Founder, Software Engineer, Teacher
 photo: ../../../assets/team/marklaptenok.jpg
 headline: A communicator and a technical leader with a fundamental background in applied mathematics and systems programming. Major SWE expertise is in communication among systems. A teacher. Interested in kernel mode programming and distributed OSes.
+knowsAbout:
+  - Software engineering
+  - Communication between computer systems
+  - Communication protocol design
+  - Design and performance analysis of algorithms and data structures
+  - Systems programming in C, C++, Rust and Go
+  - Kernel mode programming
+  - Distributed operating systems
+  - Parallel computing with OpenMP and pthreads
+  - Computer networks
+  - Operating systems
+  - Databases
+  - Applied mathematics
+  - Teaching and mentoring software engineers
 contacts:
   - Pilsen, The Czech Republic
   - mark@laptenoklabs.com
