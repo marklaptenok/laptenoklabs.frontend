@@ -32,7 +32,7 @@ const productLogo = productLogos[section];
           type="button"
           id="debug-toggle"
           aria-label={t('header.debug')}
-          aria-pressed="false"
+          aria-pressed="true"
         >
           <Icon name="tabler:bug" size={18} stroke-width={1.6} />
         </button>
@@ -48,39 +48,50 @@ const productLogo = productLogos[section];
 </header>
 
 <script is:inline>
-  const DEBUG_KEY = "debug-borders";
+  const GRID_KEY = "grid-visible";
 
-  const applyDebug = (state) => {
-    const isOn = state === "on";
-    document.documentElement.dataset.debug = isOn ? "on" : "off";
+  const applyGrid = (state) => {
+    const isOn = state !== "off";
+    document.documentElement.dataset.grid = isOn ? "on" : "off";
     const button = document.getElementById("debug-toggle");
     if (button) button.setAttribute("aria-pressed", isOn ? "true" : "false");
   };
 
-  const getPreferredDebug = () => {
-    const stored = localStorage.getItem(DEBUG_KEY);
-    if (stored === "on" || stored === "off") return stored;
-    return "off";
+  const getPreferredGrid = () => {
+    const stored = localStorage.getItem(GRID_KEY);
+    return stored === "off" ? "off" : "on";
   };
 
-  const toggleDebug = () => {
-    const current =
-      document.documentElement.dataset.debug === "on" ? "on" : "off";
-    const next = current === "on" ? "off" : "on";
-    localStorage.setItem(DEBUG_KEY, next);
-    applyDebug(next);
+  const toggleGrid = () => {
+    const next = document.documentElement.dataset.grid === "off" ? "on" : "off";
+    localStorage.setItem(GRID_KEY, next);
+    applyGrid(next);
   };
 
-  applyDebug(getPreferredDebug());
+  applyGrid(getPreferredGrid());
 
-  const debugButton = document.getElementById("debug-toggle");
-  if (debugButton) {
-    debugButton.addEventListener("click", toggleDebug);
+  const gridButton = document.getElementById("debug-toggle");
+  if (gridButton) {
+    gridButton.addEventListener("click", toggleGrid);
   }
 </script>
 
 <style>
   @reference "tailwindcss";
+
+  #debug-toggle {
+	border-color: var(--color-accent);
+	color: var(--color-accent);
+	background: var(--tone-accent-wash);
+  }
+
+  #debug-toggle:hover,
+  #debug-toggle[aria-pressed='false'] {
+	border-color: var(--color-muted);
+	color: var(--color-muted);
+	background: color-mix(in oklab, var(--color-surface) 92%, transparent);
+	transform: none;
+  }
 
   .site-header {
 	position: fixed;

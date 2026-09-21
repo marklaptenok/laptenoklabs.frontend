@@ -11,7 +11,7 @@ const en = {
 	'nav.rss': 'RSS',
 	'nav.primary': 'Main navigation',
 
-	'header.debug': 'Toggle layout borders',
+	'header.debug': 'Toggle the layout grid',
 	'header.language': 'Change language',
 
 	'search.title': 'Search',
@@ -127,7 +127,7 @@ const ru: Record<TranslationKey, string> = {
 	'nav.rss': 'RSS',
 	'nav.primary': 'Основная навигация',
 
-	'header.debug': 'Показать границы вёрстки',
+	'header.debug': 'Показать сетку вёрстки',
 	'header.language': 'Сменить язык',
 
 	'search.title': 'Поиск',

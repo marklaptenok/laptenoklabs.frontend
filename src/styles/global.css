@@ -121,9 +121,8 @@
         white-space: normal;
     }
 
-    :root[data-debug='on'] * {
-        outline: 1px dashed color-mix(in oklab, var(--color-ink) 45%, transparent);
-        outline-offset: -1px;
+    :root[data-grid='off'] body {
+        background-image: none;
     }
 }
 
@@ -161,15 +160,9 @@
     }
 
     .header-button:hover {
-        border-color: var(--color-accent);
-        color: var(--color-accent);
-        transform: translateY(-1px);
-    }
-
-    .header-button[aria-pressed='true'] {
-        border-color: var(--color-accent);
-        color: var(--color-accent);
-        background: var(--tone-accent-wash);
+        background: var(--color-accent-soft);
+        border-color: var(--color-accent-soft);
+        color: var(--brand-graphite);
     }
 
     .header-button .search-trigger__icon,
