@@ -115,20 +115,25 @@ correct, in both the old shape and the new one.
 
 ## What the change bought
 
-Measured 2026-10-26 from the FreeBSD host, DNS pinned out, 15 fresh connections per row. All three
-hosts terminate on the same Railway edge (`69.46.46.x`) over HTTP/2, and the TLS handshake is
-~100 ms everywhere — so the difference is the server, not the network.
+Measured from the FreeBSD host, DNS pinned out, 12–15 fresh connections per row: the old Function
+on 2026-10-26, the new server on the same hostnames after the cutover on 2026-10-27. Same client,
+same network path, same domains, and a TLS handshake of ~100 ms throughout — so the difference is
+the server and nothing else.
 
-| request | new service, median TTFB | old Function (`.com` / `.cz`) |
+Median TTFB, old → new:
+
+| request | `laptenoklabs.com` | `laptenoklabs.cz` |
 | --- | --- | --- |
-| `/en` | **176 ms** | 1290 / 943 ms |
-| `/ru/team` | **158 ms** | 991 / 1228 ms |
-| `/en`, matching ETag → 304 | **147 ms** | 636 / 568 ms |
-| `/healthz` | **157 ms** | 706 / 695 ms, and a 404 |
+| `/en` | 1290 → **150 ms** (8.6×) | 943 → **156 ms** (6.0×) |
+| `/ru/team` | 991 → **142 ms** (7.0×) | 1228 → **150 ms** (8.2×) |
+| `/en`, matching ETag → 304 | 636 → **150 ms** (4.2×) | 568 → **147 ms** (3.9×) |
+| `/healthz` | 706 ms and a 404 → **160 ms** and `200 ok` | 695 → **158 ms** |
 
-Five to eight times faster to first byte on pages, 4.3× on revalidation — and revalidation is the
-request a returning visitor makes on every page. The spread collapses too: p90 on `/ru/team` is
-167 ms against 1130 ms, because there is no second network hop left to go slow.
+Full page load for `/en`, median total: 1478 → **327 ms** on `.com`, 1132 → **443 ms** on `.cz`.
+
+The tails gain more than the medians. `/ru/team` p90 was 1130 ms on `.com` and 1647 ms on `.cz`;
+it is now 151 and 158 ms. The worst case has stopped existing, because there is no second network
+hop left to go slow.
 
 The old Function spent 0.8–1.1 s fetching each page from S3 before it could answer, and paid a
 round trip even to confirm nothing had changed. `/healthz` on the old shape is that in miniature:
@@ -149,8 +154,21 @@ certificate issues only after DNS resolves — allow minutes, not seconds, per d
 was open; moving a domain during one means detaching it from a working service and possibly not
 getting a certificate on the new one, with the fix outside your control.
 
-Afterwards, re-run the checks above against the real domains, including the `www` → apex redirect,
-which cannot be tested on a `*.up.railway.app` name.
+Afterwards, re-run the checks above against the real domains.
+
+### `www` needs its own custom domain
+
+**Register `www.laptenoklabs.com` and `www.laptenoklabs.cz` on the service too**, and point each
+`www` CNAME at the per-domain target Railway gives for it — not at the apex.
+
+The server's `www.` → apex redirect cannot do this on its own. A `www` CNAME pointing at the apex
+does reach Railway's edge, but the edge has no certificate for a hostname that is not a registered
+custom domain: it falls back to its `*.up.railway.app` wildcard, which does not match, and the
+browser refuses the connection **before any HTTP request is parsed**. Over plain HTTP the edge
+redirects to `https://www.…` and straight into the same error. This was the state of both `www`
+hostnames after the 2026-10-27 cutover, while both apexes were already healthy.
+
+The redirect in `server/index.ts` is still right — it just needs TLS to succeed first.
 
 ## Retiring the old stack
 
