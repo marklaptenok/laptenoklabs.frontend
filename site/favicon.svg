@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Laptenok Labs">
+<title>Laptenok Labs</title>
+<style>
+path { fill: #050505; }
+@media (prefers-color-scheme: dark) { path { fill: #f5f5f5; } }
+</style>
+<g transform="translate(0.593 29.000) scale(0.03714 -0.03714)"><path d="M340 100Q359 100 374.5 84.5Q390 69 390 50Q390 31 374.5 15.5Q359 0 340 0L130 0Q111 0 95.5 15.5Q80 31 80 50L80 650Q80 669 95.5 684.5Q111 700 130 700Q149 700 164.5 684.5Q180 669 180 650L180 100L340 100Z"/></g>
+<g transform="translate(13.950 29.000) scale(0.03714 -0.03714)"><path d="M340 100Q359 100 374.5 84.5Q390 69 390 50Q390 31 374.5 15.5Q359 0 340 0L130 0Q111 0 95.5 15.5Q80 31 80 50L80 650Q80 669 95.5 684.5Q111 700 130 700Q149 700 164.5 684.5Q180 669 180 650L180 100L340 100Z"/></g>
+</svg>
