@@ -8,6 +8,8 @@ A deploy is therefore atomic — code and content land together, or neither does
 2026-10-23, where the server was healthy and every page returned 404 because the bucket was
 unreachable, cannot happen in this shape.
 
+Live since 2026-10-27 on `laptenoklabs.com` and `laptenoklabs.cz`.
+
 ## The routine deploy
 
 ```sh
@@ -170,12 +172,14 @@ hostnames after the 2026-10-27 cutover, while both apexes were already healthy.
 
 The redirect in `server/index.ts` is still right — it just needs TLS to succeed first.
 
-## Retiring the old stack
+## The old stack, retired 2026-10-27
 
-Once the live domains are green on the new service: delete the Function service, then the bucket and
-its credentials. That removes `run.sh`, the ast-grep import scan, the generated `package.json`, the
-floating `hono` pin and the S3 client from the site entirely. `ai.data/index.tsx` stays as the
-record of what it was.
+The site used to be a Railway Function that streamed the pages from an S3 bucket. The Function, the
+bucket and its credentials are **deleted**. Gone with them: `run.sh`, its ast-grep import scan, the
+generated `package.json`, the floating `hono` pin and the S3 client. Both domains passed the 46
+checks again after the removal, so nothing was left depending on them.
+
+`ai.data/index.tsx` and `ai.data/tools/server-test/` stay as the record of what it was.
 
 ## Why the context is assembled instead of deploying the repo
 
